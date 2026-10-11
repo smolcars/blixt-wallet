@@ -255,6 +255,19 @@ autopilot.heuristic=preferential:0.05
 
   @objc(getTorEnabled:reject:)
   func getTorEnabled(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+#if os(macOS)
+    // Async Storage 3 keeps existing settings in its legacy store, but its
+    // native multiGet API now throws and returns a dictionary.
+    let asyncStorage = RNCAsyncStorage.sharedInstance()
+    asyncStorage.methodQueue().async {
+      do {
+        let values = try asyncStorage.multiGet(["torEnabled"])
+        resolve(values["torEnabled"] == "true")
+      } catch {
+        reject("error", error.localizedDescription, error)
+      }
+    }
+#else
     let asyncStorage = RNCAsyncStorage()
 
     asyncStorage.methodQueue.async {
@@ -275,6 +288,7 @@ autopilot.heuristic=preferential:0.05
         }
       })
     }
+#endif
   }
 
   @objc(saveChannelsBackup:resolve:reject:)

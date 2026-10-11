@@ -1,5 +1,5 @@
 import Color from "color";
-import { StackNavigationOptions, StackCardInterpolationProps } from "@react-navigation/stack";
+import { CardStyleInterpolators, StackNavigationOptions, StackCardInterpolationProps } from "@react-navigation/stack";
 
 import { useStoreState } from "../state/store";
 import { blixtTheme } from "../native-base-theme/variables/commonColor";
@@ -56,9 +56,11 @@ export default function useStackNavigationOptions(): StackNavigationOptions {
     },
     headerBackTestID: "header-back",
 
-    animation: screenTransitionsEnabled ? undefined : "none",
+    // The initial macOS renderer can leave native-driven transitions offscreen.
+    // Ignore existing mobile-era preferences until desktop animations work.
+    animation: Platform.OS !== "macos" && screenTransitionsEnabled ? undefined : "none",
     // cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-    cardStyleInterpolator: forFade,
+    cardStyleInterpolator: Platform.OS === "macos" ? CardStyleInterpolators.forNoAnimation : forFade,
     cardOverlayEnabled: false,
     animationTypeForReplace: "pop", // TURBOTODO(hsjoberg): can cause issues
 

@@ -257,7 +257,13 @@ export const model: IStoreModel = {
         //   dispatch.settings.changeBitcoindPubRawBlock,
         //   dispatch.settings.changeBitcoindPubRawTx,
         // );
-        await setupRegtest2(dispatch.settings.changeNeutrinoPeers);
+        if (PLATFORM === "macos") {
+          // Keep first launch non-interactive; configure the local Regtest node
+          // in Settings once the initial desktop UI is available.
+          await dispatch.settings.changeNeutrinoPeers(["127.0.0.1:18444"]);
+        } else {
+          await setupRegtest2(dispatch.settings.changeNeutrinoPeers);
+        }
       }
       log.i("Initializing db for the first time");
       try {
@@ -696,7 +702,7 @@ bitcoin.node=${nodeBackend}
 bitcoin.defaultchanconfs=1
 
 [fee]
-fee.url=${neutrinoFeeUrl}
+${neutrinoFeeUrl ? `fee.url=${neutrinoFeeUrl}` : ""}
 
 ${
   lndChainBackend === "neutrino"

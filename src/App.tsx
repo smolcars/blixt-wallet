@@ -19,7 +19,7 @@ import { BLIXT_WEB_DEMO, IS_ELECTROBUN, PLATFORM } from "./utils/constants";
 import "./i18n/i18n";
 
 export default function App() {
-  const [debug, setDebug] = useState(__DEV__ ? true : false);
+  const [debug, setDebug] = useState(__DEV__ && PLATFORM !== "macos");
 
   useEffect(() => {
     (async () => {

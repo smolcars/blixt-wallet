@@ -187,7 +187,7 @@ export default function Main() {
     gestureEnabled: false,
     gestureDirection: "horizontal",
     gestureVelocityImpact: 1.9,
-    animation: screenTransitionsEnabled ? "default" : "none",
+    animation: PLATFORM !== "macos" && screenTransitionsEnabled ? "default" : "none",
   };
 
   const animationDisabled: StackNavigationOptions = {
@@ -195,7 +195,7 @@ export default function Main() {
     cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
   };
 
-  const horizontalTransition: StackNavigationOptions = {
+  const horizontalTransition: StackNavigationOptions = PLATFORM === "macos" ? animationDisabled : {
     gestureEnabled: true,
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   };
@@ -346,10 +346,11 @@ export default function Main() {
         name="Send"
         component={Send}
         options={{
-          animation: screenTransitionsEnabled ? "default" : "none",
+          animation: PLATFORM !== "macos" && screenTransitionsEnabled ? "default" : "none",
           gestureEnabled: true,
           gestureResponseDistance: 1000,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          ...(PLATFORM === "macos" ? { ...animationDisabled, gestureEnabled: false } : {}),
         }}
       />
       <RootStack.Screen name="OnChain" component={OnChain} options={horizontalTransition} />

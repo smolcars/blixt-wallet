@@ -34,14 +34,6 @@
     "ios:mainnet-fakelnd": "react-native run-ios --scheme BlixtWalletFakelnd --configuration ReleaseFakelnd",
     "ios:mainnet-fakelnd-debug": "react-native run-ios --scheme BlixtWalletFakelnd --configuration DebugFakelnd",
     "ios:bundle-js-release": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle",
-    "macos:regtest-debug": "react-native-macos run-macos --scheme BlixtWalletRegtest --configuration DebugRegtest",
-    "macos:regtest": "react-native-macos run-macos --scheme BlixtWalletRegtest --configuration ReleaseRegtest",
-    "macos:testnet-debug": "react-native-macos run-macos --scheme BlixtWalletTestnet --configuration DebugTestnet",
-    "macos:testnet": "react-native-macos run-macos --scheme BlixtWalletTestnet --configuration ReleaseTestnet",
-    "macos:mainnet-debug": "react-native run-macos --scheme \"BlixtWallet Mainnet\" --configuration Debug",
-    "macos:mainnet": "react-native-macos run-macos --scheme BlixtWallet --configuration Release",
-    "macos:mainnet-fakelnd-debug": "react-native-macos run-macos --scheme BlixtWalletFakelnd --configuration DebugFakelnd",
-    "macos:mainnet-fakelnd": "react-native-macos run-macos --scheme BlixtWalletFakelnd --configuration ReleaseFakelnd",
     "web": "cross-env BLIXT_DEV=false CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=false vite --config ./vite.config.ts",
     "web:demo": "cross-env BLIXT_DEV=false CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=true vite --config ./vite.config.ts",
     "web:debug": "cross-env BLIXT_DEV=true CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=false vite --config ./vite.config.ts",
@@ -59,7 +51,16 @@
     "electrobun:package:normal": "bun run electrobun:bundle:package:normal && cd electrobun && cross-env FLAVOR=normal bun run package:stable",
     "electrobun:package:fakelnd": "bun run electrobun:bundle:package:fakelnd && cd electrobun && cross-env FLAVOR=fakelnd bun run package:stable",
     "electrobun:dev": "cd electrobun && bun run dev",
-    "electrobun:build": "cd electrobun && bun run build"
+    "electrobun:build": "cd electrobun && bun run build",
+    "macos:install": "bun install",
+    "macos:lnd": "node node_modules/react-native-turbo-lnd/fetch-lnd.js --targets=macos",
+    "macos:pods": "cd macos && pod install",
+    "macos:start": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js start --config macos/metro.config.js",
+    "macos:bundle": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js bundle --platform macos --config macos/metro.config.js --entry-file index.js --dev false --bundle-output macos/build/main.jsbundle --assets-dest macos/build",
+    "macos:mainnet-debug": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js run-macos --scheme \"BlixtWallet Mainnet\" --mode \"Debug\"",
+    "macos:mainnet": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js run-macos --scheme \"BlixtWallet Mainnet\" --mode \"Release\"",
+    "macos:regtest-debug": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js run-macos --scheme \"BlixtWallet Regtest\" --mode \"Debug Regtest\"",
+    "macos:regtest": "node --require ./macos/node-resolver.cjs node_modules/react-native-macos/cli.js run-macos --scheme \"BlixtWallet Regtest\" --mode \"Release Regtest\""
   },
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
@@ -147,11 +148,15 @@
     "sql.js": "1.14.2",
     "use-debounce": "10.1.1",
     "wasm-loader": "^1.3.0",
-    "webln": "^0.3.2"
+    "webln": "^0.3.2",
+    "react-native-macos": "0.83.0"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/runtime": "7.29.2",
+    "@blixt/macos-babel-preset": "npm:@react-native/babel-preset@0.83.10",
+    "@blixt/macos-metro-config": "npm:@react-native/metro-config@0.83.10",
+    "@blixt/macos-screens": "npm:react-native-screens@4.25.0",
     "@react-native-community/cli": "20.2.0",
     "@react-native-community/cli-platform-android": "20.2.0",
     "@react-native-community/cli-platform-ios": "20.2.0",
@@ -170,18 +175,18 @@
     "@types/secp256k1": "^4.0.6",
     "@types/sha.js": "^2.4.4",
     "@types/sql.js": "^1.4.9",
+    "@vitejs/plugin-react": "^6.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "babel-plugin-react-native-web": "0.21.2",
     "bolt11": "^1.4.1",
+    "cross-env": "^10.1.0",
     "eslint": "^10.9.0",
     "eslint-plugin-ft-flow": "3.0.11",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "cross-env": "^10.1.0",
     "prettier": "3.9.6",
     "typescript": "7.0.2",
     "vite": "^8.2.2",
-    "@vitejs/plugin-react": "^6.1.0",
     "vite-plugin-node-polyfills": "^0.28.0",
     "vite-plugin-static-copy": "^4.1.1"
   },
@@ -206,5 +211,9 @@
         "NativeSpeedloader": "NativeSpeedloaderModuleProvider"
       }
     }
+  },
+  "patchedDependencies": {
+    "react-native-svg@15.15.5": "patches/react-native-svg@15.15.5.patch",
+    "react-native-screens@4.25.0": "patches/react-native-screens@4.25.0.patch"
   }
 }

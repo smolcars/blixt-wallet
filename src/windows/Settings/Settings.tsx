@@ -1506,15 +1506,19 @@ ${t("experimental.tor.disabled.msg2")}`;
         subtitle: languages[i18n.language].name,
         onPress: onLangPress,
       },
-      {
-        type: "item",
-        icon: { type: "Entypo", name: "bell" },
-        title: t("general.pushNotification.title"),
-        subtitle: t("general.pushNotification.subtitle"),
-        checkBox: true,
-        checked: pushNotificationsEnabled,
-        onPress: onTogglePushNotificationsPress,
-      },
+      ...(PLATFORM !== "macos"
+        ? [
+            {
+              type: "item",
+              icon: { type: "Entypo", name: "bell" },
+              title: t("general.pushNotification.title"),
+              subtitle: t("general.pushNotification.subtitle"),
+              checkBox: true,
+              checked: pushNotificationsEnabled,
+              onPress: onTogglePushNotificationsPress,
+            },
+          ]
+        : []),
       {
         type: "item",
         icon: { type: "Entypo", name: "clipboard" },
@@ -2037,15 +2041,19 @@ ${t("experimental.tor.disabled.msg2")}`;
         checked: debugShowStartupInfo,
         onPress: onToggleDebugShowStartupInfo,
       },
-      {
-        type: "item",
-        icon: { type: "MaterialIcons", name: "gradient" },
-        title: "Use legacy header gradient",
-        subtitle: "Use react-native-linear-gradient instead of experimental CSS gradient",
-        checkBox: true,
-        checked: useLegacyHeaderGradient,
-        onPress: onToggleUseLegacyHeaderGradient,
-      },
+      ...(PLATFORM !== "macos"
+        ? [
+            {
+              type: "item",
+              icon: { type: "MaterialIcons", name: "gradient" },
+              title: "Use legacy header gradient",
+              subtitle: "Use react-native-linear-gradient instead of experimental CSS gradient",
+              checkBox: true,
+              checked: useLegacyHeaderGradient,
+              onPress: onToggleUseLegacyHeaderGradient,
+            },
+          ]
+        : []),
       {
         type: "item",
         icon: { type: "MaterialCommunityIcons", name: "file-code" },

@@ -136,18 +136,19 @@ To start the application:
 
 ### macOS
 
-To build the macOS version, a computer running macOS is required.
+The macOS target is being restored on React Native macOS 0.83.0 and requires macOS 14 or newer. It shares the root `package.json` and lockfile, with platform-specific configuration; mobile remains on React Native 0.85.2. A minimal signed Regtest wallet now runs with temporary adapters and disabled desktop features. Wallet creation and restart/unlock have been checked. See [restoration status and library compatibility](macos/RESTORATION.md) for limitations and validation details.
 
 - Install [Xcode](https://developer.apple.com/xcode/), [Node](https://nodejs.org) and [Bun](https://bun.com)
-- Build lnd for macOS by following the steps in [build-ios-framework.md](build-ios-framework.md)
-  - Instead of running `make ios`, run `make macos` or `make apple`
+- Install CocoaPods (`pod` must be on your PATH).
 - Install Node packages: `bun install`
-- Install CocoaPods libs: `cd macos && pod install`
+- Fetch the matching LND macOS XCFramework: `bun run macos:lnd`
+- Install CocoaPods libs: `bun run macos:pods`
+- Check the JavaScript bundle: `bun run macos:bundle`
 
-To start the application:
+To run the initial desktop build (configure a valid development signing team/profile in Xcode for keychain access):
 
-- Run: `bun start-metro`
-- Build app from Xcode or run `bun macos:mainnet-debug`
+- Run: `bun run macos:start`
+- Open `macos/BlixtWallet.xcworkspace` or run `bun run macos:regtest-debug`.
 
 ## Commit and Code-Style
 

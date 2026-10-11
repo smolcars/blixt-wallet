@@ -12,4 +12,7 @@ const config = {
   },
 };
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+// run-macos can start Metro itself; honor the platform selected by its launcher.
+module.exports = process.env.BLIXT_PLATFORM === "macos"
+  ? require("./macos/metro.config")
+  : mergeConfig(getDefaultConfig(__dirname), config);
