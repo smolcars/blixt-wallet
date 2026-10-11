@@ -76,7 +76,7 @@ PODS:
     - React-utils
     - ReactNativeDependencies
     - Yoga
-  - React-Core-prebuilt (0.85.0):
+  - React-Core-prebuilt (0.85.2):
     - ReactNativeDependencies
   - React-Core/CoreModulesHeaders (0.85.2):
     - hermes-engine
@@ -1602,51 +1602,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-slider (5.2.0):
-    - hermes-engine
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-Core-prebuilt
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - react-native-slider/common (= 5.2.0)
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - ReactNativeDependencies
-    - Yoga
-  - react-native-slider/common (5.2.0):
-    - hermes-engine
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-Core-prebuilt
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - ReactNativeDependencies
-    - Yoga
   - react-native-turbo-lnd (0.0.20):
     - hermes-engine
     - RCTRequired
@@ -2604,7 +2559,6 @@ DEPENDENCIES:
   - react-native-keyboard-controller (from `../node_modules/react-native-keyboard-controller`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
-  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-turbo-lnd (from `../node_modules/react-native-turbo-lnd`)
   - react-native-turbo-sqlite (from `../node_modules/react-native-turbo-sqlite`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -2769,8 +2723,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
-  react-native-slider:
-    :path: "../node_modules/@react-native-community/slider"
   react-native-turbo-lnd:
     :path: "../node_modules/react-native-turbo-lnd"
   react-native-turbo-sqlite:
@@ -2905,7 +2857,7 @@ SPEC CHECKSUMS:
   React: 13cf8451582adb1bb324306e1893b91d1cba28c6
   React-callinvoker: 91e6a605826b684ad2e623811253b4d0c4196bef
   React-Core: 46818de5f211b2a2759ac823b591af8a0a95c2c1
-  React-Core-prebuilt: 2a128d9bee3bb20d1d1fb1c81ec59832713a7a82
+  React-Core-prebuilt: 782167b0c43730422df60034eccdaa6b2665b68b
   React-CoreModules: a6a37afee48d4a31ab398640b0795462647d5c67
   React-cxxreact: 2ec3e2f7a8ae9303460d4ba94cde183ea90d64cd
   React-debug: 0d21117b897ce0359c9d2c9dfe952f237476a14a
@@ -2940,7 +2892,6 @@ SPEC CHECKSUMS:
   react-native-keyboard-controller: 91fb57a926597b9d16c8438bc88f1142a169715c
   react-native-maps: cb32168a32e30f83beb08198325ff96b70dd5c9f
   react-native-safe-area-context: 6b4966397ada0f7dd481e4486a2ef936834861a1
-  react-native-slider: 08ecfc4e9cc16cc388a56dd9caeca51b55cd9bb7
   react-native-turbo-lnd: b784c62ba5d948eda08d3cf9bf5e851b34e69a92
   react-native-turbo-sqlite: cace87d980c7ee8e70d7b8a92dc68468438018e2
   react-native-webview: 2da09bdea1aeb6c46e27dd94632e21059cade6c1

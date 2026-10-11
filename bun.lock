@@ -17,7 +17,6 @@
         "@react-native-clipboard/clipboard": "1.16.3",
         "@react-native-community/geolocation": "3.4.0",
         "@react-native-community/push-notification-ios": "^1.11.0",
-        "@react-native-community/slider": "5.2.1",
         "@react-native-documents/picker": "12.0.2",
         "@react-native-google-signin/google-signin": "16.1.4",
         "@react-navigation/bottom-tabs": "7.18.17",
@@ -411,8 +410,6 @@
     "@react-native-community/geolocation": ["@react-native-community/geolocation@3.4.0", "", { "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-bzZH89/cwmpkPMKKveoC72C4JH0yF4St5Ceg/ZM9pA1SqX9MlRIrIrrOGZ/+yi++xAvFDiYfihtn9TvXWU9/rA=="],
 
     "@react-native-community/push-notification-ios": ["@react-native-community/push-notification-ios@1.12.0", "", { "dependencies": { "invariant": "^2.2.4" }, "peerDependencies": { "react": ">=16.6.3", "react-native": ">=0.58.4" } }, "sha512-nu6ctimVlK4E3id3QHs9yZJ4vCP5UG3lRaBvSboJZ2IWU0XROcIJnNVIXsSH7C3hTlb84lNwPWir3y/TxRj0oA=="],
-
-    "@react-native-community/slider": ["@react-native-community/slider@5.2.1", "", {}, "sha512-HBDPRFRIN47hRtd5tdDWZp3kkVN1z98jGbK9wHOfUfVO+PbBDZzD7xjiiyBqNpg6Rom2QPFOpBZzsB2bHy4yAQ=="],
 
     "@react-native-documents/picker": ["@react-native-documents/picker@12.0.2", "", { "peerDependencies": { "react": "*", "react-native": ">=0.79.0" } }, "sha512-tiaPQjSdsaCkKw/N8XB+DXfhOJ+KJ1OYDliBGoBHEqLI7AhUsSPhn8fRI/gHs7hpYzqOBKf+em9MUrPIA9mlWA=="],
 

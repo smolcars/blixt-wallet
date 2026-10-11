@@ -391,7 +391,19 @@
       },
       "feeRate": {
         "title": "Fee-rate",
-        "auto": "auto"
+        "auto": "auto",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "custom": "Custom",
+        "customAction": "Custom fee",
+        "customLabel": "Custom fee in sat/vB",
+        "highFeeTitle": "Unusually high network fee",
+        "highFeeMessage": "The selected fee rate is {{feeRate}} sat/vB. This could spend a large part of your balance on network fees. The total fee depends on transaction size. Continue with this fee rate?",
+        "highFeeConfirm": "Use high fee",
+        "invalid": "Enter a whole number of at least 1 sat/vB.",
+        "unavailable": "Could not load fees. Retry or enter a custom fee.",
+        "retry": "Retry"
       },
       "withdraw": {
         "title": "Withdraw",
@@ -740,6 +752,13 @@
     },
     "bitcoinNetwork": {
       "title": "Bitcoin Network",
+      "feeServer": {
+        "title": "On-chain fee server",
+        "description": "Enter a mempool or Esplora API base URL, including /api (for example, https://mempool.space/api). Leave blank to restore the default.",
+        "invalid": "Enter a valid HTTP or HTTPS API URL without credentials, a query, or a fragment.",
+        "requiresHttps": "On iOS, use HTTPS for public hostnames. HTTP is allowed for local hostnames and IP addresses.",
+        "saveFailed": "Could not save the fee server. Please try again."
+      },
       "node": {
         "title": "Bitcoin Node",
         "subtitle": "Set Bitcoin node (BIP157) to connect to",

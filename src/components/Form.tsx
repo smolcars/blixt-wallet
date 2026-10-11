@@ -19,6 +19,7 @@ export interface IFormItem {
   key: string | number;
   success?: boolean;
   active?: boolean;
+  stacked?: boolean;
 }
 
 export interface IFormProps {
@@ -51,18 +52,20 @@ export default function Form({
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.itemContainer}>
-          {items.map(({ key, title, component, success, active }, i) =>
+          {items.map(({ key, title, component, success, active, stacked }, i) =>
             (active ?? true) ? (
               <Item
                 key={key}
                 style={{
                   marginTop: i > 0 ? 16 : 8,
+                  ...(stacked ? { flexDirection: "column", alignItems: "stretch" } : {}),
                 }}
                 success={success}
               >
                 <Label
                   style={{
                     ...styles.itemLabel,
+                    ...(stacked ? { width: "auto", marginBottom: 4 } : {}),
                     fontSize: (title !== null && title.length) >= 14 ? 15 : 17,
                   }}
                 >

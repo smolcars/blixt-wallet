@@ -32,6 +32,11 @@ import { useStoreActions, useStoreState } from "../../state/store";
 import { Alert } from "../../utils/alert";
 import BlixtWallet from "../../components/BlixtWallet";
 import { Chain } from "../../utils/build";
+import {
+  defaultOnchainFeeServer,
+  normalizeOnchainFeeServer,
+  FeeServerRequiresHttpsError,
+} from "../../utils/onchain-fees";
 import Clipboard from "@react-native-clipboard/clipboard";
 import DialogAndroid from "react-native-dialogs";
 import { pick } from "@react-native-documents/picker";
@@ -1071,6 +1076,62 @@ ${t("experimental.tor.disabled.msg2")}`;
     );
   };
 
+  // On-chain fee server
+  const onchainFeeServer = useStoreState((store) => store.settings.onchainFeeServer);
+  const changeOnchainFeeServer = useStoreActions((store) => store.settings.changeOnchainFeeServer);
+  const onSetOnchainFeeServerPress = useCallback(() => {
+    Alert.prompt(
+      t("bitcoinNetwork.feeServer.title", { defaultValue: "On-chain fee server" }),
+      t("bitcoinNetwork.feeServer.description", {
+        defaultValue:
+          "Enter a mempool or Esplora API base URL, including /api (for example, https://mempool.space/api). Leave blank to restore the default.",
+      }),
+      [
+        { text: t("buttons.cancel", { ns: namespaces.common }), style: "cancel" },
+        {
+          style: "default",
+          text: t("buttons.save", { ns: namespaces.common }),
+          onPress: async (text?: string) => {
+            if (text === undefined) {
+              return;
+            }
+            let server;
+            try {
+              server = text.trim()
+                ? normalizeOnchainFeeServer(text, PLATFORM)
+                : defaultOnchainFeeServer(Chain);
+            } catch (error) {
+              Alert.alert(
+                error instanceof FeeServerRequiresHttpsError
+                  ? t("bitcoinNetwork.feeServer.requiresHttps", {
+                      defaultValue:
+                        "On iOS, use HTTPS for public hostnames. HTTP is allowed for local hostnames and IP addresses.",
+                    })
+                  : t("bitcoinNetwork.feeServer.invalid", {
+                      defaultValue:
+                        "Enter a valid HTTP or HTTPS API URL without credentials, a query, or a fragment.",
+                    }),
+              );
+              return;
+            }
+            try {
+              await changeOnchainFeeServer(server);
+            } catch {
+              Alert.alert(
+                t("bitcoinNetwork.feeServer.saveFailed", {
+                  defaultValue: "Could not save the fee server. Please try again.",
+                }),
+              );
+            }
+          },
+        },
+      ],
+      "plain-text",
+      onchainFeeServer,
+      "url",
+    );
+  }, [t, onchainFeeServer, changeOnchainFeeServer]);
+
   // Speedloader server
   const speedloaderServer = useStoreState((store) => store.settings.speedloaderServer);
   const changeSpeedloaderServer = useStoreActions(
@@ -1679,6 +1740,13 @@ ${t("experimental.tor.disabled.msg2")}`;
             },
           ]
         : []),
+      {
+        type: "item",
+        icon: { type: "FontAwesome", name: "server" },
+        title: t("bitcoinNetwork.feeServer.title", { defaultValue: "On-chain fee server" }),
+        subtitle: onchainFeeServer,
+        onPress: onSetOnchainFeeServerPress,
+      },
       ...(lndChainBackend === "bitcoindWithZmq"
         ? [
             {
@@ -2053,6 +2121,8 @@ ${t("experimental.tor.disabled.msg2")}`;
     currentFiatUnit,
     currentBitcoinUnit,
     onchainExplorer,
+    onchainFeeServer,
+    onSetOnchainFeeServerPress,
     lndChainBackend,
     autopilotEnabled,
     autopilotNodePubkey,

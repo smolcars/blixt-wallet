@@ -1,9 +1,8 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { Text, Container, Icon, Spinner } from "native-base";
 import { Button } from "../../components/Button";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Slider from "@react-native-community/slider";
 
 import { OnChainStackParamList } from "./index";
 import { useStoreActions, useStoreState } from "../../state/store";
@@ -15,6 +14,8 @@ import useBalance from "../../hooks/useBalance";
 import useFormatBitcoinValue from "../../hooks/useFormatBitcoinValue";
 import { PLATFORM } from "../../utils/constants";
 import Input from "../../components/Input";
+import OnchainFeePicker from "../../components/OnchainFeePicker";
+import useOnchainFee from "../../hooks/useOnchainFee";
 
 import { useTranslation } from "react-i18next";
 import { namespaces } from "../../i18n/i18n.constants";
@@ -23,14 +24,16 @@ export interface IOpenChannelProps {
   navigation: StackNavigationProp<OnChainStackParamList, "Withdraw">;
 }
 export default ({ navigation }: IOpenChannelProps) => {
+  const { width, fontScale } = useWindowDimensions();
   const t = useTranslation(namespaces.onchain.withdraw).t;
   const sendCoins = useStoreActions((actions) => actions.onChain.sendCoins);
   const sendCoinsAll = useStoreActions((actions) => actions.onChain.sendCoinsAll);
   const getBalance = useStoreActions((actions) => actions.onChain.getBalance);
   const [address, setAddress] = useState("");
   const [sending, setSending] = useState(false);
-  const [feeRate, setFeeRate] = useState(0);
-  const slider = useRef<Slider>(null);
+  const submitting = useRef(false);
+  const fee = useOnchainFee();
+  const { feeRate } = fee;
   const [withdrawAll, setWithdrawAll] = useState(false);
   const bitcoinUnit = useStoreState((store) => store.settings.bitcoinUnit);
   const fiatUnit = useStoreState((store) => store.settings.fiatUnit);
@@ -44,22 +47,29 @@ export default ({ navigation }: IOpenChannelProps) => {
       headerTitle: t("layout.title"),
       headerShown: true,
     });
-  }, [navigation]);
+  }, [navigation, t]);
 
   const onWithdrawClick = async () => {
+    if (submitting.current || feeRate === undefined) {
+      return;
+    }
+    submitting.current = true;
     try {
       setSending(true);
+      if (!(await fee.confirmFee())) {
+        return;
+      }
       let result;
       if (withdrawAll) {
         result = await sendCoinsAll({
           address,
-          feeRate: feeRate !== 0 ? feeRate : undefined,
+          feeRate,
         });
       } else {
         result = await sendCoins({
           address,
           sat: satoshiValue,
-          feeRate: feeRate !== 0 ? feeRate : undefined,
+          feeRate,
         });
       }
       console.log(result);
@@ -69,6 +79,8 @@ export default ({ navigation }: IOpenChannelProps) => {
       toast(t("form.withdraw.alert"), 6000, "success");
     } catch (e: any) {
       toast(`${t("msg.error", { ns: namespaces.common })}: ${e.message}`, 12000, "danger", "OK");
+    } finally {
+      submitting.current = false;
       setSending(false);
     }
   };
@@ -172,53 +184,9 @@ export default ({ navigation }: IOpenChannelProps) => {
           },
           {
             key: "SAT",
+            stacked: width / fontScale < 480,
             title: t("form.feeRate.title"),
-            component: (
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingRight: 5,
-                }}
-              >
-                {PLATFORM !== "macos" && (
-                  <Slider
-                    ref={slider}
-                    style={{
-                      flex: 1,
-                      height: 25,
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}
-                    onValueChange={setFeeRate}
-                    minimumValue={0}
-                    maximumValue={500}
-                    step={1}
-                    thumbTintColor={blixtTheme.primary}
-                    minimumTrackTintColor={blixtTheme.lightGray}
-                    maximumTrackTintColor={blixtTheme.lightGray}
-                  />
-                )}
-                <TextInput
-                  keyboardType="numeric"
-                  returnKeyType="done"
-                  value={`${feeRate || ""}`}
-                  onChangeText={(text) => {
-                    let value = Math.min(Number.parseInt(text || "0"), 1000);
-                    if (Number.isNaN(value)) {
-                      value = 0;
-                    }
-                    setFeeRate(value);
-                    slider.current?.setNativeProps({ value });
-                  }}
-                  style={style.feeRateTextInput}
-                />
-                {feeRate !== 0 && <Text> sat/vB</Text>}
-                {feeRate === 0 && <Text> {t("form.feeRate.auto")}</Text>}
-              </View>
-            ),
+            component: <OnchainFeePicker fee={fee} disabled={sending} />,
           },
         ]}
         buttons={[
@@ -228,7 +196,7 @@ export default ({ navigation }: IOpenChannelProps) => {
             block={true}
             primary={true}
             onPress={onWithdrawClick}
-            disabled={sending}
+            disabled={sending || feeRate === undefined}
           >
             {!sending && <Text>{t("form.withdraw.title")}</Text>}
             {sending && <Spinner color={blixtTheme.light} />}
@@ -240,16 +208,3 @@ export default ({ navigation }: IOpenChannelProps) => {
     </Container>
   );
 };
-
-const style = StyleSheet.create({
-  feeRateTextInput: {
-    height: 21,
-    fontFamily: blixtTheme.fontRegular,
-    fontSize: 15,
-    padding: 0,
-    color: blixtTheme.light,
-    backgroundColor: blixtTheme.gray,
-    width: 40,
-    textAlign: "center",
-  },
-});

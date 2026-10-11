@@ -12,6 +12,7 @@ import {
   PLATFORM,
 } from "../utils/constants";
 import { Chain, Debug, VersionCode } from "../utils/build";
+import { defaultOnchainFeeServer } from "../utils/onchain-fees";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IBitcoinUnits } from "../utils/bitcoin-units";
@@ -58,6 +59,7 @@ export enum StorageItem {
   transactionGeolocationEnabled = "transactionGeolocationEnabled",
   transactionGeolocationMapStyle = "transactionGeolocationMapStyle",
   onchainExplorer = "onchainExplorer",
+  onchainFeeServer = "onchainFeeServer",
   multiPathPaymentsEnabled = "multiPathPaymentsEnabled",
   onboardingState = "onboardingState",
   torEnabled = "torEnabled",
@@ -201,6 +203,7 @@ export const clearApp = async () => {
     removeItem(StorageItem.transactionGeolocationEnabled),
     removeItem(StorageItem.transactionGeolocationMapStyle),
     removeItem(StorageItem.onchainExplorer),
+    removeItem(StorageItem.onchainFeeServer),
     removeItem(StorageItem.multiPathPaymentsEnabled),
     removeItem(StorageItem.onboardingState),
     removeItem(StorageItem.torEnabled),
@@ -300,6 +303,7 @@ export const setupApp = async () => {
       "darkMode" satisfies keyof typeof MapStyle,
     ),
     setItem(StorageItem.onchainExplorer, "mempool"),
+    setItem(StorageItem.onchainFeeServer, defaultOnchainFeeServer(Chain)),
     setItemObject<boolean>(StorageItem.multiPathPaymentsEnabled, true),
     setItem(StorageItem.onboardingState, "SEND_ONCHAIN"),
     setItemObject<boolean>(StorageItem.torEnabled, false),

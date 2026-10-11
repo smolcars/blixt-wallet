@@ -1,9 +1,8 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
 import { Text, Container, Icon, Spinner, CheckBox } from "native-base";
 import { Button } from "../../components/Button";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Slider from "@react-native-community/slider";
 import { RouteProp } from "@react-navigation/native";
 
 import { LightningInfoStackParamList } from "./index";
@@ -15,6 +14,8 @@ import { toast } from "../../utils";
 import useFormatBitcoinValue from "../../hooks/useFormatBitcoinValue";
 import { PLATFORM } from "../../utils/constants";
 import Input from "../../components/Input";
+import OnchainFeePicker from "../../components/OnchainFeePicker";
+import useOnchainFee from "../../hooks/useOnchainFee";
 
 import { useTranslation } from "react-i18next";
 import { namespaces } from "../../i18n/i18n.constants";
@@ -27,6 +28,7 @@ export interface IOpenChannelProps {
   route: RouteProp<LightningInfoStackParamList, "OpenChannel">;
 }
 export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
+  const { width, fontScale } = useWindowDimensions();
   const t = useTranslation(namespaces.lightningInfo.openChannel).t;
   const peerUri = route.params?.peerUri;
   const connectAndOpenChannel = useStoreActions((actions) => actions.channel.connectAndOpenChannel);
@@ -36,10 +38,11 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
   const getChannels = useStoreActions((actions) => actions.channel.getChannels);
   const [peer, setPeer] = useState(peerUri ?? "");
   const [opening, setOpening] = useState(false);
-  const [feeRate, setFeeRate] = useState(0);
+  const submitting = useRef(false);
+  const fee = useOnchainFee();
+  const { feeRate } = fee;
   const onChainBalance = useStoreState((store) => store.onChain.balance);
   const formatBitcoinValue = useFormatBitcoinValue();
-  const slider = useRef<Slider>(null);
   const {
     dollarValue,
     bitcoinValue,
@@ -59,23 +62,30 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
       headerTitle: t("layout.title"),
       headerShown: true,
     });
-  }, [navigation]);
+  }, [navigation, t]);
 
   const onOpenChannelPress = async () => {
+    if (submitting.current || feeRate === undefined) {
+      return;
+    }
+    submitting.current = true;
     try {
       setOpening(true);
+      if (!(await fee.confirmFee())) {
+        return;
+      }
 
       if (withdrawAll) {
         await connectAndOpenChannelAll({
           peer,
-          feeRateSat: feeRate !== 0 ? feeRate : undefined,
+          feeRateSat: feeRate,
           type: taprootChan ? CommitmentType.SIMPLE_TAPROOT : undefined,
         });
       } else {
         await connectAndOpenChannel({
           peer,
           amount: satoshiValue,
-          feeRateSat: feeRate !== 0 ? feeRate : undefined,
+          feeRateSat: feeRate,
           type: taprootChan ? CommitmentType.SIMPLE_TAPROOT : undefined,
         });
       }
@@ -83,7 +93,6 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
       navigation.pop();
     } catch (error: any) {
       toast(`Error: ${error.message}`, 12000, "danger", "Okay");
-      setOpening(false);
 
       // Special case if the error is likely related to Tor
       if (
@@ -96,13 +105,16 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
           },
           {
             text: "Activate Tor",
-            async onPress(value?) {
+            async onPress() {
               await changeTorEnabled(!torEnabled);
               await restartAppOrNotify();
             },
           },
         ]);
       }
+    } finally {
+      submitting.current = false;
+      setOpening(false);
     }
   };
 
@@ -189,54 +201,9 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
           },
           {
             key: "SAT",
+            stacked: width / fontScale < 480,
             title: t("form.fee_rate.title"),
-            component: (
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingRight: 5,
-                }}
-              >
-                {PLATFORM !== "macos" && (
-                  <Slider
-                    ref={slider}
-                    style={{
-                      flex: 1,
-                      height: 25,
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}
-                    onValueChange={setFeeRate}
-                    minimumValue={0}
-                    maximumValue={500}
-                    step={1}
-                    thumbTintColor={blixtTheme.primary}
-                    minimumTrackTintColor={blixtTheme.lightGray}
-                    maximumTrackTintColor={blixtTheme.lightGray}
-                  />
-                )}
-                <TextInput
-                  keyboardType="numeric"
-                  returnKeyType="done"
-                  value={`${feeRate || ""}`}
-                  onChangeText={(text) => {
-                    let value = Math.min(Number.parseInt(text || "0"), 1000);
-                    if (Number.isNaN(value)) {
-                      value = 0;
-                    }
-                    setFeeRate(value);
-                    slider.current?.setNativeProps({ value });
-                  }}
-                  style={style.feeRateTextInput}
-                  enableFocusRing={false} // macOS prop
-                />
-                {feeRate !== 0 && <Text> sat/vB</Text>}
-                {feeRate === 0 && <Text> auto</Text>}
-              </View>
-            ),
+            component: <OnchainFeePicker fee={fee} disabled={opening} />,
           },
           {
             key: "ENABLE_TAPROOT_CHANS",
@@ -256,11 +223,12 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
         ]}
         buttons={[
           <Button
+            testID="OPEN_CHANNEL"
             key="OPEN_CHANNEL"
             onPress={onOpenChannelPress}
             block={true}
             primary={true}
-            disabled={opening}
+            disabled={opening || feeRate === undefined}
           >
             {!opening && <Text>{t("form.title")}</Text>}
             {opening && <Spinner color={blixtTheme.light} />}
@@ -272,16 +240,3 @@ export default function OpenChannel({ navigation, route }: IOpenChannelProps) {
     </Container>
   );
 }
-
-const style = StyleSheet.create({
-  feeRateTextInput: {
-    height: 21,
-    fontFamily: blixtTheme.fontRegular,
-    fontSize: 15,
-    padding: 0,
-    color: blixtTheme.light,
-    backgroundColor: blixtTheme.gray,
-    width: 40,
-    textAlign: "center",
-  },
-});

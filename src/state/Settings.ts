@@ -8,6 +8,7 @@ import {
   DEFAULT_MAX_LN_FEE_PERCENTAGE,
   DEFAULT_PATHFINDING_ALGORITHM,
   DEFAULT_SPEEDLOADER_SERVER,
+  PLATFORM,
 } from "../utils/constants";
 import {
   StorageItem,
@@ -23,6 +24,7 @@ import {
 } from "../storage/app";
 
 import { Chain } from "../utils/build";
+import { defaultOnchainFeeServer, normalizeOnchainFeeServer } from "../utils/onchain-fees";
 import { BitcoinUnits, IBitcoinUnits } from "../utils/bitcoin-units";
 import { IFiatRates } from "./Fiat";
 import { IStoreModel } from "./index";
@@ -63,6 +65,7 @@ export interface ISettingsModel {
   changePreferFiat: Thunk<ISettingsModel, boolean>;
   changeTransactionGeolocationEnabled: Thunk<ISettingsModel, boolean>;
   changeTransactionGeolocationMapStyle: Thunk<ISettingsModel, keyof typeof MapStyle>;
+  changeOnchainFeeServer: Thunk<ISettingsModel, string>;
   changeOnchainExplorer: Thunk<ISettingsModel, keyof typeof OnchainExplorer | string>;
   changeMultiPathPaymentsEnabled: Thunk<ISettingsModel, boolean>;
   changeTorEnabled: Thunk<ISettingsModel, boolean>;
@@ -115,6 +118,7 @@ export interface ISettingsModel {
   setPreferFiat: Action<ISettingsModel, boolean>;
   setTransactionGeolocationEnabled: Action<ISettingsModel, boolean>;
   setTransactionGeolocationMapStyle: Action<ISettingsModel, keyof typeof MapStyle>;
+  setOnchainFeeServer: Action<ISettingsModel, string>;
   setOnchainExplorer: Action<ISettingsModel, keyof typeof OnchainExplorer | string>;
   setMultiPathPaymentsEnabled: Action<ISettingsModel, boolean>;
   setTorEnabled: Action<ISettingsModel, boolean>;
@@ -167,6 +171,7 @@ export interface ISettingsModel {
   preferFiat: boolean;
   transactionGeolocationEnabled: boolean;
   transactionGeolocationMapStyle: keyof typeof MapStyle;
+  onchainFeeServer: string;
   onchainExplorer: keyof typeof OnchainExplorer | string;
   multiPathPaymentsEnabled: boolean;
   torEnabled: boolean;
@@ -256,6 +261,9 @@ export const settings: ISettingsModel = {
         "darkMode",
     );
     actions.setOnchainExplorer((await getItem(StorageItem.onchainExplorer)) ?? "mempool");
+    actions.setOnchainFeeServer(
+      (await getItem(StorageItem.onchainFeeServer)) ?? defaultOnchainFeeServer(Chain),
+    );
     actions.setMultiPathPaymentsEnabled(
       await getItemObject(StorageItem.multiPathPaymentsEnabled || false),
     );
@@ -402,6 +410,14 @@ export const settings: ISettingsModel = {
   changeTransactionGeolocationMapStyle: thunk(async (actions, payload) => {
     await setItem(StorageItem.transactionGeolocationMapStyle, payload);
     actions.setTransactionGeolocationMapStyle(payload);
+  }),
+
+  changeOnchainFeeServer: thunk(async (actions, payload) => {
+    const server = payload.trim()
+      ? normalizeOnchainFeeServer(payload, PLATFORM)
+      : defaultOnchainFeeServer(Chain);
+    await setItem(StorageItem.onchainFeeServer, server);
+    actions.setOnchainFeeServer(server);
   }),
 
   changeOnchainExplorer: thunk(async (actions, payload) => {
@@ -627,6 +643,9 @@ export const settings: ISettingsModel = {
   setTransactionGeolocationMapStyle: action((state, payload) => {
     state.transactionGeolocationMapStyle = payload;
   }),
+  setOnchainFeeServer: action((state, payload) => {
+    state.onchainFeeServer = payload;
+  }),
   setOnchainExplorer: action((state, payload) => {
     state.onchainExplorer = payload;
   }),
@@ -751,6 +770,7 @@ export const settings: ISettingsModel = {
   transactionGeolocationEnabled: false,
   transactionGeolocationMapStyle: "darkMode",
   onchainExplorer: "mempool",
+  onchainFeeServer: defaultOnchainFeeServer(Chain),
   multiPathPaymentsEnabled: false,
   torEnabled: false,
   hideExpiredInvoices: false,
