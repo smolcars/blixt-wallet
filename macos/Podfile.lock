@@ -1,423 +1,650 @@
 PODS:
+  - AsyncStorage (3.1.1):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - BlixtCamera (1.0.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
-  - FBLazyVector (0.75.7)
-  - fmt (9.1.0)
+  - fast_float (8.0.0)
+  - FBLazyVector (0.83.0)
+  - fmt (12.1.0)
   - glog (0.3.5)
-  - hermes-engine (0.75.4):
-    - hermes-engine/Pre-built (= 0.75.4)
-  - hermes-engine/Pre-built (0.75.4)
-  - RCT-Folly (2024.01.01.00):
+  - hermes-engine (0.14.1):
+    - hermes-engine/Pre-built (= 0.14.1)
+  - hermes-engine/Pre-built (0.14.1)
+  - NitroModules (0.37.0):
     - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
-    - RCT-Folly/Default (= 2024.01.01.00)
-  - RCT-Folly/Default (2024.01.01.00):
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float (= 8.0.0)
+    - fmt (= 12.1.0)
     - glog
-  - RCT-Folly/Fabric (2024.01.01.00):
+    - RCT-Folly/Default (= 2024.11.18.00)
+  - RCT-Folly/Default (2024.11.18.00):
     - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float (= 8.0.0)
+    - fmt (= 12.1.0)
     - glog
-  - RCTDeprecation (0.75.7)
-  - RCTRequired (0.75.7)
-  - RCTTypeSafety (0.75.7):
-    - FBLazyVector (= 0.75.7)
-    - RCTRequired (= 0.75.7)
-    - React-Core (= 0.75.7)
-  - React (0.75.7):
-    - React-Core (= 0.75.7)
-    - React-Core/DevSupport (= 0.75.7)
-    - React-Core/RCTWebSocket (= 0.75.7)
-    - React-RCTActionSheet (= 0.75.7)
-    - React-RCTAnimation (= 0.75.7)
-    - React-RCTBlob (= 0.75.7)
-    - React-RCTImage (= 0.75.7)
-    - React-RCTLinking (= 0.75.7)
-    - React-RCTNetwork (= 0.75.7)
-    - React-RCTSettings (= 0.75.7)
-    - React-RCTText (= 0.75.7)
-    - React-RCTVibration (= 0.75.7)
-  - React-callinvoker (0.75.7)
-  - React-Core (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default (= 0.75.7)
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/CoreModulesHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/Default (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/DevSupport (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default (= 0.75.7)
-    - React-Core/RCTWebSocket (= 0.75.7)
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTActionSheetHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTAnimationHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTBlobHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTImageHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTLinkingHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTNetworkHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTSettingsHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTTextHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTVibrationHeaders (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-Core/RCTWebSocket (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTDeprecation
-    - React-Core/Default (= 0.75.7)
-    - React-cxxreact
-    - React-featureflags
-    - React-hermes
-    - React-jsi
-    - React-jsiexecutor
-    - React-jsinspector
-    - React-perflogger
-    - React-runtimescheduler
-    - React-utils
-    - SocketRocket (= 0.7.0)
-    - Yoga
-  - React-CoreModules (0.75.7):
+  - RCT-Folly/Fabric (2024.11.18.00):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTTypeSafety (= 0.75.7)
-    - React-Core/CoreModulesHeaders (= 0.75.7)
-    - React-jsi (= 0.75.7)
+    - fast_float (= 8.0.0)
+    - fmt (= 12.1.0)
+    - glog
+  - RCTDeprecation (0.83.0)
+  - RCTRequired (0.83.0)
+  - RCTSwiftUI (0.83.0):
+    - React-RCTUIKit
+  - RCTSwiftUIWrapper (0.83.0):
+    - RCTSwiftUI
+    - React-RCTUIKit
+  - RCTTypeSafety (0.83.0):
+    - FBLazyVector (= 0.83.0)
+    - RCTRequired (= 0.83.0)
+    - React-Core (= 0.83.0)
+  - React (0.83.0):
+    - React-Core (= 0.83.0)
+    - React-Core/DevSupport (= 0.83.0)
+    - React-Core/RCTWebSocket (= 0.83.0)
+    - React-RCTActionSheet (= 0.83.0)
+    - React-RCTAnimation (= 0.83.0)
+    - React-RCTBlob (= 0.83.0)
+    - React-RCTImage (= 0.83.0)
+    - React-RCTLinking (= 0.83.0)
+    - React-RCTNetwork (= 0.83.0)
+    - React-RCTSettings (= 0.83.0)
+    - React-RCTText (= 0.83.0)
+    - React-RCTVibration (= 0.83.0)
+  - React-callinvoker (0.83.0)
+  - React-Core (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default (= 0.83.0)
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
     - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/CoreModulesHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/Default (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/DevSupport (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default (= 0.83.0)
+    - React-Core/RCTWebSocket (= 0.83.0)
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTActionSheetHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTAnimationHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTBlobHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTImageHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTLinkingHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTNetworkHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTSettingsHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTTextHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTVibrationHeaders (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-Core/RCTWebSocket (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTDeprecation
+    - React-Core/Default (= 0.83.0)
+    - React-cxxreact
+    - React-featureflags
+    - React-hermes
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsitooling
+    - React-perflogger
+    - React-RCTUIKit
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - SocketRocket
+    - Yoga
+  - React-CoreModules (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTTypeSafety (= 0.83.0)
+    - React-Core/CoreModulesHeaders (= 0.83.0)
+    - React-debug
+    - React-featureflags
+    - React-jsi (= 0.83.0)
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
     - React-NativeModulesApple
     - React-RCTBlob
-    - React-RCTImage (= 0.75.7)
-    - ReactCodegen
+    - React-RCTFBReactNativeSpec
+    - React-RCTImage (= 0.83.0)
+    - React-RCTUIKit (= 0.83.0)
+    - React-runtimeexecutor
+    - React-utils
     - ReactCommon
-    - SocketRocket (= 0.7.0)
-  - React-cxxreact (0.75.7):
+    - SocketRocket
+  - React-cxxreact (0.83.0):
     - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-callinvoker (= 0.75.7)
-    - React-debug (= 0.75.7)
-    - React-jsi (= 0.75.7)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-callinvoker (= 0.83.0)
+    - React-debug (= 0.83.0)
+    - React-jsi (= 0.83.0)
     - React-jsinspector
-    - React-logger (= 0.75.7)
-    - React-perflogger (= 0.75.7)
-    - React-runtimeexecutor (= 0.75.7)
-  - React-debug (0.75.7)
-  - React-defaultsnativemodule (0.75.7):
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-logger (= 0.83.0)
+    - React-perflogger (= 0.83.0)
+    - React-runtimeexecutor
+    - React-timing (= 0.83.0)
+    - React-utils
+    - SocketRocket
+  - React-debug (0.83.0):
+    - React-debug/redbox (= 0.83.0)
+  - React-debug/redbox (0.83.0)
+  - React-defaultsnativemodule (0.83.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-domnativemodule
-    - React-Fabric
     - React-featureflags
     - React-featureflagsnativemodule
-    - React-graphics
     - React-idlecallbacksnativemodule
-    - React-ImageManager
+    - React-intersectionobservernativemodule
+    - React-jsi
+    - React-jsiexecutor
     - React-microtasksnativemodule
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
+    - React-mutationobservernativemodule
+    - React-RCTFBReactNativeSpec
+    - React-webperformancenativemodule
+    - SocketRocket
     - Yoga
-  - React-domnativemodule (0.75.7):
+  - React-domnativemodule (0.83.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-Fabric
+    - React-Fabric/bridging
     - React-FabricComponents
-    - React-featureflags
     - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
+    - React-runtimeexecutor
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-Fabric (0.75.7):
+  - React-Fabric (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
     - React-cxxreact
     - React-debug
-    - React-Fabric/animations (= 0.75.7)
-    - React-Fabric/attributedstring (= 0.75.7)
-    - React-Fabric/componentregistry (= 0.75.7)
-    - React-Fabric/componentregistrynative (= 0.75.7)
-    - React-Fabric/components (= 0.75.7)
-    - React-Fabric/core (= 0.75.7)
-    - React-Fabric/dom (= 0.75.7)
-    - React-Fabric/imagemanager (= 0.75.7)
-    - React-Fabric/leakchecker (= 0.75.7)
-    - React-Fabric/mounting (= 0.75.7)
-    - React-Fabric/observers (= 0.75.7)
-    - React-Fabric/scheduler (= 0.75.7)
-    - React-Fabric/telemetry (= 0.75.7)
-    - React-Fabric/templateprocessor (= 0.75.7)
-    - React-Fabric/uimanager (= 0.75.7)
+    - React-Fabric/animated (= 0.83.0)
+    - React-Fabric/animationbackend (= 0.83.0)
+    - React-Fabric/animations (= 0.83.0)
+    - React-Fabric/attributedstring (= 0.83.0)
+    - React-Fabric/bridging (= 0.83.0)
+    - React-Fabric/componentregistry (= 0.83.0)
+    - React-Fabric/componentregistrynative (= 0.83.0)
+    - React-Fabric/components (= 0.83.0)
+    - React-Fabric/consistency (= 0.83.0)
+    - React-Fabric/core (= 0.83.0)
+    - React-Fabric/dom (= 0.83.0)
+    - React-Fabric/imagemanager (= 0.83.0)
+    - React-Fabric/leakchecker (= 0.83.0)
+    - React-Fabric/mounting (= 0.83.0)
+    - React-Fabric/observers (= 0.83.0)
+    - React-Fabric/scheduler (= 0.83.0)
+    - React-Fabric/telemetry (= 0.83.0)
+    - React-Fabric/templateprocessor (= 0.83.0)
+    - React-Fabric/uimanager (= 0.83.0)
     - React-featureflags
     - React-graphics
     - React-jsi
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/animations (0.75.7):
+    - SocketRocket
+  - React-Fabric/animated (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCommon/turbomodule/core
-  - React-Fabric/attributedstring (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -429,15 +656,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/componentregistry (0.75.7):
+    - SocketRocket
+  - React-Fabric/animationbackend (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -449,15 +681,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/componentregistrynative (0.75.7):
+    - SocketRocket
+  - React-Fabric/animations (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -469,38 +706,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/components (0.75.7):
+    - SocketRocket
+  - React-Fabric/attributedstring (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-Fabric/components/legacyviewmanagerinterop (= 0.75.7)
-    - React-Fabric/components/root (= 0.75.7)
-    - React-Fabric/components/view (= 0.75.7)
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCommon/turbomodule/core
-  - React-Fabric/components/legacyviewmanagerinterop (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -512,15 +731,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/components/root (0.75.7):
+    - SocketRocket
+  - React-Fabric/bridging (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -532,15 +756,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/components/view (0.75.7):
+    - SocketRocket
+  - React-Fabric/componentregistry (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -552,16 +781,176 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/componentregistrynative (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/components (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric/components/legacyviewmanagerinterop (= 0.83.0)
+    - React-Fabric/components/root (= 0.83.0)
+    - React-Fabric/components/scrollview (= 0.83.0)
+    - React-Fabric/components/view (= 0.83.0)
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/components/legacyviewmanagerinterop (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/components/root (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/components/scrollview (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/components/view (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-renderercss
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-Fabric/core (0.75.7):
+  - React-Fabric/consistency (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -573,15 +962,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/dom (0.75.7):
+    - SocketRocket
+  - React-Fabric/core (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -593,15 +987,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/imagemanager (0.75.7):
+    - SocketRocket
+  - React-Fabric/dom (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -613,15 +1012,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/leakchecker (0.75.7):
+    - SocketRocket
+  - React-Fabric/imagemanager (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -633,15 +1037,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/mounting (0.75.7):
+    - SocketRocket
+  - React-Fabric/leakchecker (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -653,36 +1062,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/observers (0.75.7):
+    - SocketRocket
+  - React-Fabric/mounting (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-Fabric/observers/events (= 0.75.7)
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCommon/turbomodule/core
-  - React-Fabric/observers/events (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -694,15 +1087,123 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/scheduler (0.75.7):
+    - SocketRocket
+  - React-Fabric/observers (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric/observers/events (= 0.83.0)
+    - React-Fabric/observers/intersection (= 0.83.0)
+    - React-Fabric/observers/mutation (= 0.83.0)
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/observers/events (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/observers/intersection (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/observers/mutation (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-Fabric/scheduler (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -714,17 +1215,23 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-performancecdpmetrics
     - React-performancetimeline
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/telemetry (0.75.7):
+    - SocketRocket
+  - React-Fabric/telemetry (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -736,15 +1243,20 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/templateprocessor (0.75.7):
+    - SocketRocket
+  - React-Fabric/templateprocessor (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -756,42 +1268,26 @@ PODS:
     - React-jsiexecutor
     - React-logger
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-Fabric/uimanager (0.75.7):
+    - SocketRocket
+  - React-Fabric/uimanager (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
     - React-cxxreact
     - React-debug
-    - React-Fabric/uimanager/consistency (= 0.75.7)
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererconsistency
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCommon/turbomodule/core
-  - React-Fabric/uimanager/consistency (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
+    - React-Fabric/uimanager/consistency (= 0.83.0)
     - React-featureflags
     - React-graphics
     - React-jsi
@@ -799,141 +1295,113 @@ PODS:
     - React-logger
     - React-rendererconsistency
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
     - ReactCommon/turbomodule/core
-  - React-FabricComponents (0.75.7):
+    - SocketRocket
+  - React-Fabric/uimanager/consistency (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-rendererconsistency
+    - React-rendererdebug
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-FabricComponents (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
     - React-cxxreact
     - React-debug
     - React-Fabric
-    - React-FabricComponents/components (= 0.75.7)
-    - React-FabricComponents/textlayoutmanager (= 0.75.7)
+    - React-FabricComponents/components (= 0.83.0)
+    - React-FabricComponents/textlayoutmanager (= 0.83.0)
     - React-featureflags
     - React-graphics
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components (0.75.7):
+  - React-FabricComponents/components (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
     - React-cxxreact
     - React-debug
     - React-Fabric
-    - React-FabricComponents/components/inputaccessory (= 0.75.7)
-    - React-FabricComponents/components/iostextinput (= 0.75.7)
-    - React-FabricComponents/components/modal (= 0.75.7)
-    - React-FabricComponents/components/rncore (= 0.75.7)
-    - React-FabricComponents/components/safeareaview (= 0.75.7)
-    - React-FabricComponents/components/scrollview (= 0.75.7)
-    - React-FabricComponents/components/text (= 0.75.7)
-    - React-FabricComponents/components/textinput (= 0.75.7)
-    - React-FabricComponents/components/unimplementedview (= 0.75.7)
+    - React-FabricComponents/components/inputaccessory (= 0.83.0)
+    - React-FabricComponents/components/iostextinput (= 0.83.0)
+    - React-FabricComponents/components/modal (= 0.83.0)
+    - React-FabricComponents/components/rncore (= 0.83.0)
+    - React-FabricComponents/components/safeareaview (= 0.83.0)
+    - React-FabricComponents/components/switch (= 0.83.0)
+    - React-FabricComponents/components/text (= 0.83.0)
+    - React-FabricComponents/components/textinput (= 0.83.0)
+    - React-FabricComponents/components/unimplementedview (= 0.83.0)
+    - React-FabricComponents/components/virtualview (= 0.83.0)
+    - React-FabricComponents/components/virtualviewexperimental (= 0.83.0)
     - React-featureflags
     - React-graphics
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/inputaccessory (0.75.7):
+  - React-FabricComponents/components/inputaccessory (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - React-FabricComponents/components/iostextinput (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - React-FabricComponents/components/modal (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-cxxreact
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-jsi
-    - React-jsiexecutor
-    - React-logger
-    - React-rendererdebug
-    - React-runtimescheduler
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - React-FabricComponents/components/rncore (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - glog
-    - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -945,18 +1413,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/safeareaview (0.75.7):
+  - React-FabricComponents/components/iostextinput (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -968,18 +1440,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/scrollview (0.75.7):
+  - React-FabricComponents/components/modal (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -991,18 +1467,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/text (0.75.7):
+  - React-FabricComponents/components/rncore (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1014,18 +1494,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/textinput (0.75.7):
+  - React-FabricComponents/components/safeareaview (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1037,18 +1521,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/components/unimplementedview (0.75.7):
+  - React-FabricComponents/components/switch (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1060,18 +1548,22 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricComponents/textlayoutmanager (0.75.7):
+  - React-FabricComponents/components/text (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1083,97 +1575,251 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-logger
+    - React-RCTFBReactNativeSpec
     - React-rendererdebug
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-FabricImage (0.75.7):
+  - React-FabricComponents/components/textinput (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - RCTRequired (= 0.75.7)
-    - RCTTypeSafety (= 0.75.7)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
     - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-RCTFBReactNativeSpec
+    - React-rendererdebug
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-FabricComponents/components/unimplementedview (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-RCTFBReactNativeSpec
+    - React-rendererdebug
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-FabricComponents/components/virtualview (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-RCTFBReactNativeSpec
+    - React-rendererdebug
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-FabricComponents/components/virtualviewexperimental (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-RCTFBReactNativeSpec
+    - React-rendererdebug
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-FabricComponents/textlayoutmanager (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-cxxreact
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-logger
+    - React-RCTFBReactNativeSpec
+    - React-rendererdebug
+    - React-runtimescheduler
+    - React-utils
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-FabricImage (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired (= 0.83.0)
+    - RCTTypeSafety (= 0.83.0)
+    - React-Fabric
+    - React-featureflags
     - React-graphics
     - React-ImageManager
     - React-jsi
-    - React-jsiexecutor (= 0.75.7)
+    - React-jsiexecutor (= 0.83.0)
     - React-logger
     - React-rendererdebug
     - React-utils
     - ReactCommon
+    - SocketRocket
     - Yoga
-  - React-featureflags (0.75.7)
-  - React-featureflagsnativemodule (0.75.7):
+  - React-featureflags (0.83.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - SocketRocket
+  - React-featureflagsnativemodule (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-    - Yoga
-  - React-graphics (0.75.7):
+    - SocketRocket
+  - React-graphics (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-Core
     - React-jsi
     - React-jsiexecutor
     - React-utils
-  - React-hermes (0.75.7):
+    - SocketRocket
+  - React-hermes (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-cxxreact (= 0.75.7)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact (= 0.83.0)
     - React-jsi
-    - React-jsiexecutor (= 0.75.7)
+    - React-jsiexecutor (= 0.83.0)
     - React-jsinspector
-    - React-perflogger (= 0.75.7)
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-oscompat
+    - React-perflogger (= 0.83.0)
     - React-runtimeexecutor
-  - React-idlecallbacksnativemodule (0.75.7):
+    - SocketRocket
+  - React-idlecallbacksnativemodule (0.83.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
+    - React-runtimeexecutor
     - React-runtimescheduler
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - Yoga
-  - React-ImageManager (0.75.7):
+    - SocketRocket
+  - React-ImageManager (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
+    - RCT-Folly
     - RCT-Folly/Fabric
     - React-Core/Default
     - React-debug
@@ -1181,74 +1827,209 @@ PODS:
     - React-graphics
     - React-rendererdebug
     - React-utils
-  - React-jserrorhandler (0.75.7):
-    - RCT-Folly/Fabric (= 2024.01.01.00)
-    - React-debug
-    - React-jsi
-  - React-jsi (0.75.7):
+    - SocketRocket
+  - React-intersectionobservernativemodule (0.83.0):
     - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-  - React-jsiexecutor (0.75.7):
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact
+    - React-Fabric
+    - React-Fabric/bridging
+    - React-graphics
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
+    - React-runtimeexecutor
+    - React-runtimescheduler
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-jserrorhandler (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-cxxreact (= 0.75.7)
-    - React-jsi (= 0.75.7)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact
+    - React-debug
+    - React-featureflags
+    - React-jsi
+    - ReactCommon/turbomodule/bridging
+    - SocketRocket
+  - React-jsi (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - SocketRocket
+  - React-jsiexecutor (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact
+    - React-debug
+    - React-jsi
     - React-jsinspector
-    - React-perflogger (= 0.75.7)
-  - React-jsinspector (0.75.7):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-featureflags
-    - React-jsi
-    - React-runtimeexecutor (= 0.75.7)
-  - React-jsitracing (0.75.7):
-    - React-jsi
-  - React-logger (0.75.7):
-    - glog
-  - React-Mapbuffer (0.75.7):
-    - glog
-    - React-debug
-  - React-microtasksnativemodule (0.75.7):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-perflogger
+    - React-runtimeexecutor
     - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
+    - SocketRocket
+  - React-jsinspector (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-featureflags
+    - React-jsi
+    - React-jsinspectorcdp
+    - React-jsinspectornetwork
+    - React-jsinspectortracing
+    - React-oscompat
+    - React-perflogger (= 0.83.0)
+    - React-runtimeexecutor
+    - React-utils
+    - SocketRocket
+  - React-jsinspectorcdp (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - SocketRocket
+  - React-jsinspectornetwork (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-jsinspectorcdp
+    - SocketRocket
+  - React-jsinspectortracing (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-jsi
+    - React-jsinspectornetwork
+    - React-oscompat
+    - React-timing
+    - React-utils
+    - SocketRocket
+  - React-jsitooling (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact (= 0.83.0)
+    - React-debug
+    - React-jsi (= 0.83.0)
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-runtimeexecutor
+    - React-utils
+    - SocketRocket
+  - React-jsitracing (0.83.0):
+    - React-jsi
+  - React-logger (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - SocketRocket
+  - React-Mapbuffer (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-debug
+    - SocketRocket
+  - React-microtasksnativemodule (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
+    - SocketRocket
+  - React-mutationobservernativemodule (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact
+    - React-Fabric
+    - React-Fabric/bridging
+    - React-Fabric/observers/mutation
+    - React-featureflags
+    - React-jsi
+    - React-jsiexecutor
+    - React-RCTFBReactNativeSpec
+    - React-runtimeexecutor
+    - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - react-native-build-config (0.3.2):
+  - react-native-hash (3.0.3):
     - React
-  - react-native-netinfo (11.3.2):
-    - React-Core
-  - react-native-sqlite-storage (6.0.1):
-    - React-Core
-  - react-native-turbo-lnd (0.1.2):
+  - react-native-safe-area-context (5.9.1):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1257,19 +2038,28 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
+    - react-native-safe-area-context/common (= 5.9.1)
+    - react-native-safe-area-context/fabric (= 5.9.1)
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - react-native-turbo-sqlite (0.1.1):
+  - react-native-safe-area-context/common (5.9.1):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1278,19 +2068,26 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - react-native-webview (13.12.1):
+  - react-native-safe-area-context/fabric (5.9.1):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1299,42 +2096,202 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
+    - react-native-safe-area-context/common
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - React-nativeconfig (0.75.7)
-  - React-NativeModulesApple (0.75.7):
+  - react-native-turbo-lnd (0.0.23):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - react-native-turbo-sqlite (0.7.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - react-native-webview (14.0.1):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - React-NativeModulesApple (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-callinvoker
     - React-Core
     - React-cxxreact
+    - React-debug
+    - React-featureflags
     - React-jsi
     - React-jsinspector
+    - React-jsinspectorcdp
     - React-runtimeexecutor
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-  - React-perflogger (0.75.7)
-  - React-performancetimeline (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
-    - React-cxxreact
-  - React-RCTActionSheet (0.75.7):
-    - React-Core/RCTActionSheetHeaders (= 0.75.7)
-  - React-RCTAnimation (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+    - SocketRocket
+  - React-networking (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-featureflags
+    - React-jsinspectornetwork
+    - React-jsinspectortracing
+    - React-performancetimeline
+    - React-timing
+    - SocketRocket
+  - React-oscompat (0.83.0)
+  - React-perflogger (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - SocketRocket
+  - React-performancecdpmetrics (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-jsi
+    - React-performancetimeline
+    - React-runtimeexecutor
+    - React-timing
+    - SocketRocket
+  - React-performancetimeline (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-featureflags
+    - React-jsinspectortracing
+    - React-perflogger
+    - React-timing
+    - SocketRocket
+  - React-RCTActionSheet (0.83.0):
+    - React-Core/RCTActionSheetHeaders (= 0.83.0)
+  - React-RCTAnimation (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTTypeSafety
     - React-Core/RCTAnimationHeaders
+    - React-featureflags
     - React-jsi
     - React-NativeModulesApple
-    - ReactCodegen
+    - React-RCTFBReactNativeSpec
+    - React-RCTUIKit
     - ReactCommon
-  - React-RCTAppDelegate (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+    - SocketRocket
+  - React-RCTAppDelegate (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1345,36 +2302,50 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-hermes
-    - React-nativeconfig
+    - React-jsitooling
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-RCTFBReactNativeSpec
     - React-RCTImage
     - React-RCTNetwork
+    - React-RCTRuntime
     - React-rendererdebug
     - React-RuntimeApple
     - React-RuntimeCore
-    - React-RuntimeHermes
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
-    - ReactCodegen
     - ReactCommon
-  - React-RCTBlob (0.75.7):
+    - SocketRocket
+  - React-RCTBlob (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
+    - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-Core/RCTBlobHeaders
     - React-Core/RCTWebSocket
     - React-jsi
     - React-jsinspector
+    - React-jsinspectorcdp
     - React-NativeModulesApple
+    - React-RCTFBReactNativeSpec
     - React-RCTNetwork
-    - ReactCodegen
     - ReactCommon
-  - React-RCTFabric (0.75.7):
+    - SocketRocket
+  - React-RCTFabric (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTSwiftUIWrapper
     - React-Core
     - React-debug
     - React-Fabric
@@ -1385,133 +2356,327 @@ PODS:
     - React-ImageManager
     - React-jsi
     - React-jsinspector
-    - React-nativeconfig
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-networking
+    - React-performancecdpmetrics
     - React-performancetimeline
+    - React-RCTAnimation
+    - React-RCTFBReactNativeSpec
     - React-RCTImage
     - React-RCTText
+    - React-RCTUIKit
     - React-rendererconsistency
+    - React-renderercss
     - React-rendererdebug
+    - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
+    - SocketRocket
     - Yoga
-  - React-RCTImage (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+  - React-RCTFBReactNativeSpec (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFBReactNativeSpec/components (= 0.83.0)
+    - ReactCommon
+    - SocketRocket
+  - React-RCTFBReactNativeSpec/components (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-jsi
+    - React-NativeModulesApple
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon
+    - SocketRocket
+    - Yoga
+  - React-RCTImage (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTTypeSafety
     - React-Core/RCTImageHeaders
     - React-jsi
     - React-NativeModulesApple
+    - React-RCTFBReactNativeSpec
     - React-RCTNetwork
-    - ReactCodegen
+    - React-RCTUIKit
     - ReactCommon
-  - React-RCTLinking (0.75.7):
-    - React-Core/RCTLinkingHeaders (= 0.75.7)
-    - React-jsi (= 0.75.7)
+    - SocketRocket
+  - React-RCTLinking (0.83.0):
+    - React-Core/RCTLinkingHeaders (= 0.83.0)
+    - React-jsi (= 0.83.0)
     - React-NativeModulesApple
-    - ReactCodegen
+    - React-RCTFBReactNativeSpec
     - ReactCommon
-    - ReactCommon/turbomodule/core (= 0.75.7)
-  - React-RCTNetwork (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+    - ReactCommon/turbomodule/core (= 0.83.0)
+  - React-RCTNetwork (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTTypeSafety
     - React-Core/RCTNetworkHeaders
+    - React-debug
+    - React-featureflags
     - React-jsi
+    - React-jsinspectorcdp
+    - React-jsinspectornetwork
     - React-NativeModulesApple
-    - ReactCodegen
+    - React-networking
+    - React-RCTFBReactNativeSpec
     - ReactCommon
-  - React-RCTSettings (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+    - SocketRocket
+  - React-RCTRuntime (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-Core
+    - React-debug
+    - React-jsi
+    - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-jsitooling
+    - React-RuntimeApple
+    - React-RuntimeCore
+    - React-runtimeexecutor
+    - React-RuntimeHermes
+    - React-utils
+    - SocketRocket
+  - React-RCTSettings (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTTypeSafety
     - React-Core/RCTSettingsHeaders
     - React-jsi
     - React-NativeModulesApple
-    - ReactCodegen
+    - React-RCTFBReactNativeSpec
     - ReactCommon
-  - React-RCTText (0.75.7):
-    - React-Core/RCTTextHeaders (= 0.75.7)
+    - SocketRocket
+  - React-RCTText (0.83.0):
+    - React-Core/RCTTextHeaders (= 0.83.0)
+    - React-RCTUIKit (= 0.83.0)
     - Yoga
-  - React-RCTVibration (0.75.7):
-    - RCT-Folly (= 2024.01.01.00)
+  - React-RCTUIKit (0.83.0)
+  - React-RCTVibration (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-Core/RCTVibrationHeaders
     - React-jsi
     - React-NativeModulesApple
-    - ReactCodegen
+    - React-RCTFBReactNativeSpec
     - ReactCommon
-  - React-rendererconsistency (0.75.7)
-  - React-rendererdebug (0.75.7):
-    - DoubleConversion
-    - fmt (= 9.1.0)
-    - RCT-Folly (= 2024.01.01.00)
+    - SocketRocket
+  - React-rendererconsistency (0.83.0)
+  - React-renderercss (0.83.0):
     - React-debug
-  - React-rncore (0.75.7)
-  - React-RuntimeApple (0.75.7):
+    - React-utils
+  - React-rendererdebug (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-debug
+    - SocketRocket
+  - React-RuntimeApple (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-callinvoker
     - React-Core/Default
     - React-CoreModules
     - React-cxxreact
+    - React-featureflags
     - React-jserrorhandler
     - React-jsi
     - React-jsiexecutor
     - React-jsinspector
+    - React-jsitooling
     - React-Mapbuffer
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-RCTFBReactNativeSpec
     - React-RuntimeCore
     - React-runtimeexecutor
     - React-RuntimeHermes
     - React-runtimescheduler
     - React-utils
-  - React-RuntimeCore (0.75.7):
+    - SocketRocket
+  - React-RuntimeCore (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-cxxreact
+    - React-Fabric
     - React-featureflags
     - React-jserrorhandler
     - React-jsi
     - React-jsiexecutor
     - React-jsinspector
+    - React-jsitooling
+    - React-performancetimeline
     - React-runtimeexecutor
     - React-runtimescheduler
     - React-utils
-  - React-runtimeexecutor (0.75.7):
-    - React-jsi (= 0.75.7)
-  - React-RuntimeHermes (0.75.7):
+    - SocketRocket
+  - React-runtimeexecutor (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-debug
+    - React-featureflags
+    - React-jsi (= 0.83.0)
+    - React-utils
+    - SocketRocket
+  - React-RuntimeHermes (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
     - hermes-engine
-    - RCT-Folly/Fabric (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-featureflags
     - React-hermes
     - React-jsi
     - React-jsinspector
+    - React-jsinspectorcdp
+    - React-jsinspectortracing
+    - React-jsitooling
     - React-jsitracing
-    - React-nativeconfig
     - React-RuntimeCore
+    - React-runtimeexecutor
     - React-utils
-  - React-runtimescheduler (0.75.7):
+    - SocketRocket
+  - React-runtimescheduler (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - React-callinvoker
     - React-cxxreact
     - React-debug
     - React-featureflags
     - React-jsi
+    - React-jsinspectortracing
+    - React-performancetimeline
     - React-rendererconsistency
     - React-rendererdebug
     - React-runtimeexecutor
+    - React-timing
     - React-utils
-  - React-utils (0.75.7):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - SocketRocket
+  - React-timing (0.83.0):
     - React-debug
-    - React-jsi (= 0.75.7)
-  - ReactCodegen (0.75.7):
+  - React-utils (0.83.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
     - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-debug
+    - React-jsi (= 0.83.0)
+    - SocketRocket
+  - React-webperformancenativemodule (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-performancetimeline
+    - React-RCTFBReactNativeSpec
+    - React-runtimeexecutor
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+  - ReactAppDependencyProvider (0.83.0):
+    - ReactCodegen
+  - ReactCodegen (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1523,55 +2688,81 @@ PODS:
     - React-jsi
     - React-jsiexecutor
     - React-NativeModulesApple
+    - React-RCTAppDelegate
     - React-rendererdebug
     - React-utils
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-  - ReactCommon (0.75.7):
-    - ReactCommon/turbomodule (= 0.75.7)
-  - ReactCommon/turbomodule (0.75.7):
+    - SocketRocket
+  - ReactCommon (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
+    - glog
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - ReactCommon/turbomodule (= 0.83.0)
+    - SocketRocket
+  - ReactCommon/turbomodule (0.83.0):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-callinvoker (= 0.75.7)
-    - React-cxxreact (= 0.75.7)
-    - React-jsi (= 0.75.7)
-    - React-logger (= 0.75.7)
-    - React-perflogger (= 0.75.7)
-    - ReactCommon/turbomodule/bridging (= 0.75.7)
-    - ReactCommon/turbomodule/core (= 0.75.7)
-  - ReactCommon/turbomodule/bridging (0.75.7):
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-callinvoker (= 0.83.0)
+    - React-cxxreact (= 0.83.0)
+    - React-jsi (= 0.83.0)
+    - React-logger (= 0.83.0)
+    - React-perflogger (= 0.83.0)
+    - ReactCommon/turbomodule/bridging (= 0.83.0)
+    - ReactCommon/turbomodule/core (= 0.83.0)
+    - SocketRocket
+  - ReactCommon/turbomodule/bridging (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-callinvoker (= 0.75.7)
-    - React-cxxreact (= 0.75.7)
-    - React-jsi (= 0.75.7)
-    - React-logger (= 0.75.7)
-    - React-perflogger (= 0.75.7)
-  - ReactCommon/turbomodule/core (0.75.7):
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-callinvoker (= 0.83.0)
+    - React-cxxreact (= 0.83.0)
+    - React-jsi (= 0.83.0)
+    - React-logger (= 0.83.0)
+    - React-perflogger (= 0.83.0)
+    - SocketRocket
+  - ReactCommon/turbomodule/core (0.83.0):
+    - boost
     - DoubleConversion
-    - fmt (= 9.1.0)
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - React-callinvoker (= 0.75.7)
-    - React-cxxreact (= 0.75.7)
-    - React-debug (= 0.75.7)
-    - React-featureflags (= 0.75.7)
-    - React-jsi (= 0.75.7)
-    - React-logger (= 0.75.7)
-    - React-perflogger (= 0.75.7)
-    - React-utils (= 0.75.7)
-  - RNCAsyncStorage (2.0.0):
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - React-callinvoker (= 0.83.0)
+    - React-cxxreact (= 0.83.0)
+    - React-debug (= 0.83.0)
+    - React-featureflags (= 0.83.0)
+    - React-jsi (= 0.83.0)
+    - React-logger (= 0.83.0)
+    - React-perflogger (= 0.83.0)
+    - React-utils (= 0.83.0)
+    - SocketRocket
+  - ReactNativeNitroTor (1.0.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1580,19 +2771,26 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - RNCClipboard (1.14.2):
+  - RNCClipboard (1.16.3):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1601,21 +2799,28 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.20.0):
+  - RNGestureHandler (3.2.1):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1624,21 +2829,27 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - RNWorklets (>= 0.8.0)
+    - SocketRocket
     - Yoga
-  - RNKeychain (8.2.0):
-    - React-Core
-  - RNReanimated (3.15.1):
+  - RNKeychain (10.0.0):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1647,21 +2858,149 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.15.1)
-    - RNReanimated/worklets (= 3.15.1)
+    - SocketRocket
     - Yoga
-  - RNReanimated/reanimated (3.15.1):
+  - RNReanimated (4.5.3):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNReanimated/apple (= 4.5.3)
+    - RNReanimated/common (= 4.5.3)
+    - RNReanimated/view (= 4.5.3)
+    - RNWorklets
+    - SocketRocket
+    - Yoga
+  - RNReanimated/apple (4.5.3):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNWorklets
+    - SocketRocket
+    - Yoga
+  - RNReanimated/common (4.5.3):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNWorklets
+    - SocketRocket
+    - Yoga
+  - RNReanimated/view (4.5.3):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - RNWorklets
+    - SocketRocket
+    - Yoga
+  - RNSVG (15.15.5):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1670,19 +3009,27 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - RNSVG/common (= 15.15.5)
+    - SocketRocket
     - Yoga
-  - RNReanimated/worklets (3.15.1):
+  - RNSVG/common (15.15.5):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1691,21 +3038,26 @@ PODS:
     - React-featureflags
     - React-graphics
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - RNSecureRandom (1.0.1):
-    - React
-  - RNSVG (15.6.0):
+  - RNWorklets (0.11.4):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1713,21 +3065,30 @@ PODS:
     - React-Fabric
     - React-featureflags
     - React-graphics
+    - React-hermes
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.6.0)
+    - RNWorklets/apple (= 0.11.4)
+    - RNWorklets/common (= 0.11.4)
+    - SocketRocket
     - Yoga
-  - RNSVG/common (15.6.0):
+  - RNWorklets/apple (0.11.4):
+    - boost
     - DoubleConversion
+    - fast_float
+    - fmt
     - glog
     - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
+    - RCT-Folly
+    - RCT-Folly/Fabric
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1735,342 +3096,449 @@ PODS:
     - React-Fabric
     - React-featureflags
     - React-graphics
+    - React-hermes
     - React-ImageManager
+    - React-jsi
     - React-NativeModulesApple
     - React-RCTFabric
+    - React-renderercss
     - React-rendererdebug
     - React-utils
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - SocketRocket
     - Yoga
-  - SocketRocket (0.7.0)
+  - RNWorklets/common (0.11.4):
+    - boost
+    - DoubleConversion
+    - fast_float
+    - fmt
+    - glog
+    - hermes-engine
+    - RCT-Folly
+    - RCT-Folly/Fabric
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - SocketRocket
+    - Yoga
+  - SocketRocket (0.7.1)
   - SwiftProtobuf (1.22.1)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
-  - boost (from `../node_modules/react-native-macos/third-party-podspecs/boost.podspec`)
-  - DoubleConversion (from `../node_modules/react-native-macos/third-party-podspecs/DoubleConversion.podspec`)
-  - FBLazyVector (from `../node_modules/react-native-macos/Libraries/FBLazyVector`)
-  - fmt (from `../node_modules/react-native-macos/third-party-podspecs/fmt.podspec`)
-  - glog (from `../node_modules/react-native-macos/third-party-podspecs/glog.podspec`)
-  - hermes-engine (from `../node_modules/react-native-macos/sdks/hermes-engine/hermes-engine.podspec`)
-  - RCT-Folly (from `../node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec`)
-  - RCT-Folly/Fabric (from `../node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec`)
-  - RCTDeprecation (from `../node_modules/react-native-macos/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
-  - RCTRequired (from `../node_modules/react-native-macos/Libraries/Required`)
-  - RCTTypeSafety (from `../node_modules/react-native-macos/Libraries/TypeSafety`)
-  - React (from `../node_modules/react-native-macos/`)
-  - React-callinvoker (from `../node_modules/react-native-macos/ReactCommon/callinvoker`)
-  - React-Core (from `../node_modules/react-native-macos/`)
-  - React-Core/RCTWebSocket (from `../node_modules/react-native-macos/`)
-  - React-CoreModules (from `../node_modules/react-native-macos/React/CoreModules`)
-  - React-cxxreact (from `../node_modules/react-native-macos/ReactCommon/cxxreact`)
-  - React-debug (from `../node_modules/react-native-macos/ReactCommon/react/debug`)
-  - React-defaultsnativemodule (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/defaults`)
-  - React-domnativemodule (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/dom`)
-  - React-Fabric (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-FabricComponents (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-FabricImage (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-featureflags (from `../node_modules/react-native-macos/ReactCommon/react/featureflags`)
-  - React-featureflagsnativemodule (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/featureflags`)
-  - React-graphics (from `../node_modules/react-native-macos/ReactCommon/react/renderer/graphics`)
-  - React-hermes (from `../node_modules/react-native-macos/ReactCommon/hermes`)
-  - React-idlecallbacksnativemodule (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/idlecallbacks`)
-  - React-ImageManager (from `../node_modules/react-native-macos/ReactCommon/react/renderer/imagemanager/platform/ios`)
-  - React-jserrorhandler (from `../node_modules/react-native-macos/ReactCommon/jserrorhandler`)
-  - React-jsi (from `../node_modules/react-native-macos/ReactCommon/jsi`)
-  - React-jsiexecutor (from `../node_modules/react-native-macos/ReactCommon/jsiexecutor`)
-  - React-jsinspector (from `../node_modules/react-native-macos/ReactCommon/jsinspector-modern`)
-  - React-jsitracing (from `../node_modules/react-native-macos/ReactCommon/hermes/executor/`)
-  - React-logger (from `../node_modules/react-native-macos/ReactCommon/logger`)
-  - React-Mapbuffer (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-microtasksnativemodule (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/microtasks`)
-  - react-native-build-config (from `../node_modules/react-native-build-config`)
-  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
-  - react-native-sqlite-storage (from `../node_modules/react-native-sqlite-storage`)
-  - react-native-turbo-lnd (from `../node_modules/react-native-turbo-lnd`)
-  - react-native-turbo-sqlite (from `../node_modules/react-native-turbo-sqlite`)
-  - react-native-webview (from `../node_modules/react-native-webview`)
-  - React-nativeconfig (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-NativeModulesApple (from `../node_modules/react-native-macos/ReactCommon/react/nativemodule/core/platform/ios`)
-  - React-perflogger (from `../node_modules/react-native-macos/ReactCommon/reactperflogger`)
-  - React-performancetimeline (from `../node_modules/react-native-macos/ReactCommon/react/performance/timeline`)
-  - React-RCTActionSheet (from `../node_modules/react-native-macos/Libraries/ActionSheetIOS`)
-  - React-RCTAnimation (from `../node_modules/react-native-macos/Libraries/NativeAnimation`)
-  - React-RCTAppDelegate (from `../node_modules/react-native-macos/Libraries/AppDelegate`)
-  - React-RCTBlob (from `../node_modules/react-native-macos/Libraries/Blob`)
-  - React-RCTFabric (from `../node_modules/react-native-macos/React`)
-  - React-RCTImage (from `../node_modules/react-native-macos/Libraries/Image`)
-  - React-RCTLinking (from `../node_modules/react-native-macos/Libraries/LinkingIOS`)
-  - React-RCTNetwork (from `../node_modules/react-native-macos/Libraries/Network`)
-  - React-RCTSettings (from `../node_modules/react-native-macos/Libraries/Settings`)
-  - React-RCTText (from `../node_modules/react-native-macos/Libraries/Text`)
-  - React-RCTVibration (from `../node_modules/react-native-macos/Libraries/Vibration`)
-  - React-rendererconsistency (from `../node_modules/react-native-macos/ReactCommon/react/renderer/consistency`)
-  - React-rendererdebug (from `../node_modules/react-native-macos/ReactCommon/react/renderer/debug`)
-  - React-rncore (from `../node_modules/react-native-macos/ReactCommon`)
-  - React-RuntimeApple (from `../node_modules/react-native-macos/ReactCommon/react/runtime/platform/ios`)
-  - React-RuntimeCore (from `../node_modules/react-native-macos/ReactCommon/react/runtime`)
-  - React-runtimeexecutor (from `../node_modules/react-native-macos/ReactCommon/runtimeexecutor`)
-  - React-RuntimeHermes (from `../node_modules/react-native-macos/ReactCommon/react/runtime`)
-  - React-runtimescheduler (from `../node_modules/react-native-macos/ReactCommon/react/renderer/runtimescheduler`)
-  - React-utils (from `../node_modules/react-native-macos/ReactCommon/react/utils`)
-  - ReactCodegen (from `build/generated/ios`)
-  - ReactCommon/turbomodule/core (from `../node_modules/react-native-macos/ReactCommon`)
-  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
-  - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
-  - RNFS (from `../node_modules/react-native-fs`)
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNKeychain (from `../node_modules/react-native-keychain`)
-  - RNReanimated (from `../node_modules/react-native-reanimated`)
-  - RNSecureRandom (from `../node_modules/react-native-securerandom`)
-  - RNSVG (from `../node_modules/react-native-svg`)
-  - SocketRocket (from `../node_modules/react-native-macos/third-party-podspecs/SocketRocket.podspec`)
+  - "AsyncStorage (from `node_modules/@react-native-async-storage/async-storage`)"
+  - BlixtCamera (from `camera`)
+  - boost (from `node_modules/react-native-macos/third-party-podspecs/boost.podspec`)
+  - DoubleConversion (from `node_modules/react-native-macos/third-party-podspecs/DoubleConversion.podspec`)
+  - fast_float (from `node_modules/react-native-macos/third-party-podspecs/fast_float.podspec`)
+  - FBLazyVector (from `node_modules/react-native-macos/Libraries/FBLazyVector`)
+  - fmt (from `node_modules/react-native-macos/third-party-podspecs/fmt.podspec`)
+  - glog (from `node_modules/react-native-macos/third-party-podspecs/glog.podspec`)
+  - hermes-engine (from `node_modules/react-native-macos/sdks/hermes-engine/hermes-engine.podspec`)
+  - NitroModules (from `node_modules/react-native-nitro-modules`)
+  - RCT-Folly (from `node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec`)
+  - RCTDeprecation (from `node_modules/react-native-macos/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
+  - RCTRequired (from `node_modules/react-native-macos/Libraries/Required`)
+  - RCTSwiftUI (from `node_modules/react-native-macos/ReactApple/RCTSwiftUI`)
+  - RCTSwiftUIWrapper (from `node_modules/react-native-macos/ReactApple/RCTSwiftUIWrapper`)
+  - RCTTypeSafety (from `node_modules/react-native-macos/Libraries/TypeSafety`)
+  - React (from `node_modules/react-native-macos/`)
+  - React-callinvoker (from `node_modules/react-native-macos/ReactCommon/callinvoker`)
+  - React-Core (from `node_modules/react-native-macos/`)
+  - React-Core/RCTWebSocket (from `node_modules/react-native-macos/`)
+  - React-CoreModules (from `node_modules/react-native-macos/React/CoreModules`)
+  - React-cxxreact (from `node_modules/react-native-macos/ReactCommon/cxxreact`)
+  - React-debug (from `node_modules/react-native-macos/ReactCommon/react/debug`)
+  - React-defaultsnativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/defaults`)
+  - React-domnativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/dom`)
+  - React-Fabric (from `node_modules/react-native-macos/ReactCommon`)
+  - React-FabricComponents (from `node_modules/react-native-macos/ReactCommon`)
+  - React-FabricImage (from `node_modules/react-native-macos/ReactCommon`)
+  - React-featureflags (from `node_modules/react-native-macos/ReactCommon/react/featureflags`)
+  - React-featureflagsnativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/featureflags`)
+  - React-graphics (from `node_modules/react-native-macos/ReactCommon/react/renderer/graphics`)
+  - React-hermes (from `node_modules/react-native-macos/ReactCommon/hermes`)
+  - React-idlecallbacksnativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/idlecallbacks`)
+  - React-ImageManager (from `node_modules/react-native-macos/ReactCommon/react/renderer/imagemanager/platform/ios`)
+  - React-intersectionobservernativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/intersectionobserver`)
+  - React-jserrorhandler (from `node_modules/react-native-macos/ReactCommon/jserrorhandler`)
+  - React-jsi (from `node_modules/react-native-macos/ReactCommon/jsi`)
+  - React-jsiexecutor (from `node_modules/react-native-macos/ReactCommon/jsiexecutor`)
+  - React-jsinspector (from `node_modules/react-native-macos/ReactCommon/jsinspector-modern`)
+  - React-jsinspectorcdp (from `node_modules/react-native-macos/ReactCommon/jsinspector-modern/cdp`)
+  - React-jsinspectornetwork (from `node_modules/react-native-macos/ReactCommon/jsinspector-modern/network`)
+  - React-jsinspectortracing (from `node_modules/react-native-macos/ReactCommon/jsinspector-modern/tracing`)
+  - React-jsitooling (from `node_modules/react-native-macos/ReactCommon/jsitooling`)
+  - React-jsitracing (from `node_modules/react-native-macos/ReactCommon/hermes/executor/`)
+  - React-logger (from `node_modules/react-native-macos/ReactCommon/logger`)
+  - React-Mapbuffer (from `node_modules/react-native-macos/ReactCommon`)
+  - React-microtasksnativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/microtasks`)
+  - React-mutationobservernativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/mutationobserver`)
+  - react-native-hash (from `node_modules/react-native-hash`)
+  - react-native-safe-area-context (from `node_modules/react-native-safe-area-context`)
+  - react-native-turbo-lnd (from `node_modules/react-native-turbo-lnd`)
+  - react-native-turbo-sqlite (from `node_modules/react-native-turbo-sqlite`)
+  - react-native-webview (from `node_modules/react-native-webview`)
+  - React-NativeModulesApple (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/core/platform/ios`)
+  - React-networking (from `node_modules/react-native-macos/ReactCommon/react/networking`)
+  - React-oscompat (from `node_modules/react-native-macos/ReactCommon/oscompat`)
+  - React-perflogger (from `node_modules/react-native-macos/ReactCommon/reactperflogger`)
+  - React-performancecdpmetrics (from `node_modules/react-native-macos/ReactCommon/react/performance/cdpmetrics`)
+  - React-performancetimeline (from `node_modules/react-native-macos/ReactCommon/react/performance/timeline`)
+  - React-RCTActionSheet (from `node_modules/react-native-macos/Libraries/ActionSheetIOS`)
+  - React-RCTAnimation (from `node_modules/react-native-macos/Libraries/NativeAnimation`)
+  - React-RCTAppDelegate (from `node_modules/react-native-macos/Libraries/AppDelegate`)
+  - React-RCTBlob (from `node_modules/react-native-macos/Libraries/Blob`)
+  - React-RCTFabric (from `node_modules/react-native-macos/React`)
+  - React-RCTFBReactNativeSpec (from `node_modules/react-native-macos/React`)
+  - React-RCTImage (from `node_modules/react-native-macos/Libraries/Image`)
+  - React-RCTLinking (from `node_modules/react-native-macos/Libraries/LinkingIOS`)
+  - React-RCTNetwork (from `node_modules/react-native-macos/Libraries/Network`)
+  - React-RCTRuntime (from `node_modules/react-native-macos/React/Runtime`)
+  - React-RCTSettings (from `node_modules/react-native-macos/Libraries/Settings`)
+  - React-RCTText (from `node_modules/react-native-macos/Libraries/Text`)
+  - React-RCTUIKit (from `node_modules/react-native-macos/ReactApple/Libraries/RCTUIKit`)
+  - React-RCTVibration (from `node_modules/react-native-macos/Libraries/Vibration`)
+  - React-rendererconsistency (from `node_modules/react-native-macos/ReactCommon/react/renderer/consistency`)
+  - React-renderercss (from `node_modules/react-native-macos/ReactCommon/react/renderer/css`)
+  - React-rendererdebug (from `node_modules/react-native-macos/ReactCommon/react/renderer/debug`)
+  - React-RuntimeApple (from `node_modules/react-native-macos/ReactCommon/react/runtime/platform/ios`)
+  - React-RuntimeCore (from `node_modules/react-native-macos/ReactCommon/react/runtime`)
+  - React-runtimeexecutor (from `node_modules/react-native-macos/ReactCommon/runtimeexecutor`)
+  - React-RuntimeHermes (from `node_modules/react-native-macos/ReactCommon/react/runtime`)
+  - React-runtimescheduler (from `node_modules/react-native-macos/ReactCommon/react/renderer/runtimescheduler`)
+  - React-timing (from `node_modules/react-native-macos/ReactCommon/react/timing`)
+  - React-utils (from `node_modules/react-native-macos/ReactCommon/react/utils`)
+  - React-webperformancenativemodule (from `node_modules/react-native-macos/ReactCommon/react/nativemodule/webperformance`)
+  - ReactAppDependencyProvider (from `build/generated/ios/ReactAppDependencyProvider`)
+  - ReactCodegen (from `build/generated/ios/ReactCodegen`)
+  - ReactCommon/turbomodule/core (from `node_modules/react-native-macos/ReactCommon`)
+  - ReactNativeNitroTor (from `node_modules/react-native-nitro-tor`)
+  - "RNCClipboard (from `node_modules/@react-native-clipboard/clipboard`)"
+  - RNFS (from `node_modules/react-native-fs`)
+  - RNGestureHandler (from `node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `node_modules/react-native-keychain`)
+  - RNReanimated (from `node_modules/react-native-reanimated`)
+  - RNSVG (from `node_modules/react-native-svg`)
+  - RNWorklets (from `node_modules/react-native-worklets`)
+  - SocketRocket (~> 0.7.1)
   - SwiftProtobuf (~> 1.22.0)
-  - Yoga (from `../node_modules/react-native-macos/ReactCommon/yoga`)
+  - Yoga (from `node_modules/react-native-macos/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - SocketRocket
     - SwiftProtobuf
 
 EXTERNAL SOURCES:
+  AsyncStorage:
+    :path: "node_modules/@react-native-async-storage/async-storage"
+  BlixtCamera:
+    :path: camera
   boost:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/boost.podspec"
+    :podspec: node_modules/react-native-macos/third-party-podspecs/boost.podspec
   DoubleConversion:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/DoubleConversion.podspec"
+    :podspec: node_modules/react-native-macos/third-party-podspecs/DoubleConversion.podspec
+  fast_float:
+    :podspec: node_modules/react-native-macos/third-party-podspecs/fast_float.podspec
   FBLazyVector:
-    :path: "../node_modules/react-native-macos/Libraries/FBLazyVector"
+    :path: node_modules/react-native-macos/Libraries/FBLazyVector
   fmt:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/fmt.podspec"
+    :podspec: node_modules/react-native-macos/third-party-podspecs/fmt.podspec
   glog:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/glog.podspec"
+    :podspec: node_modules/react-native-macos/third-party-podspecs/glog.podspec
   hermes-engine:
-    :podspec: "../node_modules/react-native-macos/sdks/hermes-engine/hermes-engine.podspec"
-    :tag: hermes-2024-08-15-RNv0.75.1-4b3bf912cc0f705b51b71ce1a5b8bd79b93a451b
+    :podspec: node_modules/react-native-macos/sdks/hermes-engine/hermes-engine.podspec
+    :tag: hermes-v0.14.1
+  NitroModules:
+    :path: node_modules/react-native-nitro-modules
   RCT-Folly:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec"
+    :podspec: node_modules/react-native-macos/third-party-podspecs/RCT-Folly.podspec
   RCTDeprecation:
-    :path: "../node_modules/react-native-macos/ReactApple/Libraries/RCTFoundation/RCTDeprecation"
+    :path: node_modules/react-native-macos/ReactApple/Libraries/RCTFoundation/RCTDeprecation
   RCTRequired:
-    :path: "../node_modules/react-native-macos/Libraries/Required"
+    :path: node_modules/react-native-macos/Libraries/Required
+  RCTSwiftUI:
+    :path: node_modules/react-native-macos/ReactApple/RCTSwiftUI
+  RCTSwiftUIWrapper:
+    :path: node_modules/react-native-macos/ReactApple/RCTSwiftUIWrapper
   RCTTypeSafety:
-    :path: "../node_modules/react-native-macos/Libraries/TypeSafety"
+    :path: node_modules/react-native-macos/Libraries/TypeSafety
   React:
-    :path: "../node_modules/react-native-macos/"
+    :path: node_modules/react-native-macos/
   React-callinvoker:
-    :path: "../node_modules/react-native-macos/ReactCommon/callinvoker"
+    :path: node_modules/react-native-macos/ReactCommon/callinvoker
   React-Core:
-    :path: "../node_modules/react-native-macos/"
+    :path: node_modules/react-native-macos/
   React-CoreModules:
-    :path: "../node_modules/react-native-macos/React/CoreModules"
+    :path: node_modules/react-native-macos/React/CoreModules
   React-cxxreact:
-    :path: "../node_modules/react-native-macos/ReactCommon/cxxreact"
+    :path: node_modules/react-native-macos/ReactCommon/cxxreact
   React-debug:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/debug"
+    :path: node_modules/react-native-macos/ReactCommon/react/debug
   React-defaultsnativemodule:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/defaults"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/defaults
   React-domnativemodule:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/dom"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/dom
   React-Fabric:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-macos/ReactCommon
   React-FabricComponents:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-macos/ReactCommon
   React-FabricImage:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-macos/ReactCommon
   React-featureflags:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/featureflags"
+    :path: node_modules/react-native-macos/ReactCommon/react/featureflags
   React-featureflagsnativemodule:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/featureflags"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/featureflags
   React-graphics:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/renderer/graphics"
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/graphics
   React-hermes:
-    :path: "../node_modules/react-native-macos/ReactCommon/hermes"
+    :path: node_modules/react-native-macos/ReactCommon/hermes
   React-idlecallbacksnativemodule:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/idlecallbacks"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/idlecallbacks
   React-ImageManager:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/renderer/imagemanager/platform/ios"
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/imagemanager/platform/ios
+  React-intersectionobservernativemodule:
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/intersectionobserver
   React-jserrorhandler:
-    :path: "../node_modules/react-native-macos/ReactCommon/jserrorhandler"
+    :path: node_modules/react-native-macos/ReactCommon/jserrorhandler
   React-jsi:
-    :path: "../node_modules/react-native-macos/ReactCommon/jsi"
+    :path: node_modules/react-native-macos/ReactCommon/jsi
   React-jsiexecutor:
-    :path: "../node_modules/react-native-macos/ReactCommon/jsiexecutor"
+    :path: node_modules/react-native-macos/ReactCommon/jsiexecutor
   React-jsinspector:
-    :path: "../node_modules/react-native-macos/ReactCommon/jsinspector-modern"
+    :path: node_modules/react-native-macos/ReactCommon/jsinspector-modern
+  React-jsinspectorcdp:
+    :path: node_modules/react-native-macos/ReactCommon/jsinspector-modern/cdp
+  React-jsinspectornetwork:
+    :path: node_modules/react-native-macos/ReactCommon/jsinspector-modern/network
+  React-jsinspectortracing:
+    :path: node_modules/react-native-macos/ReactCommon/jsinspector-modern/tracing
+  React-jsitooling:
+    :path: node_modules/react-native-macos/ReactCommon/jsitooling
   React-jsitracing:
-    :path: "../node_modules/react-native-macos/ReactCommon/hermes/executor/"
+    :path: node_modules/react-native-macos/ReactCommon/hermes/executor/
   React-logger:
-    :path: "../node_modules/react-native-macos/ReactCommon/logger"
+    :path: node_modules/react-native-macos/ReactCommon/logger
   React-Mapbuffer:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-macos/ReactCommon
   React-microtasksnativemodule:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/microtasks"
-  react-native-build-config:
-    :path: "../node_modules/react-native-build-config"
-  react-native-netinfo:
-    :path: "../node_modules/@react-native-community/netinfo"
-  react-native-sqlite-storage:
-    :path: "../node_modules/react-native-sqlite-storage"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/microtasks
+  React-mutationobservernativemodule:
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/mutationobserver
+  react-native-hash:
+    :path: node_modules/react-native-hash
+  react-native-safe-area-context:
+    :path: node_modules/react-native-safe-area-context
   react-native-turbo-lnd:
-    :path: "../node_modules/react-native-turbo-lnd"
+    :path: node_modules/react-native-turbo-lnd
   react-native-turbo-sqlite:
-    :path: "../node_modules/react-native-turbo-sqlite"
+    :path: node_modules/react-native-turbo-sqlite
   react-native-webview:
-    :path: "../node_modules/react-native-webview"
-  React-nativeconfig:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-webview
   React-NativeModulesApple:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/nativemodule/core/platform/ios"
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/core/platform/ios
+  React-networking:
+    :path: node_modules/react-native-macos/ReactCommon/react/networking
+  React-oscompat:
+    :path: node_modules/react-native-macos/ReactCommon/oscompat
   React-perflogger:
-    :path: "../node_modules/react-native-macos/ReactCommon/reactperflogger"
+    :path: node_modules/react-native-macos/ReactCommon/reactperflogger
+  React-performancecdpmetrics:
+    :path: node_modules/react-native-macos/ReactCommon/react/performance/cdpmetrics
   React-performancetimeline:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/performance/timeline"
+    :path: node_modules/react-native-macos/ReactCommon/react/performance/timeline
   React-RCTActionSheet:
-    :path: "../node_modules/react-native-macos/Libraries/ActionSheetIOS"
+    :path: node_modules/react-native-macos/Libraries/ActionSheetIOS
   React-RCTAnimation:
-    :path: "../node_modules/react-native-macos/Libraries/NativeAnimation"
+    :path: node_modules/react-native-macos/Libraries/NativeAnimation
   React-RCTAppDelegate:
-    :path: "../node_modules/react-native-macos/Libraries/AppDelegate"
+    :path: node_modules/react-native-macos/Libraries/AppDelegate
   React-RCTBlob:
-    :path: "../node_modules/react-native-macos/Libraries/Blob"
+    :path: node_modules/react-native-macos/Libraries/Blob
   React-RCTFabric:
-    :path: "../node_modules/react-native-macos/React"
+    :path: node_modules/react-native-macos/React
+  React-RCTFBReactNativeSpec:
+    :path: node_modules/react-native-macos/React
   React-RCTImage:
-    :path: "../node_modules/react-native-macos/Libraries/Image"
+    :path: node_modules/react-native-macos/Libraries/Image
   React-RCTLinking:
-    :path: "../node_modules/react-native-macos/Libraries/LinkingIOS"
+    :path: node_modules/react-native-macos/Libraries/LinkingIOS
   React-RCTNetwork:
-    :path: "../node_modules/react-native-macos/Libraries/Network"
+    :path: node_modules/react-native-macos/Libraries/Network
+  React-RCTRuntime:
+    :path: node_modules/react-native-macos/React/Runtime
   React-RCTSettings:
-    :path: "../node_modules/react-native-macos/Libraries/Settings"
+    :path: node_modules/react-native-macos/Libraries/Settings
   React-RCTText:
-    :path: "../node_modules/react-native-macos/Libraries/Text"
+    :path: node_modules/react-native-macos/Libraries/Text
+  React-RCTUIKit:
+    :path: node_modules/react-native-macos/ReactApple/Libraries/RCTUIKit
   React-RCTVibration:
-    :path: "../node_modules/react-native-macos/Libraries/Vibration"
+    :path: node_modules/react-native-macos/Libraries/Vibration
   React-rendererconsistency:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/renderer/consistency"
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/consistency
+  React-renderercss:
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/css
   React-rendererdebug:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/renderer/debug"
-  React-rncore:
-    :path: "../node_modules/react-native-macos/ReactCommon"
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/debug
   React-RuntimeApple:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/runtime/platform/ios"
+    :path: node_modules/react-native-macos/ReactCommon/react/runtime/platform/ios
   React-RuntimeCore:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/runtime"
+    :path: node_modules/react-native-macos/ReactCommon/react/runtime
   React-runtimeexecutor:
-    :path: "../node_modules/react-native-macos/ReactCommon/runtimeexecutor"
+    :path: node_modules/react-native-macos/ReactCommon/runtimeexecutor
   React-RuntimeHermes:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/runtime"
+    :path: node_modules/react-native-macos/ReactCommon/react/runtime
   React-runtimescheduler:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/renderer/runtimescheduler"
+    :path: node_modules/react-native-macos/ReactCommon/react/renderer/runtimescheduler
+  React-timing:
+    :path: node_modules/react-native-macos/ReactCommon/react/timing
   React-utils:
-    :path: "../node_modules/react-native-macos/ReactCommon/react/utils"
+    :path: node_modules/react-native-macos/ReactCommon/react/utils
+  React-webperformancenativemodule:
+    :path: node_modules/react-native-macos/ReactCommon/react/nativemodule/webperformance
+  ReactAppDependencyProvider:
+    :path: build/generated/ios/ReactAppDependencyProvider
   ReactCodegen:
-    :path: build/generated/ios
+    :path: build/generated/ios/ReactCodegen
   ReactCommon:
-    :path: "../node_modules/react-native-macos/ReactCommon"
-  RNCAsyncStorage:
-    :path: "../node_modules/@react-native-async-storage/async-storage"
+    :path: node_modules/react-native-macos/ReactCommon
+  ReactNativeNitroTor:
+    :path: node_modules/react-native-nitro-tor
   RNCClipboard:
-    :path: "../node_modules/@react-native-clipboard/clipboard"
+    :path: "node_modules/@react-native-clipboard/clipboard"
   RNFS:
-    :path: "../node_modules/react-native-fs"
+    :path: node_modules/react-native-fs
   RNGestureHandler:
-    :path: "../node_modules/react-native-gesture-handler"
+    :path: node_modules/react-native-gesture-handler
   RNKeychain:
-    :path: "../node_modules/react-native-keychain"
+    :path: node_modules/react-native-keychain
   RNReanimated:
-    :path: "../node_modules/react-native-reanimated"
-  RNSecureRandom:
-    :path: "../node_modules/react-native-securerandom"
+    :path: node_modules/react-native-reanimated
   RNSVG:
-    :path: "../node_modules/react-native-svg"
-  SocketRocket:
-    :podspec: "../node_modules/react-native-macos/third-party-podspecs/SocketRocket.podspec"
+    :path: node_modules/react-native-svg
+  RNWorklets:
+    :path: node_modules/react-native-worklets
   Yoga:
-    :path: "../node_modules/react-native-macos/ReactCommon/yoga"
+    :path: node_modules/react-native-macos/ReactCommon/yoga
 
 SPEC CHECKSUMS:
-  boost: 78c06792d4bc8e05ba232b20737af9883a947a51
-  DoubleConversion: e9fd6969c78f190642ac8adbd3a5ac37995620dc
-  FBLazyVector: 46e5a1c41e07d8aa942600f4c3e531c331ce2ad4
-  fmt: c32f09ca7679bf28db6ba79e474dab38daa634a1
-  glog: f12b70f4104265bf944bf5800b4f85034eba0ea7
-  hermes-engine: ea92f60f37dba025e293cbe4b4a548fd26b610a0
-  RCT-Folly: 693a1865d476549c2b4a788ec924ce59dd7cb8cb
-  RCTDeprecation: 2d6a0d6124d7501ed1b30ccfcf080466d0355473
-  RCTRequired: 43aa20c281bd3aefe134fcca5bb9a2c855767156
-  RCTTypeSafety: f899ffcf9232f4ceae9aca08b68f9b3a0a0c2284
-  React: cba790af63d5bf57cddc105aa49c11615d5e39b9
-  React-callinvoker: 48b6e5235fba6add6f32af43523a6e18778caee0
-  React-Core: 7f6d5eaca613952918ef38d84c82a74b10020127
-  React-CoreModules: 0593d7d4fabb2f3f5a9ded1b4106c6042a07f187
-  React-cxxreact: eb5d50e14153d24d03ad13c53fa0b5ac4a8df1a0
-  React-debug: 3e9d2089800994518f04042c8fdd95850dc65f95
-  React-defaultsnativemodule: d65ee5e5f5c0598fc00c887d805f665bab0a0bf4
-  React-domnativemodule: d439089b580d8ad9473a41e89164f26ac09c64d2
-  React-Fabric: 1916d4c742b3f5ad421cc9be652eb91efeba237f
-  React-FabricComponents: 19dcf91328a74bf3c85bcea6e18b4d04882464f2
-  React-FabricImage: 56848c24934fdb571c1c98e699a25e8876a5b5d4
-  React-featureflags: e86b944e477cf987d6aa6454843974e1b2235dc7
-  React-featureflagsnativemodule: 4789cab865e683c8833beffef8a68c99a6f9c1e2
-  React-graphics: 621f8b04f26dbff7b5f7348ebf0913b8a2af1027
-  React-hermes: 3b3360a3983a4a7dbfc593555c44c0669964a84f
-  React-idlecallbacksnativemodule: c32b9016ad0ea5f21beb3b345c2780eef3ebc14b
-  React-ImageManager: 2e1ef64879dad5889c5e74eafe31cadd89f9e746
-  React-jserrorhandler: e3d39973abdbcadc7b25485bcf6f5b683786bc72
-  React-jsi: d21fd2d219147072479eed2cb4c8d86610640b55
-  React-jsiexecutor: 3736cebff99a1962d34c676a6843e04fc197583e
-  React-jsinspector: 2e44f998daca8865a81dce294753a85f29442794
-  React-jsitracing: 447f2bc3050b4cf0c798489c020e11533e416587
-  React-logger: 9a8faf0d8a1056968a120e89b05bbc73f159d151
-  React-Mapbuffer: 1989e6df5ae4d9364c56cc6e3882368a2d56c0fc
-  React-microtasksnativemodule: e4d52c400726e9cda9208808c1799eda439d403b
-  react-native-build-config: d2d6891311ca2e0fa7ca7eeb4324a768e63e485c
-  react-native-netinfo: 076df4f9b07f6670acf4ce9a75aac8d34c2e2ccc
-  react-native-sqlite-storage: f6d515e1c446d1e6d026aa5352908a25d4de3261
-  react-native-turbo-lnd: fe620c96be53dda0d7975b04f9a678683ecb2082
-  react-native-turbo-sqlite: a4f80086d3e4913b4e2fc61dbb6eef0512d4686a
-  react-native-webview: 102c402ca00dacf03760cedc28bc4ca83ee2cfa2
-  React-nativeconfig: 12ca23c5d79829b3dd0e38bed71e77200dd5382c
-  React-NativeModulesApple: 6a1eefad86f188520ed174d0542aca5870c4aabe
-  React-perflogger: 5ccf57d3ddf5d70f4bbb639faa378665a9e87c64
-  React-performancetimeline: 6fb4381f10a759ceed4872c173ce130f658e075a
-  React-RCTActionSheet: 9a8dc94d9b4919e72231e2079c52871f9806b839
-  React-RCTAnimation: 340d4b807a4b322ebb07bc397ec59eefa2e5ec0c
-  React-RCTAppDelegate: 5ff0b1997e5f292f774145ef7a14d1d0cfa7a9d7
-  React-RCTBlob: 25ab2f5623bb85409af805c50c0c9e167f132777
-  React-RCTFabric: 27893089c2cd97f38e9bc0c4c2d449872972c268
-  React-RCTImage: b0380cabd0e5c75f38456c70ee3582fa2458a3a1
-  React-RCTLinking: 3b1d25aad3628c52afc540977278c62252db563e
-  React-RCTNetwork: 8db3913be86c37bbe1e8753a4d7eeac259b6fcca
-  React-RCTSettings: 30ffa31dd0e60b6005df7a2816819445285bdb09
-  React-RCTText: 019fabc5429cec5906926c1fdbaaaa16d3c13b6b
-  React-RCTVibration: 1d54cd334b22ac2481afaf04bcdde7f923dfc352
-  React-rendererconsistency: 18fcd55d2d83428d56eb0e496b472e1752d10b7c
-  React-rendererdebug: bb3fadb8114997545398c93ed133a3d475556f28
-  React-rncore: 59cfc8a8edcb4fdbd9ba60746635ed3948e70176
-  React-RuntimeApple: f264b56557658b4bb7c7d24482025e703b0b120a
-  React-RuntimeCore: 211c5b9b37c7e520eaca0078619b5c8f45ab2299
-  React-runtimeexecutor: d163f3fbeb78dcc37e9d4ea0298b79e610e46a9f
-  React-RuntimeHermes: e7acd527927f088670a278d4a8494e9cda149137
-  React-runtimescheduler: 45db7637caae1c002e9fec71039ddc7d4a216640
-  React-utils: ee0c4c8682428a08d72fb2589a7f7bccf97cff30
-  ReactCodegen: 918a7d3252d42088cea5ac6b043e354d9f71084c
-  ReactCommon: 3f7340b4862eb4740b44ce75192be7a95c943e20
-  RNCAsyncStorage: 597673c6086d359029afefef8fd5859f1f35ab87
-  RNCClipboard: e55ecafbf4e0e42409391a98aceea76278699036
-  RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: c374c750a0a9bacd95f5c740d146ab9428549d6b
-  RNKeychain: bfe3d12bf4620fe488771c414530bf16e88f3678
-  RNReanimated: 76901886830e1032f16bbf820153f7dc3f02d51d
-  RNSecureRandom: 7b1df97e96cde33fccc6b64ed4072592fc06627c
-  RNSVG: 1079f96b39a35753d481a20e30603fd6fc4f6fa9
-  SocketRocket: 9ee265c4b5ae2382d18e4ee1d2dd2d7af0ff1ab5
+  AsyncStorage: 10b4956c3184302f5003b3360acc30b9c59dce1e
+  BlixtCamera: 0f739740ad307b7040336946265c8ded1cb160e2
+  boost: cea1d4f90a3a59537f3deb03ff5656489d7133dd
+  DoubleConversion: d31b1eb37f6d6f456530c4fd9124b857d6889cab
+  fast_float: 20817c22759af6ac8d4d67e6e059b8b499953656
+  FBLazyVector: 3d09e008ffda2b1f6fcc3f9e924abf4f703d7311
+  fmt: 4cf0c5ec5864511c96d8d4bd7b03c3c69040af06
+  glog: 2cf3e30a412574b50b1a29c4a3768cc840ab9ecf
+  hermes-engine: 346a311ec9aca45422226a0e01aff6d42cc946d9
+  NitroModules: 37d27f896dfdb0042a85dc33bd0a247bee414223
+  RCT-Folly: e10aa376c9d355431790daf20769ccf9d5ac0bb3
+  RCTDeprecation: 8df4aea13a635ebe88bafef941fb110e28923d9f
+  RCTRequired: 521f85257041999bf5d16c2dd77d3bc61dd313ee
+  RCTSwiftUI: 7dad0e57e8b2f5f839f516ab69e7de25645715ae
+  RCTSwiftUIWrapper: e6637a3f9754e8dfd132c5790ed8ec2af57619f3
+  RCTTypeSafety: 178a2f49cb79049995ebf39b12c33f80045c146c
+  React: 7ded345ed974425c1d7966a3f8272b78ead2f32b
+  React-callinvoker: db3226ee12afe79c28fa9d4e28c27e3221aeef4c
+  React-Core: 528e877586985cfc18826c0d8e5f197f0498f9d4
+  React-CoreModules: 1746f3c5bade8a197862e9032e7d53dd34737ee7
+  React-cxxreact: 64f0a203e1e5727876048d41c282e686711ef086
+  React-debug: dde5ddd9a94f9e183ea9ad0260d431256387c6bb
+  React-defaultsnativemodule: ae5a3e4c1bfa0e0ff454e1359ea2dd28ebcb3f01
+  React-domnativemodule: 05ed30b57528a3bc7a2e5abf13b14a78f46319a3
+  React-Fabric: eadce60789d5d6446cdbb8100a8557e8faa77677
+  React-FabricComponents: 14f3cca7b477f7e9b9147bcd2dd6ffbda316407f
+  React-FabricImage: 8b04f139c2f903844fbd7ad6898e63527f136846
+  React-featureflags: 1bc602ebc08acf513d7e5a4d2e1f37d8d54880f0
+  React-featureflagsnativemodule: 17f7ba95bab142ab63c4d9d3ce37e34c0a9c8af4
+  React-graphics: 62111b909ba6185f4a27aa5bf3d1347cfd71ebba
+  React-hermes: 0b881c91e226e2a87cb09c96009b7414d8f21f04
+  React-idlecallbacksnativemodule: d5561fde3bcf329c03a845f0ac81632d539883f9
+  React-ImageManager: 51cf93da68e334b1398a35fd7526be2ccfeb53b3
+  React-intersectionobservernativemodule: fe32e003a3f7deae802b868baff45c7cc9be7967
+  React-jserrorhandler: b52b084241e8b7d588e73c154f62a72ac7b03c5c
+  React-jsi: 366edf0bcd59057ec9294022a926b8d39db9ad9e
+  React-jsiexecutor: 0b77b1f0728a370c647d1423b92e9389d511e5c1
+  React-jsinspector: 85ce2fcfb46396f10e2c77722c1d07f1133fafc2
+  React-jsinspectorcdp: 971a3d09d8c29324923a1088b197dd60462e007c
+  React-jsinspectornetwork: a2fcf7fddd0b0037e8a7df418eaed894b06a38e2
+  React-jsinspectortracing: 6fa2108f2ea10d189b7538e9e5fa228587425d51
+  React-jsitooling: 84dc13be91e4538844a648c05d372ce34fe1e37b
+  React-jsitracing: c8a6ec708933f7fb3673b127fd888caa5ee9c3a7
+  React-logger: 9d8b47ed101d7e062ab40d50de6f60330859914c
+  React-Mapbuffer: 275a2909e6a58d1d235e624cc8d8b6cf9020af0d
+  React-microtasksnativemodule: 19a679c33c2a30339ded09015f3b150d17741dd9
+  React-mutationobservernativemodule: fd162222cbf7aa9f00ceaddcfcf3af472dd84db0
+  react-native-hash: 024d32efece2689e9b271897ffa75a994f421095
+  react-native-safe-area-context: 6cf08f4151132f9cf2adb948dc6c4ac387f8d30f
+  react-native-turbo-lnd: 8c647c06e57467f02afcbfdda9feb9f58ec9a4ed
+  react-native-turbo-sqlite: 3da6daf9ac05f2e6e80116bba51c961dd72fc579
+  react-native-webview: 254a8650a0213d9adcb2d5103a245c701edd9649
+  React-NativeModulesApple: 5ead5f7c62cdc951f5090c3f736f4da36c1807b5
+  React-networking: d61cd2aed6bd3ef10baef7b327219f7c12a6969b
+  React-oscompat: 7551cbe14bc1ff01314e9cf119a985abe3e70344
+  React-perflogger: f8581574f3be81d1ef4d2fa626e0db34f0d0ed23
+  React-performancecdpmetrics: 8e2753cb08042313bc6b8a766b39197ad6666df7
+  React-performancetimeline: 7477d56956e1c6c33363e40857c93f431b3ece02
+  React-RCTActionSheet: b0a2be76d3af4d797bf653f1695502b0cb39b6a8
+  React-RCTAnimation: fefe5b85bc1b324a8feed15987d95759b3cae686
+  React-RCTAppDelegate: 12a7fc778cf73ea971985435a1cd3a9c17bafb75
+  React-RCTBlob: e2ac6ab18b2ee7091330b1c9b81cef3d83c4a8bf
+  React-RCTFabric: d18d8bed8ca03fcb5d19f4afb79a5d480701eccd
+  React-RCTFBReactNativeSpec: 6a898fe927d9a6ba0b756394d4b723e54de25243
+  React-RCTImage: f53ec26f23cf16c6416163e64b9f9a140b47503d
+  React-RCTLinking: 564eb73b05afc00ad10f17bb9572c31a4830ce64
+  React-RCTNetwork: 4035d17c60e06baeca743159225baed947de868c
+  React-RCTRuntime: bffeea47e733a0435c4ac2655eaa3a3047b21add
+  React-RCTSettings: 43da93ab3f5502aec8b6978ea88a1a60eb197dac
+  React-RCTText: 03170f6eefd178001393df695df403da905008c5
+  React-RCTUIKit: 5e9c832ad820e102432a656bb5ddf04f2e20c2e5
+  React-RCTVibration: 7636947e1e33557b2f9d649ac44b55f617b30078
+  React-rendererconsistency: 303e20408e39c66e6d74273f9d70f445ee382789
+  React-renderercss: 2280e227a18f2c6f9fa2061bbd0a366e4dfbd2dd
+  React-rendererdebug: 6df8f23fe313c9b4f07268d3fe3f0524398768f6
+  React-RuntimeApple: 0075a0b0087779173c1295e1fec42baf317a0e22
+  React-RuntimeCore: ab80284bccd2ed839170584eb4eb0e32378f0ef4
+  React-runtimeexecutor: 15ec3ecc887a5287578781c628ff97928d429265
+  React-RuntimeHermes: cdb9ae37ecdba2e2ff9d6805568ddcb0f7685401
+  React-runtimescheduler: b212b716f633697fa85a63a838bdcf067f6eb0f3
+  React-timing: 646145107f540b8ae0a5542972e1ce91d8e0d42f
+  React-utils: cfe269b9bf12592f55a5a9bdd036ed7908ca4e5b
+  React-webperformancenativemodule: 9100306cf35f1bdf9b6b47d2d65102b124655ab6
+  ReactAppDependencyProvider: ca6b323b826914338b3ceac9a98409ce37bbd0ce
+  ReactCodegen: 57d0814c5d1f43012f714af1bf93f2f95b23793d
+  ReactCommon: b6490885f6505cdf8b3a358aa6d0b95ccd2937e2
+  ReactNativeNitroTor: 618500d1177aac1c2435a5ee3646d06bb631198b
+  RNCClipboard: 4b58c780f63676367640f23c8e114e9bd0cf86ac
+  RNFS: 89de7d7f4c0f6bafa05343c578f61118c8282ed8
+  RNGestureHandler: 98bcdec484c1d312efe201aec42bab7151e3462c
+  RNKeychain: a2c134ab796272c3d605e035ab727591000b30f3
+  RNReanimated: fb14528cf9219456113a2ac5ddb1561b6bfb0104
+  RNSVG: 6470d6f2636d71bd4bbc44a4f27fb7444e437b2f
+  RNWorklets: 482d2ca9cfe572486deb88dd4c3434f77f192ea8
+  SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   SwiftProtobuf: 7773c4e96a99d7b8ab7cda0fc30a883732ff93b1
-  Yoga: fa9f3b5766d4b47da89a5c504d78a65f5c37db69
+  Yoga: a3e0ee0baa46166b3a7451a6b01c45cd1918de9e
 
-PODFILE CHECKSUM: d00a49ad1096b0a8177a14828ffeecb6186e3d47
+PODFILE CHECKSUM: 9bf06947a38697f24bbed24538cd693a022ba6b7
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.16.2

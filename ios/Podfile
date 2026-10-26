@@ -35,7 +35,8 @@ setup_permissions([
 pod 'SwiftProtobuf', '~> 1.22.0'
 # End Blixt
 
-platform :ios, 16.6
+ios_deployment_target = '16.6'
+platform :ios, ios_deployment_target
 prepare_react_native_project!
 
 project 'BlixtWallet',
@@ -73,5 +74,16 @@ target 'BlixtWallet' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Resource bundles can retain a pod's older minimum after RN's hook.
+    # Keep every explicit pod target minimum at least as high as the app's.
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |build_config|
+        minimum = build_config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+        if minimum && Gem::Version.new(minimum) < Gem::Version.new(ios_deployment_target)
+          build_config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = ios_deployment_target
+        end
+      end
+    end
   end
 end

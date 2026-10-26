@@ -1085,8 +1085,9 @@
         "title": "Enforce gossip sync on startup"
       },
       "persistentServices": {
-        "title": "Enable persistent app",
-        "subtitle": "The app stays active in the background"
+        "title": "Persistent Mode",
+        "subtitle": "The app stays active in the background",
+        "subtitleMacos": "Keep the node running when you close the window. Use Quit Blixt to exit."
       }
     },
     "powerUserTools": {

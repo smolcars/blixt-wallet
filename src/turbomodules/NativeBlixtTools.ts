@@ -42,6 +42,7 @@ export interface Spec extends TurboModule {
   checkApplicationSupportExists(): Promise<boolean>;
   createIOSApplicationSupportAndLndDirectories(): Promise<boolean>;
   excludeLndICloudBackup(): Promise<boolean>;
+  setPersistentModeEnabled(enabled: boolean): void;
   macosOpenFileDialog(): Promise<string | null>;
   readonly onLndLog: CodegenTypes.EventEmitter<string>;
 }

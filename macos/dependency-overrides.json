@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "react-native": "0.83.10",
+    "react-native-macos": "0.83.0",
+    "react-native-screens": "4.25.0",
+    "blixt-macos-camera": "file:./camera"
+  },
+  "devDependencies": {
+    "@react-native/babel-preset": "0.83.10",
+    "@react-native/metro-config": "0.83.10",
+    "@react-native/eslint-config": "0.83.10",
+    "@react-native/typescript-config": "0.83.10"
+  },
+  "patchedDependencies": {
+    "react-native-screens@4.25.0": "patches/react-native-screens@4.25.0.patch",
+    "react-native-macos@0.83.0": "patches/react-native-macos@0.83.0.patch"
+  }
+}

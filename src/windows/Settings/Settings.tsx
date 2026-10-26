@@ -40,6 +40,7 @@ import {
 import Clipboard from "@react-native-clipboard/clipboard";
 import DialogAndroid from "react-native-dialogs";
 import { pick } from "@react-native-documents/picker";
+import NativeBlixtTools from "../../turbomodules/NativeBlixtTools";
 import { IFiatRates } from "../../state/Fiat";
 import { LoginMethods } from "../../state/Security";
 import { MapStyle } from "../../utils/google-maps";
@@ -50,10 +51,11 @@ import { useTranslation } from "react-i18next";
 import { verifyChanBackup } from "react-native-turbo-lnd";
 import { NavigationProp } from "@react-navigation/native";
 import { base64Decode } from "@bufbuild/protobuf/wire";
-import { FlatList } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 import { blixtTheme } from "../../native-base-theme/variables/commonColor";
 import Input from "../../components/Input";
 import ReactNativePermissions from "react-native-permissions";
+import notifee, { AuthorizationStatus } from "@notifee/react-native";
 import { restartAppOrNotify, showRestartNeededAlert } from "../../utils/restart-app";
 
 interface ISettingsProps {
@@ -334,7 +336,21 @@ export default function Settings({ navigation }: ISettingsProps) {
     (store) => store.settings.changePushNotificationsEnabled,
   );
   const onTogglePushNotificationsPress = async () => {
-    await changePushNotificationsEnabled(!pushNotificationsEnabled);
+    try {
+      if (PLATFORM === "macos" && !pushNotificationsEnabled) {
+        const { authorizationStatus } = await notifee.requestPermission();
+        if (
+          authorizationStatus !== AuthorizationStatus.AUTHORIZED &&
+          authorizationStatus !== AuthorizationStatus.PROVISIONAL
+        ) {
+          toast("Allow notifications for Blixt in macOS System Settings → Notifications.");
+          return;
+        }
+      }
+      await changePushNotificationsEnabled(!pushNotificationsEnabled);
+    } catch (error: any) {
+      toast(error.message);
+    }
   };
 
   // Clipboard invoice check
@@ -376,10 +392,17 @@ export default function Settings({ navigation }: ISettingsProps) {
   // Verify channels backup
   const onVerifyChannelsBackupPress = async () => {
     try {
-      const [res] = await pick();
-
-      const backupFileUri = PLATFORM === "ios" ? res.uri.replace(/%20/g, " ") : res.uri;
-      const backupBase64 = await readFile(backupFileUri, "base64");
+      let backupBase64: string;
+      if (PLATFORM === "macos") {
+        const selected = await NativeBlixtTools.macosOpenFileDialog();
+        // Native promise cancellation can bridge as null or undefined.
+        if (selected == null) return;
+        backupBase64 = selected;
+      } else {
+        const [res] = await pick();
+        const backupFileUri = PLATFORM === "ios" ? res.uri.replace(/%20/g, " ") : res.uri;
+        backupBase64 = await readFile(backupFileUri, "base64");
+      }
       await verifyChanBackup({
         multiChanBackup: {
           multiChanBackup: base64Decode(backupBase64),
@@ -1392,8 +1415,12 @@ ${t("experimental.tor.disabled.msg2")}`;
     (store) => store.settings.changePersistentServicesEnabled,
   );
   const changePersistentServicesEnabledPress = async () => {
-    await changePersistentServicesEnabled(!persistentServicesEnabled);
-    restartNeeded();
+    try {
+      await changePersistentServicesEnabled(!persistentServicesEnabled);
+      if (PLATFORM === "android") restartNeeded();
+    } catch (error: any) {
+      toast(error.message);
+    }
   };
 
   // Custom invoice preimage
@@ -1593,7 +1620,7 @@ ${t("experimental.tor.disabled.msg2")}`;
             },
           ]
         : []),
-      ...(["android", "ios"].includes(PLATFORM)
+      ...(["android", "ios", "macos"].includes(PLATFORM)
         ? [
             {
               type: "item",
@@ -1932,7 +1959,7 @@ ${t("experimental.tor.disabled.msg2")}`;
 
       { type: "header", title: t("experimental.title") },
 
-      ...(["android", "ios"].includes(PLATFORM) && !isRecoverMode
+      ...(["android", "ios", "macos"].includes(PLATFORM) && !isRecoverMode
         ? [
             {
               type: "item",
@@ -1990,13 +2017,17 @@ ${t("experimental.tor.disabled.msg2")}`;
             },
           ]
         : []),
-      ...(PLATFORM === "android"
+      ...(["android", "macos"].includes(PLATFORM)
         ? [
             {
               type: "item",
               icon: { type: "Entypo", name: "globe" },
               title: t("debug.persistentServices.title"),
-              subtitle: t("debug.persistentServices.subtitle"),
+              subtitle: PLATFORM === "macos"
+                ? t("debug.persistentServices.subtitleMacos", {
+                    defaultValue: "Keep the node running when you close the window. Use Quit Blixt to exit.",
+                  })
+                : t("debug.persistentServices.subtitle"),
               checkBox: true,
               checked: persistentServicesEnabled,
               onPress: changePersistentServicesEnabledPress,
@@ -2037,15 +2068,19 @@ ${t("experimental.tor.disabled.msg2")}`;
         checked: debugShowStartupInfo,
         onPress: onToggleDebugShowStartupInfo,
       },
-      {
-        type: "item",
-        icon: { type: "MaterialIcons", name: "gradient" },
-        title: "Use legacy header gradient",
-        subtitle: "Use react-native-linear-gradient instead of experimental CSS gradient",
-        checkBox: true,
-        checked: useLegacyHeaderGradient,
-        onPress: onToggleUseLegacyHeaderGradient,
-      },
+      ...(PLATFORM !== "macos"
+        ? [
+            {
+              type: "item",
+              icon: { type: "MaterialIcons", name: "gradient" },
+              title: "Use legacy header gradient",
+              subtitle: "Use react-native-linear-gradient instead of experimental CSS gradient",
+              checkBox: true,
+              checked: useLegacyHeaderGradient,
+              onPress: onToggleUseLegacyHeaderGradient,
+            },
+          ]
+        : []),
       {
         type: "item",
         icon: { type: "MaterialCommunityIcons", name: "file-code" },
@@ -2228,16 +2263,27 @@ ${t("experimental.tor.disabled.msg2")}`;
           <Icon name="ios-search" />
         </Item>
       </Header>
-      <FlatList
-        data={filteredSettingsData}
-        renderItem={renderItem}
-        ListHeaderComponent={!searchText.trim() ? <BlixtWallet /> : null}
-        contentContainerStyle={{ padding: 14 }}
-        initialNumToRender={21}
-        keyExtractor={(item, index) => `${item.title}-${index}`}
-        maxToRenderPerBatch={15}
-        removeClippedSubviews={true}
-      />
+      {PLATFORM === "macos" ? (
+        // This bounded menu does not need virtualization. Mount every row on
+        // macOS to avoid missing settings when virtualized cells stop updating.
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 14 }}>
+          {!searchText.trim() ? <BlixtWallet /> : null}
+          {filteredSettingsData.map((item, index) => (
+            <View key={`${item.title}-${index}`}>{renderItem({ item })}</View>
+          ))}
+        </ScrollView>
+      ) : (
+        <FlatList
+          data={filteredSettingsData}
+          renderItem={renderItem}
+          ListHeaderComponent={!searchText.trim() ? <BlixtWallet /> : null}
+          contentContainerStyle={{ padding: 14 }}
+          initialNumToRender={21}
+          keyExtractor={(item, index) => `${item.title}-${index}`}
+          maxToRenderPerBatch={15}
+          removeClippedSubviews={true}
+        />
+      )}
     </Container>
   );
 }

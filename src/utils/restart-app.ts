@@ -1,4 +1,4 @@
-import i18next from "i18next";
+import { i18n } from "../i18n/i18n";
 import { stopDaemon } from "react-native-turbo-lnd";
 
 import { namespaces } from "../i18n/i18n.constants";
@@ -21,18 +21,18 @@ const RESTART_STOP_DAEMON_POLL_INTERVAL_MS = 250;
 
 const getRestartDialogStrings = () => {
   return {
-    title: i18next.t("bitcoinNetwork.restartDialog.title", {
+    title: i18n.t("bitcoinNetwork.restartDialog.title", {
       ns: namespaces.settings.settings,
     }),
-    message: i18next.t("bitcoinNetwork.restartDialog.msg", {
+    message: i18n.t("bitcoinNetwork.restartDialog.msg", {
       ns: namespaces.settings.settings,
     }),
-    question: i18next.t("bitcoinNetwork.restartDialog.msg1", {
+    question: i18n.t("bitcoinNetwork.restartDialog.msg1", {
       ns: namespaces.settings.settings,
     }),
-    ok: i18next.t("buttons.ok", { ns: namespaces.common }),
-    yes: i18next.t("buttons.yes", { ns: namespaces.common }),
-    no: i18next.t("buttons.no", { ns: namespaces.common }),
+    ok: i18n.t("buttons.ok", { ns: namespaces.common }),
+    yes: i18n.t("buttons.yes", { ns: namespaces.common }),
+    no: i18n.t("buttons.no", { ns: namespaces.common }),
   };
 };
 

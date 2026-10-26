@@ -481,6 +481,10 @@ class BlixtToolsTurboModule(reactContext: ReactApplicationContext) :
     promise.resolve(false)
   }
 
+  override fun setPersistentModeEnabled(enabled: Boolean) {
+    // macOS-only window behavior.
+  }
+
   override fun macosOpenFileDialog(promise: Promise) {
     promise.resolve(null)
   }

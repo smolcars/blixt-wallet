@@ -1,5 +1,5 @@
 import Color from "color";
-import { StackNavigationOptions, StackCardInterpolationProps } from "@react-navigation/stack";
+import { CardStyleInterpolators, StackNavigationOptions, StackCardInterpolationProps } from "@react-navigation/stack";
 
 import { useStoreState } from "../state/store";
 import { blixtTheme } from "../native-base-theme/variables/commonColor";
@@ -58,7 +58,7 @@ export default function useStackNavigationOptions(): StackNavigationOptions {
 
     animation: screenTransitionsEnabled ? undefined : "none",
     // cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-    cardStyleInterpolator: forFade,
+    cardStyleInterpolator: Platform.OS === "macos" ? CardStyleInterpolators.forFadeFromCenter : forFade,
     cardOverlayEnabled: false,
     animationTypeForReplace: "pop", // TURBOTODO(hsjoberg): can cause issues
 

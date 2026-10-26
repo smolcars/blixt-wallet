@@ -36,14 +36,14 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.finance</string>
 	<key>CHAIN</key>
 	<string>$(CHAIN)</string>
 	<key>DEBUG</key>
 	<string>$(DEBUG)</string>
 	<key>FLAVOR</key>
 	<string>$(FLAVOR)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.finance</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppTransportSecurity</key>
@@ -59,13 +59,19 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSMainStoryboardFile</key>
-	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan Lightning invoices and LNURL QR codes to send payments.</string>
+	<key>NSCameraUseContinuityCameraDeviceType</key>
+	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<false/>
 	<key>NSSupportsSuddenTermination</key>
 	<false/>
+	<key>RCTNewArchEnabled</key>
+	<true/>
+	<key>TEAM_ID</key>
+	<string>$(DEVELOPMENT_TEAM)</string>
 </dict>
 </plist>

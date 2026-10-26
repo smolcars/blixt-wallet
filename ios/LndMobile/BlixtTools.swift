@@ -255,25 +255,16 @@ autopilot.heuristic=preferential:0.05
 
   @objc(getTorEnabled:reject:)
   func getTorEnabled(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    let asyncStorage = RNCAsyncStorage()
-
-    asyncStorage.methodQueue.async {
-      asyncStorage.multiGet(["torEnabled"], callback: { (result) in
-        if let result = result {
-          let count = result[0]
-          if count is Error {
-            let error = count as! Error
-            reject("error", error.localizedDescription, error)
-            return
-          }
-
-          if let values = result[1] as? [[String]] {
-            if let first = values[0] as [String]? {
-              resolve(first[1])
-            }
-          }
-        }
-      })
+    // Async Storage 3 keeps existing settings in its legacy store, but its
+    // native multiGet API now throws and returns a dictionary.
+    let asyncStorage = RNCAsyncStorage.sharedInstance()
+    asyncStorage.methodQueue().async {
+      do {
+        let values = try asyncStorage.multiGet(["torEnabled"])
+        resolve(values["torEnabled"] == "true")
+      } catch {
+        reject("error", error.localizedDescription, error)
+      }
     }
   }
 
@@ -666,6 +657,15 @@ autopilot.heuristic=preferential:0.05
       }
 #endif
     }
+  }
+
+  @objc(setPersistentModeEnabled:)
+  func setPersistentModeEnabled(_ enabled: Bool) {
+    #if os(macOS)
+    DispatchQueue.main.async {
+      NotificationCenter.default.post(name: Notification.Name("BlixtPersistentModeEnabledChanged"), object: enabled)
+    }
+    #endif
   }
 
   @objc(macosOpenFileDialog:reject:)

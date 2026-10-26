@@ -45,7 +45,7 @@ import {
 } from "react-native-turbo-lnd/protos/lightning_pb";
 import { base64Decode } from "@bufbuild/protobuf/wire";
 import { XImportMissionControlRequestSchema } from "react-native-turbo-lnd/protos/routerrpc/router_pb";
-import { FlatList } from "react-native";
+import { FlatList, ScrollView, View } from "react-native";
 import { blixtTheme } from "../../native-base-theme/variables/commonColor";
 import Input from "../../components/Input";
 
@@ -360,29 +360,35 @@ export default function PowerUserTools({ navigation }: IPowerUserToolsProps) {
   // Restore SCB file
   const onPressRestoreChannelBackup = async () => {
     try {
-      const [res] = await pick();
-      console.log(res);
-
-      let backupFileUri: string;
-      if (PLATFORM === "ios") {
-        backupFileUri = res.uri.replace(/%20/g, " ");
-      } else {
-        backupFileUri = res.uri;
-      }
-
       let backupBase64: string;
-      try {
-        if (PLATFORM === "android") {
-          backupBase64 = await readFile(backupFileUri, "base64");
+      if (PLATFORM === "macos") {
+        const selected = await NativeBlixtTools.macosOpenFileDialog();
+        // Native promise cancellation can bridge as null or undefined.
+        if (selected == null) return;
+        backupBase64 = selected;
+      } else {
+        const [res] = await pick();
+
+        let backupFileUri: string;
+        if (PLATFORM === "ios") {
+          backupFileUri = res.uri.replace(/%20/g, " ");
         } else {
-          backupBase64 = await readFile(backupFileUri, undefined);
+          backupFileUri = res.uri;
         }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (e: any) {
-        if (PLATFORM === "android") {
-          backupBase64 = await readFile(backupFileUri, undefined);
-        } else {
-          backupBase64 = await readFile(backupFileUri, "base64");
+
+        try {
+          if (PLATFORM === "android") {
+            backupBase64 = await readFile(backupFileUri, "base64");
+          } else {
+            backupBase64 = await readFile(backupFileUri, undefined);
+          }
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (e: any) {
+          if (PLATFORM === "android") {
+            backupBase64 = await readFile(backupFileUri, undefined);
+          } else {
+            backupBase64 = await readFile(backupFileUri, "base64");
+          }
         }
       }
 
@@ -819,15 +825,25 @@ export default function PowerUserTools({ navigation }: IPowerUserToolsProps) {
           <Icon name="ios-search" />
         </Item>
       </Header>
-      <FlatList
-        data={filteredToolsData}
-        renderItem={renderItem}
-        contentContainerStyle={{ padding: 14 }}
-        initialNumToRender={21}
-        keyExtractor={(item, index) => `${item.title}-${index}`}
-        maxToRenderPerBatch={15}
-        removeClippedSubviews={true}
-      />
+      {PLATFORM === "macos" ? (
+        // Like Settings, keep this bounded menu mounted on macOS rather than
+        // relying on virtualized cells that can stop updating during scrolling.
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 14 }}>
+          {filteredToolsData.map((item, index) => (
+            <View key={`${item.title}-${index}`}>{renderItem({ item })}</View>
+          ))}
+        </ScrollView>
+      ) : (
+        <FlatList
+          data={filteredToolsData}
+          renderItem={renderItem}
+          contentContainerStyle={{ padding: 14 }}
+          initialNumToRender={21}
+          keyExtractor={(item, index) => `${item.title}-${index}`}
+          maxToRenderPerBatch={15}
+          removeClippedSubviews={true}
+        />
+      )}
     </Container>
   );
 }

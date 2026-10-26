@@ -135,6 +135,11 @@ export const getRescanWallet = async (): Promise<boolean> => {
 export const getLndCompactDb = async (): Promise<boolean> => {
   return (await getItemObject(StorageItem.lndCompactDb)) || false;
 };
+
+export const getPersistentServicesEnabled = async (): Promise<boolean> => {
+  return (await getItemObject<boolean>(StorageItem.persistentServicesEnabled)) ?? false;
+};
+
 export const setRescanWallet = async (rescan: boolean): Promise<void> => {
   return await setItemObject<boolean>(StorageItem.rescanWallet, rescan);
 };
@@ -288,8 +293,8 @@ export const setupApp = async () => {
     // walletPassword
     setItemObject<boolean>(StorageItem.autopilotEnabled, true),
     setItemObject<string>(StorageItem.autopilotNodePubkey, BLIXT_NODE_PUBKEY),
-    setItemObject<boolean>(StorageItem.pushNotificationsEnabled, true),
-    setItemObject<boolean>(StorageItem.clipboardInvoiceCheck, PLATFORM === "ios" ? false : true),
+    setItemObject<boolean>(StorageItem.pushNotificationsEnabled, PLATFORM !== "macos"),
+    setItemObject<boolean>(StorageItem.clipboardInvoiceCheck, PLATFORM !== "ios" && PLATFORM !== "macos"),
     setItemObject<boolean>(StorageItem.scheduledSyncEnabled, false),
     setItemObject<number>(StorageItem.lastScheduledSync, 0),
     setItemObject<number>(StorageItem.lastScheduledSyncAttempt, 0),
@@ -309,7 +314,7 @@ export const setupApp = async () => {
     setItemObject<boolean>(StorageItem.torEnabled, false),
     setItemObject<boolean>(StorageItem.hideExpiredInvoices, true),
     setItemObject<number>(StorageItem.lastGoogleDriveBackup, new Date().getTime()),
-    setItemObject<boolean>(StorageItem.screenTransitionsEnabled, true),
+    setItemObject<boolean>(StorageItem.screenTransitionsEnabled, PLATFORM !== "macos"),
     setItemObject<boolean>(StorageItem.iCloudBackupEnabled, false),
     setItemObject<number>(StorageItem.lastICloudBackup, new Date().getTime()),
     setItem(StorageItem.lndChainBackend, lndChainBackend),
@@ -332,7 +337,7 @@ export const setupApp = async () => {
     setItem(StorageItem.lndLogLevel, DEFAULT_LND_LOG_LEVEL),
     setItemObject<boolean>(StorageItem.lndCompactDb, false),
     setItemObject<boolean>(StorageItem.enforceSpeedloaderOnStartup, false),
-    setItemObject<boolean>(StorageItem.scheduledGossipSyncEnabled, true),
+    setItemObject<boolean>(StorageItem.scheduledGossipSyncEnabled, PLATFORM !== "macos"),
     setItemObject<boolean>(StorageItem.persistentServicesEnabled, false),
     setItemObject<boolean>(StorageItem.persistentServicesWarningShown, false),
     setItemObject<string[]>(StorageItem.zeroConfPeers, [BLIXT_NODE_PUBKEY]),

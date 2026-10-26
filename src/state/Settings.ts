@@ -15,6 +15,7 @@ import {
   getItem,
   getItemObject,
   getLndCompactDb,
+  getPersistentServicesEnabled,
   getRescanWallet,
   removeItem,
   setItem,
@@ -304,9 +305,7 @@ export const settings: ISettingsModel = {
     actions.setEnforceSpeedloaderOnStartup(
       await getItemObject(StorageItem.enforceSpeedloaderOnStartup || false),
     );
-    actions.setPersistentServicesEnabled(
-      (await getItemObject(StorageItem.persistentServicesEnabled)) ?? false,
-    );
+    actions.setPersistentServicesEnabled(await getPersistentServicesEnabled());
     actions.setPersistentServicesWarningShown(
       (await getItemObject(StorageItem.persistentServicesWarningShown)) ?? false,
     );

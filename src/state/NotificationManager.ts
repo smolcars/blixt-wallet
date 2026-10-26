@@ -34,7 +34,8 @@ export const notificationManager: INotificationManagerModel = {
       log.d("Initializing");
 
       if (PLATFORM === "macos") {
-        log.i("Push notifications not supported on " + PLATFORM);
+        // Permission is requested when the user enables notifications in Settings.
+        await notifee.getNotificationSettings();
         return;
       }
 
@@ -92,10 +93,14 @@ export const notificationManager: INotificationManagerModel = {
     await notifee.stopForegroundService();
   }),
 
-  localNotification: thunk((_, { message }, { getStoreState }) => {
+  localNotification: thunk(async (_, { message }, { getStoreState }) => {
     if (getStoreState().settings.pushNotificationsEnabled) {
-      if (PLATFORM === "android" || PLATFORM === "ios") {
-        localNotification(message);
+      if (PLATFORM === "android" || PLATFORM === "ios" || PLATFORM === "macos") {
+        try {
+          await localNotification(message);
+        } catch (error: any) {
+          log.e("Notification delivery failed", [error.message]);
+        }
       } else {
         toast(message);
       }

@@ -43,6 +43,8 @@ You can contribute to the project by translating the app via [Transifex](https:/
 
 ## Build Steps
 
+See the [platform support matrix](PLATFORM_SUPPORT.md) for integration status and [upstream fixes](UPSTREAM_FIXES.md) for dependency patches and contribution follow-ups.
+
 Blixt targets three platforms right now: Web, Android and iOS.
 
 The web target is only used for prototyping and is not a real wallet.
@@ -136,18 +138,19 @@ To start the application:
 
 ### macOS
 
-To build the macOS version, a computer running macOS is required.
+The macOS target is being restored on React Native macOS 0.83.0 and requires macOS 14 or newer. Its `macos/package.json` is generated from the root manifest plus `macos/dependency-overrides.json`, with a separate desktop lockfile and install tree; mobile remains on React Native 0.85.2. A minimal signed Regtest wallet now runs with temporary adapters and disabled desktop features. Wallet creation and restart/unlock have been checked. See [restoration status and library compatibility](macos/RESTORATION.md) for limitations and validation details.
 
 - Install [Xcode](https://developer.apple.com/xcode/), [Node](https://nodejs.org) and [Bun](https://bun.com)
-- Build lnd for macOS by following the steps in [build-ios-framework.md](build-ios-framework.md)
-  - Instead of running `make ios`, run `make macos` or `make apple`
-- Install Node packages: `bun install`
-- Install CocoaPods libs: `cd macos && pod install`
+- Install CocoaPods (`pod` must be on your PATH).
+- Generate/install desktop dependencies and its LND XCFramework: `bun run macos:install`
+- After changing shared dependencies, rerun `bun run macos:install`; commit the generated manifest and desktop lockfile. `bun run macos:check` detects drift.
+- Install CocoaPods libs: `bun run macos:pods`
+- Check the JavaScript bundle: `bun run macos:bundle`
 
-To start the application:
+To run the initial desktop build (configure a valid development signing team/profile in Xcode for keychain access):
 
-- Run: `bun start-metro`
-- Build app from Xcode or run `bun macos:mainnet-debug`
+- Run: `bun run macos:start`
+- Open `macos/BlixtWallet.xcworkspace` or run `bun run macos:regtest-debug`.
 
 ## Commit and Code-Style
 
