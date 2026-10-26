@@ -4,13 +4,16 @@ const path = require('node:path');
 const test = require('node:test');
 const babel = require('@babel/core');
 
-const ast = babel.parseSync(fs.readFileSync(path.join(__dirname, '../src/windows/Send/SendCamera.macos.tsx'), 'utf8'), {
+const ast = babel.parseSync(fs.readFileSync(path.join(__dirname, '../src/windows/Send/SendCamera.tsx'), 'utf8'), {
+  babelrc: false, configFile: false, parserOpts: { plugins: ['typescript', 'jsx'] },
+});
+const cameraAst = babel.parseSync(fs.readFileSync(path.join(__dirname, '../src/components/Camera.macos.tsx'), 'utf8'), {
   babelrc: false, configFile: false, parserOpts: { plugins: ['typescript', 'jsx'] },
 });
 function callback(name, bindings) {
   let handler;
-  babel.traverse(ast, {
-    VariableDeclarator(p) { if (p.node.id.name === name) handler = p.node.init; },
+  babel.traverse(['permissionEffect', 'nativeChooseCamera'].includes(name) ? cameraAst : ast, {
+    VariableDeclarator(p) { if (p.node.id.name === (name === 'nativeChooseCamera' ? 'chooseCamera' : name)) handler = p.node.init; },
     CallExpression(p) {
       if (name === 'permissionEffect' && p.node.callee.name === 'useEffect' && !handler) handler = p.node.arguments[0];
     },
@@ -85,7 +88,7 @@ test('leaving Send during evaluation prevents navigation and restores busy state
 function permissionHarness(requestPermission) {
   const events = [];
   const bindings = {
-    focused: true,
+    focused: true, onNotAuthorizedRef: { current: undefined },
     NativeCamera: { requestPermission, getDevices: async () => { events.push(['devices']); return []; } },
     setError: value => events.push(['error', value]),
     setPermission: value => events.push(['permission', value]),
@@ -124,12 +127,8 @@ test('camera chooser suspends scanning until selection or cancellation finishes'
   const bindings = {
     focusedRef: { current: true }, mountedRef: { current: true }, busyRef: { current: false },
     setBusy: value => events.push(['busy', value]),
-    NativeCamera: { getDevices: async () => [{ id: 'external', name: 'USB camera' }] },
-    setDevices: () => {}, setDeviceID: id => events.push(['device', id]),
-    setError: error => events.push(['error', error]), setPaused: () => {},
-    Alert: { promiseAlert: (_, __, buttons) => new Promise(resolve => { close = () => {
-      buttons[0].onPress(); resolve(buttons[0]);
-    }; }) },
+    cameraRef: { current: { switchCamera: () => new Promise(resolve => { close = resolve; }) } },
+    setPaused: () => {}, toast: () => {},
   };
   const pending = callback('chooseCamera', bindings)();
   await flush();
@@ -137,6 +136,28 @@ test('camera chooser suspends scanning until selection or cancellation finishes'
   assert.deepEqual(events, [['busy', true]]);
   close(); await pending;
   assert.equal(bindings.busyRef.current, false);
-  assert.ok(events.some(e => e[0] === 'device' && e[1] === 'external'));
   assert.deepEqual(events.at(-1), ['busy', false]);
+});
+
+
+test('macOS camera switching retries permission instead of clearing the denied state', async () => {
+  let retries = 0;
+  await callback('nativeChooseCamera', {
+    focusedRef: { current: true }, permission: false,
+    setRetry: update => { retries = update(retries); },
+    NativeCamera: { getDevices: () => assert.fail('permission must be obtained first') },
+  })();
+  assert.equal(retries, 1);
+});
+
+test('macOS adapter selects the native device without owning Send navigation', async () => {
+  const events = [];
+  await callback('nativeChooseCamera', {
+    focusedRef: { current: true }, permission: true,
+    NativeCamera: { getDevices: async () => [{ id: 'usb', name: 'USB camera' }] },
+    setDevices: () => {}, setDeviceID: id => events.push(['device', id]),
+    setError: value => events.push(['error', value]),
+    Alert: { promiseAlert: async (_, __, buttons) => { buttons[0].onPress(); } },
+  })();
+  assert.deepEqual(events, [['device', 'usb'], ['error', null]]);
 });
