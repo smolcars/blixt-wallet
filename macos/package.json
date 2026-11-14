@@ -39,6 +39,7 @@
     "base64-js": "1.5.1",
     "bech32": "2.0.0",
     "bignumber.js": "11.1.5",
+    "blixt-macos-biometrics": "file:./biometrics",
     "blixt-macos-camera": "file:./camera",
     "color": "5.0.3",
     "date-fns": "4.4.0",

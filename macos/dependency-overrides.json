@@ -3,7 +3,8 @@
     "react-native": "0.83.10",
     "react-native-macos": "0.83.0",
     "react-native-screens": "4.25.0",
-    "blixt-macos-camera": "file:./camera"
+    "blixt-macos-camera": "file:./camera",
+    "blixt-macos-biometrics": "file:./biometrics"
   },
   "devDependencies": {
     "@react-native/babel-preset": "0.83.10",

@@ -31,11 +31,11 @@
 | `react-native-permissions` | ✅ | ✅ | 🚫 | 🚫 | 🚫 | macOS notification permissions handled by our Notifee shim. Port deferred. |
 | `@react-native-documents/picker` | ✅ | ✅ | Custom feature; package unavailable | 🚫 | 🚫 | macOS: custom native picker for backups. |
 | Backup export / native file dialogs | Custom + library | Custom + library | Custom | 🚫 for native flow | Partial | Electrobun export/picker integration incomplete. |
-| `react-native-fingerprint-scanner` | ✅ (fork) | ✅ (fork) | 🚫 | 🚫 | 🚫 | macOS Touch ID deferred. |
+| `react-native-fingerprint-scanner` | ✅ (fork) | ✅ (fork) | Custom | 🚫 | 🚫 | macOS: local TurboModule using LocalAuthentication; live Touch ID authentication confirmed. |
 | `react-native-icloudstore` | Unused | ✅ (fork) | 🚫 | 🚫 | 🚫 | macOS integration deferred. |
 | `@react-native-google-signin/google-signin` | ✅ | Unused by Blixt | Unused | Unused | Unused | Google Drive sign-in used only on Android. |
 | `@react-native-clipboard/clipboard` | ✅ | ✅ | ✅ | ✅ (browser) | ✅ (browser) | Browser permission required. |
-| `react-native-vision-camera` + barcode scanner | ✅ | ✅ | 🚫 | Custom via ZXing | Partial via ZXing | Web: ZXing/getUserMedia. |
+| `react-native-vision-camera` + barcode scanner | ✅ | ✅ | 🚫 | Custom via ZXing | Partial via ZXing | Web: ZXing/getUserMedia. macOS QR scanning uses Blixt’s custom native camera module. |
 | `@react-native-community/geolocation` | ✅ | ✅ | 🚫 | Unverified | Unverified | No browser replacement configured. |
 | `react-native-maps` | ✅ | ✅ | 🚫 | 🚫 | 🚫 | Desktop/browser placeholder. |
 | `react-native-haptic-feedback` | ✅ | ✅ | Unused | Unused | Unused |  |
@@ -62,7 +62,7 @@
 ## Notes
 
 - **Keystore:** web uses localStorage. Electrobun uses a Windows backend, Linux Secret Service with file fallback, or JSON files on other hosts.
-- **Deferred on macOS:** RNPermissions port, biometrics, iCloud, camera, location/maps, and FlatList investigation.
+- **Deferred on macOS:** RNPermissions port, iCloud, location/maps, and FlatList investigation.
 - **Upstream fixes:** see [UPSTREAM_FIXES.md](UPSTREAM_FIXES.md).
 - **Compatibility code:** [shared shims](src/shims), [web shims](src/shims/web), [Electrobun bridges](electrobun/src/shims), and platform-specific source files.
 - **Configuration:** [macOS aliases](macos/metro.config.js), [native exclusions](macos/react-native.config.js), [web/Electrobun aliases](vite.config.ts). Edit [macOS overrides](macos/dependency-overrides.json), then run `bun macos:sync`.

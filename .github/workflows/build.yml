@@ -64,9 +64,17 @@ jobs:
 
   build-ios:
     runs-on: macos-15
+    env:
+      # VisionCamera requires the iOS 26 SDK; macos-15 defaults to Xcode 16.4.
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Show Xcode and SDK versions
+        run: |
+          xcodebuild -version
+          xcrun --sdk iphonesimulator --show-sdk-version
 
       - name: Setup Node.js
         uses: actions/setup-node@v6

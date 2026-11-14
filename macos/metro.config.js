@@ -7,7 +7,6 @@ const desktopModules = path.join(__dirname, "node_modules");
 const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const shims = {
   "react-native-keyboard-controller": "react-native-keyboard-controller",
-  "react-native-fingerprint-scanner": "react-native-fingerprint-scanner",
   "react-native-icloudstore": "react-native-icloudstore",
   "react-native-permissions": "react-native-permissions",
   "@notifee/react-native": "notifee-react-native",
@@ -25,6 +24,9 @@ module.exports = mergeConfig(getDefaultConfig(__dirname), {
     blockList: new RegExp(`^${escapeRegExp(path.join(repoRoot, "node_modules"))}/`),
     nodeModulesPaths: [desktopModules],
     resolveRequest(context, moduleName, platform) {
+      if (moduleName === "react-native-fingerprint-scanner") {
+        return { type: "sourceFile", filePath: path.join(__dirname, "biometrics/src/index.js") };
+      }
       if (shims[moduleName]) {
         return { type: "sourceFile", filePath: path.join(repoRoot, "src/shims", `${shims[moduleName]}.js`) };
       }

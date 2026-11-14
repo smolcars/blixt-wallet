@@ -30,6 +30,7 @@ module.exports = {
   dependencies: {
     // Compile the in-repo camera sources directly while developing the local package.
     "blixt-macos-camera": { root: path.join(__dirname, "camera") },
+    "blixt-macos-biometrics": { root: path.join(__dirname, "biometrics") },
     ...Object.fromEntries(
       unsupported.map((name) => [name, { platforms: { ios: null, macos: null } }]),
     ),
