@@ -7,6 +7,11 @@ import { IStoreModel } from "./index";
 import { signMessage, subscribeChannelEvents } from "react-native-turbo-lnd";
 
 import logger from "./../utils/log";
+import {
+  createDunderSignedRequest,
+  DunderSignedEndpoint,
+  supportsDunderSignedRequests,
+} from "../utils/dunder-signed-request";
 const log = logger("BlixtLsp");
 
 type UserState = "NOT_REGISTERED" | "REGISTERED" | "WAITING_FOR_SETTLEMENT";
@@ -21,8 +26,14 @@ export interface IOnDemandChannelServiceStatusResponse {
   approxFeeSat: number;
   minimumPaymentSat: number;
   peer: string;
+  /**
+   * How requests may be signed: absent or 1 = a fixed word ("REGISTER", ...),
+   * 2 = a signed JSON message (see utils/dunder-signed-request.ts).
+   */
+  requestSigningVersion?: number;
 }
 
+/** Legacy register body. Newer servers get a signed message instead. */
 export interface IOnDemandChannelRegisterRequest {
   pubkey: string;
   signature: string; // Message has to be REGISTER base64
@@ -85,6 +96,14 @@ export interface IOndemandChannel {
     IStoreModel,
     Promise<IOnDemandChannelServiceStatusResponse>
   >;
+  /** The cached service status if it advertises signed requests, otherwise a fresh one. */
+  getStatusForSigning: Thunk<
+    IOndemandChannel,
+    void,
+    any,
+    IStoreModel,
+    Promise<IOnDemandChannelServiceStatusResponse | null>
+  >;
   checkStatus: Thunk<
     IOndemandChannel,
     void,
@@ -114,6 +133,39 @@ export interface IOndemandChannel {
 
   status: IOnDemandChannelServiceStatusResponse | null;
   serviceActive: Computed<IOndemandChannel, boolean>;
+}
+
+/**
+ * Builds the JSON body for a signed Dunder request. Uses the signed-message
+ * format when the server advertises it (see utils/dunder-signed-request.ts),
+ * otherwise the legacy format where only a fixed word is signed.
+ */
+async function createDunderRequestBody(
+  dunderServer: string,
+  pubkey: string,
+  status: IOnDemandChannelServiceStatusResponse | null,
+  endpoint: DunderSignedEndpoint,
+  legacyMessage: string,
+  data: Record<string, unknown>,
+): Promise<string> {
+  if (supportsDunderSignedRequests(status)) {
+    const body = await createDunderSignedRequest({
+      server: dunderServer,
+      endpoint,
+      pubkey,
+      data,
+      sign: async (message) => (await signMessage({ msg: stringToUint8Array(message) })).signature,
+      randomHex: async () => bytesToHexString(await generateSecureRandom(16)),
+    });
+    return JSON.stringify(body);
+  }
+
+  const signMessageResult = await signMessage({ msg: stringToUint8Array(legacyMessage) });
+  return JSON.stringify({
+    pubkey,
+    signature: signMessageResult.signature,
+    ...data,
+  });
 }
 
 export interface IBlixtLsp {
@@ -171,16 +223,33 @@ export const blixtLsp: IBlixtLsp = {
       return (await fetch(`${dunderServer}/ondemand-channel/service-status`)).json();
     }),
 
-    checkStatus: thunk(async (_, _2, { getStoreState }) => {
+    getStatusForSigning: thunk(async (actions, _, { getState }) => {
+      const cached = getState().status;
+      if (supportsDunderSignedRequests(cached)) {
+        return cached;
+      }
+      try {
+        const fresh = await actions.serviceStatus();
+        actions.setStatus(fresh);
+        return fresh;
+      } catch (error) {
+        log.w("Could not fetch Dunder service status, using legacy signatures", [error]);
+        return null;
+      }
+    }),
+
+    checkStatus: thunk(async (actions, _2, { getStoreState }) => {
       log.i("checkStatus");
       const dunderServer = getStoreState().settings.dunderServer;
 
-      const signMessageResult = await signMessage({ msg: stringToUint8Array("CHECKSTATUS") });
-
-      const request = JSON.stringify({
-        pubkey: getStoreState().lightning.nodeInfo?.identityPubkey,
-        signature: signMessageResult.signature,
-      });
+      const request = await createDunderRequestBody(
+        dunderServer,
+        getStoreState().lightning.nodeInfo?.identityPubkey!,
+        await actions.getStatusForSigning(),
+        "/ondemand-channel/check-status",
+        "CHECKSTATUS",
+        {},
+      );
 
       return (
         await fetch(`${dunderServer}/ondemand-channel/check-status`, {
@@ -239,19 +308,22 @@ export const blixtLsp: IBlixtLsp = {
     register: thunk(async (actions, { preimage, amount }, { getStoreState }) => {
       log.i("register");
       const dunderServer = getStoreState().settings.dunderServer;
-      const signMessageResult = await signMessage({ msg: stringToUint8Array("REGISTER") });
-
-      const request: IOnDemandChannelRegisterRequest = {
-        pubkey: getStoreState().lightning.nodeInfo?.identityPubkey!,
-        signature: signMessageResult.signature,
-        preimage: bytesToHexString(preimage),
-        amountSat: amount,
-      };
+      const request = await createDunderRequestBody(
+        dunderServer,
+        getStoreState().lightning.nodeInfo?.identityPubkey!,
+        await actions.getStatusForSigning(),
+        "/ondemand-channel/register",
+        "REGISTER",
+        {
+          preimage: bytesToHexString(preimage),
+          amountSat: amount,
+        },
+      );
 
       actions.setRegisterInvoicePreimage(preimage);
 
       const result = await fetch(`${dunderServer}/ondemand-channel/register`, {
-        body: JSON.stringify(request),
+        body: request,
         method: "POST",
       });
       const json = await result.json();
@@ -261,16 +333,18 @@ export const blixtLsp: IBlixtLsp = {
       return json;
     }),
 
-    claim: thunk(async (_, _2, { getStoreState }) => {
+    claim: thunk(async (actions, _2, { getStoreState }) => {
       log.i("claim");
       const dunderServer = getStoreState().settings.dunderServer;
 
-      const signMessageResult = await signMessage({ msg: stringToUint8Array("CLAIM") });
-
-      const request = JSON.stringify({
-        pubkey: getStoreState().lightning.nodeInfo?.identityPubkey,
-        signature: signMessageResult.signature,
-      });
+      const request = await createDunderRequestBody(
+        dunderServer,
+        getStoreState().lightning.nodeInfo?.identityPubkey!,
+        await actions.getStatusForSigning(),
+        "/ondemand-channel/claim",
+        "CLAIM",
+        {},
+      );
 
       return (
         await fetch(`${dunderServer}/ondemand-channel/claim`, {
