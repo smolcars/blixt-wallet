@@ -92,7 +92,6 @@ export const BLIXT_NODE_PUBKEY =
 
 export const TOR_SETTINGS = {
   socksPort: 9056,
-  targetPort: 9057,
   dataDir: `${DocumentDirectoryPath}/tor_data`,
   timeoutMs: 30000,
 };

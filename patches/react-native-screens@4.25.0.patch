@@ -1,0 +1,18 @@
+diff --git a/src/components/tabs/host/index.ts b/src/components/tabs/host/index.ts
+--- a/src/components/tabs/host/index.ts
++++ b/src/components/tabs/host/index.ts
+@@ -1,4 +1,4 @@
+-export { default as TabsHost } from './TabsHost';
++export { default as TabsHost } from './TabsHost.web';
+ 
+ export type * from './TabsHost.types';
+ 
+diff --git a/src/components/tabs/screen/index.ts b/src/components/tabs/screen/index.ts
+--- a/src/components/tabs/screen/index.ts
++++ b/src/components/tabs/screen/index.ts
+@@ -1,4 +1,4 @@
+-export { default as TabsScreen } from './TabsScreen';
++export { default as TabsScreen } from './TabsScreen.web';
+ 
+ export type * from './TabsScreen.types';
+ 

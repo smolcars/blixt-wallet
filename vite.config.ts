@@ -234,7 +234,7 @@ export default defineConfig(({ command, mode }) => {
     //      `VERSION_CODE`, `BUILD_TYPE`, `DEBUG`, `__DEV__`, `BLIXT_WEB_DEMO`, and `IS_ELECTROBUN`
     //      before loading `index.web.js`; `NativeBlixtTools.web.ts` reads several of those directly
     //
-    // The large `web/web-hacks/**` alias block below is a separate category: compatibility patches for
+    // The `src/shims/**` alias block below is a separate category: compatibility patches for
     // React Native libraries. If a missing dependency is core app runtime surface area, document it in
     // the inventory above; if it is just a broken RN package import path, keep it with the patch aliases.
     resolve: {
@@ -253,7 +253,7 @@ export default defineConfig(({ command, mode }) => {
       alias: [
         {
           find: /^react-native$/,
-          replacement: resolvePath("web/web-hacks/react-native-web-compat.js"),
+          replacement: resolvePath("src/shims/web/react-native-web-compat.js"),
         },
         {
           find: /^sql\.js$/,
@@ -262,42 +262,42 @@ export default defineConfig(({ command, mode }) => {
         {
           find: /^react-native\/Libraries\/Utilities\/codegenNativeComponent$/,
           replacement: resolvePath(
-            "web/web-hacks/react-native-libraries/codegenNativeComponent.js",
+            "src/shims/web/react-native-libraries/codegenNativeComponent.js",
           ),
         },
         {
           find: /^react-native\/Libraries\/Utilities\/codegenNativeCommands$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/codegenNativeCommands.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/codegenNativeCommands.js"),
         },
         {
           find: /^react-native\/Libraries\/Image\/resolveAssetSource$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/resolveAssetSource.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/resolveAssetSource.js"),
         },
         {
           find: /^react-native\/Libraries\/StyleSheet\/processColor$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/processColor.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/processColor.js"),
         },
         {
           find: /^react-native\/Libraries\/StyleSheet\/processColorArray$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/processColorArray.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/processColorArray.js"),
         },
         {
           find: /^react-native\/Libraries\/NativeComponent\/NativeComponentRegistry$/,
           replacement: resolvePath(
-            "web/web-hacks/react-native-libraries/NativeComponentRegistry.js",
+            "src/shims/web/react-native-libraries/NativeComponentRegistry.js",
           ),
         },
         {
           find: /^react-native\/Libraries\/NativeComponent\/ViewConfigIgnore$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/ViewConfigIgnore.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/ViewConfigIgnore.js"),
         },
         {
           find: /^react-native\/Libraries\/ReactNative\/AppContainer$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/AppContainer.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/AppContainer.js"),
         },
         {
           find: /^react-native\/Libraries\/ReactNative\/RendererProxy$/,
-          replacement: resolvePath("web/web-hacks/react-native-libraries/RendererProxy.js"),
+          replacement: resolvePath("src/shims/web/react-native-libraries/RendererProxy.js"),
         },
         {
           find: "react-native-linear-gradient",
@@ -313,7 +313,7 @@ export default defineConfig(({ command, mode }) => {
         },
         {
           find: /^react-native-element-dropdown$/,
-          replacement: resolvePath("web/web-hacks/react-native-element-dropdown.js"),
+          replacement: resolvePath("src/shims/web/react-native-element-dropdown.js"),
         },
         {
           find: /^native-base-shoutem-theme$/,
@@ -321,15 +321,15 @@ export default defineConfig(({ command, mode }) => {
         },
         {
           find: /^@react-native-picker\/picker$/,
-          replacement: resolvePath("web/web-hacks/react-native-picker.js"),
+          replacement: resolvePath("src/shims/web/react-native-picker.js"),
         },
         {
           find: /^@react-native-documents\/picker$/,
-          replacement: resolvePath("web/web-hacks/react-native-documents-picker.js"),
+          replacement: resolvePath("src/shims/react-native-documents-picker.js"),
         },
         {
           find: "react-native-maps",
-          replacement: resolvePath("web/web-hacks/react-native-maps.jsx"),
+          replacement: resolvePath("src/shims/react-native-maps.js"),
         },
         {
           find: "react-native-svg",
@@ -341,7 +341,7 @@ export default defineConfig(({ command, mode }) => {
         },
         {
           find: /^react-native-keyboard-controller$/,
-          replacement: resolvePath("web/web-hacks/react-native-keyboard-controller.js"),
+          replacement: resolvePath("src/shims/react-native-keyboard-controller.js"),
         },
         {
           find: /^react-native-turbo-lnd$/,
@@ -349,23 +349,23 @@ export default defineConfig(({ command, mode }) => {
         },
         {
           find: "react-native-permissions",
-          replacement: resolvePath("web/web-hacks/react-native-permission.js"),
+          replacement: resolvePath("src/shims/react-native-permissions.js"),
         },
         {
           find: "react-native-dialogs",
-          replacement: resolvePath("web/web-hacks/react-native-dialogs.js"),
+          replacement: resolvePath("src/shims/web/react-native-dialogs.js"),
         },
         {
           find: "react-native-fs",
-          replacement: resolvePath("web/web-hacks/react-native-fs.js"),
+          replacement: resolvePath("src/shims/web/react-native-fs.js"),
         },
         {
           find: "react-native-icloudstore",
-          replacement: resolvePath("web/web-hacks/react-native-icloudstore.js"),
+          replacement: resolvePath("src/shims/react-native-icloudstore.js"),
         },
         {
           find: "react-native-nitro-tor",
-          replacement: resolvePath("web/web-hacks/react-native-nitro-tor.js"),
+          replacement: resolvePath("src/shims/react-native-nitro-tor.js"),
         },
         ...(isElectrobunTarget
           ? [
@@ -385,7 +385,7 @@ export default defineConfig(({ command, mode }) => {
           : []),
         {
           find: "@notifee/react-native",
-          replacement: resolvePath("web/web-hacks/notifee-react-native.js"),
+          replacement: resolvePath("src/shims/notifee-react-native.js"),
         },
       ],
     },

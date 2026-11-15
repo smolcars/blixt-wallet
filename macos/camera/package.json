@@ -1,0 +1,15 @@
+{
+  "name": "blixt-macos-camera",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/NativeBlixtCamera.ts",
+  "codegenConfig": {
+    "name": "BlixtCameraSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "ios": {
+      "modulesProvider": { "NativeBlixtCamera": "BlixtCameraModule" },
+      "componentProvider": { "BlixtCameraPreview": "BlixtCameraPreviewComponentView" }
+    }
+  }
+}

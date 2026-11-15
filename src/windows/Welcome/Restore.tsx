@@ -211,7 +211,8 @@ export default function Restore({ navigation }: IProps) {
         setBackupType("file");
       } else {
         const b = await NativeBlixtTools.macosOpenFileDialog();
-        console.log(b);
+        // Native promise cancellation can bridge as null or undefined.
+        if (b == null) return;
         setMacosBakBase64(b);
         setBackupType("macos");
       }

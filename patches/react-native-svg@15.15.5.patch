@@ -1,0 +1,30 @@
+diff --git a/node_modules/react-native-svg/.bun-tag-4661f6ad135a3414 b/.bun-tag-4661f6ad135a3414
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/apple/RNSVGUIKit.macos.mm b/apple/RNSVGUIKit.macos.mm
+index aa9f94bc3d204f209542f6ff6c0e4c2795c7f27a..d1d23754e4185eb15cd8439ccdc9746593a30a60 100644
+--- a/apple/RNSVGUIKit.macos.mm
++++ b/apple/RNSVGUIKit.macos.mm
+@@ -1,4 +1,5 @@
+ #import "RNSVGUIKit.h"
++#import <React/RCTAssert.h>
+ #import <objc/runtime.h>
+ 
+ #if TARGET_OS_OSX
+diff --git a/scripts/rnsvg_utils.rb b/scripts/rnsvg_utils.rb
+index 54ec0325cf4a83baf6bab9209566153593e439c0..bf776ff7c3ec722164f5c5913a86c62521caa7f8 100644
+--- a/scripts/rnsvg_utils.rb
++++ b/scripts/rnsvg_utils.rb
+@@ -14,8 +14,10 @@ def rnsvg_find_config()
+     :react_native_node_modules_dir => nil,
+   }
+ 
+-  react_native_node_modules_dir = File.join(File.dirname(`cd "#{Pod::Config.instance.installation_root.to_s}" && node --print "require.resolve('react-native/package.json')"`), '..')
+-  react_native_json = rnsvg_try_to_parse_react_native_package_json(react_native_node_modules_dir)
++  react_native_package_json_path = `cd "#{Pod::Config.instance.installation_root.to_s}" && node --print "require.resolve('react-native/package.json')"`.strip
++  react_native_node_modules_dir = File.join(File.dirname(react_native_package_json_path), '..')
++  # Preserve Node's resolved package name (including platform forks).
++  react_native_json = File.exist?(react_native_package_json_path) ? JSON.parse(File.read(react_native_package_json_path)) : nil
+ 
+   if react_native_json == nil
+     # user configuration, just in case

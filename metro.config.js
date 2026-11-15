@@ -1,3 +1,4 @@
+const path = require("path");
 const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
 
 /**
@@ -9,6 +10,8 @@ const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
 const config = {
   resolver: {
     unstable_enablePackageExports: true,
+    // The generated desktop install is not part of the mobile bundle graph.
+    blockList: new RegExp(`^${path.join(__dirname, "macos/node_modules").replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/`),
   },
 };
 

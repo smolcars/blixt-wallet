@@ -130,14 +130,12 @@ export default function Drawer({ navigation }: DrawerContentComponentProps) {
         <View style={style.menu}>
           {(layoutMode === "full" || PLATFORM === "macos") && (
             <>
-              {PLATFORM !== "macos" && (
-                <TouchableOpacity onPress={() => goToScreen("Send")}>
-                  <View style={style.menuItem}>
-                    <Icon style={style.menuItemIcon} type="AntDesign" name="camerao" />
-                    <Text style={style.menuItemText}>{t("menu.scan")}</Text>
-                  </View>
-                </TouchableOpacity>
-              )}
+              <TouchableOpacity onPress={() => goToScreen("Send")}>
+                <View style={style.menuItem}>
+                  <Icon style={style.menuItemIcon} type="AntDesign" name="camerao" />
+                  <Text style={style.menuItemText}>{t("menu.scan")}</Text>
+                </View>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => goToScreen("Receive")}>
                 <View style={style.menuItem}>
                   <Icon style={style.menuItemIcon} type="AntDesign" name="qrcode" />

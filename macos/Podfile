@@ -1,36 +1,71 @@
-require_relative '../node_modules/react-native-macos/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# Reject stale generated dependencies before native installation.
+system("node", File.join(__dir__, "../scripts/sync-macos-package.cjs"), "--check") || abort("macOS package is stale")
 
-pod 'SwiftProtobuf', '~> 1.22.0'
+# Select the fork for CLI/codegen and third-party native version/header lookups.
+ENV['BLIXT_PLATFORM'] = 'macos'
+resolver = File.join(__dir__, 'node-resolver.cjs')
+ENV['NODE_OPTIONS'] = [ENV['NODE_OPTIONS'], "--require=#{resolver.to_json}"].compact.join(' ')
 
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve("react-native-macos/scripts/react_native_pods.rb", {paths: [process.argv[1]]})',
+  __dir__]).strip
+
+platform :macos, '14.0'
+
+# Temporary until react-native-hash declares macOS in its upstream podspec.
+# Patch before autolinking reads supported platforms; reapplied after installs.
+hash_podspec = File.join(__dir__, 'node_modules/react-native-hash/react-native-hash.podspec')
+hash_source = File.read(hash_podspec)
+unless hash_source.match?(/:osx\s*=>/) || hash_source.include?('s.osx.deployment_target')
+  patched_hash = hash_source.sub(/s\.platforms\s*=\s*\{\s*:ios\s*=>\s*"9\.0"\s*\}/,
+                                's.platforms = { :ios => "9.0", :osx => "14.0" }')
+  abort('react-native-hash podspec changed; review the macOS workaround') if patched_hash == hash_source
+  File.write(hash_podspec, patched_hash)
+end
 prepare_react_native_project!
 
 project 'BlixtWallet',
-        # 'DebugTestnet' => :debug,
-        # 'ReleaseTestnet' => :release,
-        # 'DebugFakelnd' => :debug,
-        # 'ReleaseFakelnd' => :release,
         'Debug Regtest' => :debug,
         'Release Regtest' => :release,
         'Debug' => :debug,
         'Release' => :release
 
 target 'BlixtWallet' do
-  platform :macos, min_macos_version_supported
-  use_native_modules!
+  config = use_native_modules!
 
-  # Flags change depending on the env values.
-  flags = get_default_flags()
+  pod 'SwiftProtobuf', '~> 1.22.0'
 
   use_react_native!(
-    :path => '../node_modules/react-native-macos',
-    :hermes_enabled => true,
-    :fabric_enabled => ENV['RCT_NEW_ARCH_ENABLED'] == '1',
-    # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    :path => config[:reactNativePath],
+    :app_path => Pod::Config.instance.installation_root.to_s
   )
 
   post_install do |installer|
-    react_native_post_install(installer)
+    react_native_post_install(installer, config[:reactNativePath])
+
+    # glog includes these headers inside namespace google. Keep them textual
+    # when Swift/C++ interop imports the generated module (e.g. NitroModules).
+    glog_module_map = installer.sandbox.root + 'Target Support Files/glog/glog.modulemap'
+    module_map = File.read(glog_module_map)
+    unless module_map.include?('textual header "glog/log_severity.h"')
+      module_map.sub!('  export *', <<~HEADERS.chomp)
+          textual header "glog/log_severity.h"
+          textual header "glog/vlog_is_on.h"
+
+          export *
+      HEADERS
+      File.write(glog_module_map, module_map)
+    end
+
+    # Resource bundles can retain a pod's older minimum even after RN's hook.
+    # Xcode 27 rejects those targets; all macOS targets share the app's floor.
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |build_config|
+        minimum = build_config.build_settings['MACOSX_DEPLOYMENT_TARGET']
+        if minimum && Gem::Version.new(minimum) < Gem::Version.new('14.0')
+          build_config.build_settings['MACOSX_DEPLOYMENT_TARGET'] = '14.0'
+        end
+      end
+    end
   end
 end

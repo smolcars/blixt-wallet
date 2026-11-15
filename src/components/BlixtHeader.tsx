@@ -17,15 +17,16 @@ export default function BlixtHeader(props: any) {
 
   const containerStyle = {
     position: "absolute" as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: blixtTheme.primary,
-    flex: 1,
     alignItems: "center" as const,
     justifyContent: "center" as const,
-    width: "100%",
-    height: "100%",
   } as StyleProp<ViewStyle>;
 
-  if (useLegacyHeaderGradient && PLATFORM !== "web") {
+  if (useLegacyHeaderGradient && PLATFORM !== "web" && PLATFORM !== "macos") {
     return (
       <LinearGradient style={containerStyle} colors={gradientColors}>
         {props?.children}

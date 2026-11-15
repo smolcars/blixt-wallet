@@ -1,0 +1,14 @@
+{
+  "name": "blixt-macos-biometrics",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "codegenConfig": {
+    "name": "BlixtBiometricsSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "ios": {
+      "modulesProvider": { "NativeBlixtBiometrics": "BlixtBiometricsModule" }
+    }
+  }
+}

@@ -1,153 +1,133 @@
-import React, { useState, useEffect, useRef } from "react";
-import { View, StyleSheet } from "react-native";
-import Clipboard from "@react-native-clipboard/clipboard";
-import { Icon, Text } from "native-base";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Button, Pressable, StyleSheet, Text, View } from "react-native";
+import { useIsFocused } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { getStatusBarHeight } from "react-native-status-bar-height";
-import {
-  Camera,
-  type TargetCameraPosition,
-  useCameraDevice,
-  useCameraPermission,
-} from "react-native-vision-camera";
-import {
-  type TargetBarcodeFormat,
-  useBarcodeScannerOutput,
-} from "react-native-vision-camera-barcode-scanner";
+import Clipboard from "@react-native-clipboard/clipboard";
+import { Icon } from "native-base";
 
-import BarcodeMask from "../../components/BarCodeMask";
-import { SendStackParamList } from "./index";
-import { useStoreState } from "../../state/store";
-import { blixtTheme } from "../../native-base-theme/variables/commonColor";
-import { Chain } from "../../utils/build";
-import GoBackIcon from "../../components/GoBackIcon";
+import Camera from "../../components/Camera";
+import type { CameraHandle } from "../../components/Camera.types";
 import { PLATFORM } from "../../utils/constants";
+import { Chain } from "../../utils/build";
+import { getStatusBarHeight } from "react-native-status-bar-height";
+import BarcodeMask from "../../components/BarCodeMask";
+import GoBackIcon from "../../components/GoBackIcon";
+import { blixtTheme } from "../../native-base-theme/variables/commonColor";
+import { useStoreState } from "../../state/store";
+import useEvaluateLightningCode from "../../hooks/useEvaluateLightningCode";
 import usePromptLightningAddress from "../../hooks/usePromptLightningAddress";
-import useEveluateLightningCode from "../../hooks/useEvaluateLightningCode";
 import { toast } from "../../utils";
-import Container from "../../components/Container";
+import { SendStackParamList } from "./index";
 
-const QR_CODE_FORMATS: TargetBarcodeFormat[] = ["qr-code"];
-
-interface ISendCameraProps {
-  bolt11Invoice?: string;
+interface Props {
   navigation: StackNavigationProp<SendStackParamList, "SendCamera">;
 }
-export default function SendCamera({ navigation }: ISendCameraProps) {
+
+export default function SendCamera({ navigation }: Props) {
+  const focused = useIsFocused();
   const rpcReady = useStoreState((store) => store.lightning.rpcReady);
-  const [cameraType, setCameraType] = useState<TargetCameraPosition>("back");
-  const device = useCameraDevice(cameraType);
-  const [scanning, setScanning] = useState(true);
-  const [cameraActive, setCameraActive] = useState(true);
-  const scannedTexts = useRef<Array<string | undefined>>([]);
-  const { hasPermission, requestPermission } = useCameraPermission();
+  const evaluateLightningCode = useEvaluateLightningCode();
   const promptLightningAddress = usePromptLightningAddress();
-  const evaluateLightningCode = useEveluateLightningCode();
-  const barcodeScannerOutput = useBarcodeScannerOutput({
-    barcodeFormats: QR_CODE_FORMATS,
-    onBarcodeScanned: (barcodes) => {
-      const value = barcodes[0]?.rawValue;
-      if (value !== undefined) {
-        if (scannedTexts.current[0] === value) {
-          return;
-        }
-        scannedTexts.current.push(value);
-        onBarCodeRead(value);
-      }
-    },
-    onError: (error) => console.error("Failed to scan QR code", error),
-  });
+  const cameraRef = useRef<CameraHandle>(null);
+  const [busy, setBusy] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const busyRef = useRef(false);
+  const mountedRef = useRef(true);
+  const focusedRef = useRef(focused);
+  useLayoutEffect(() => {
+    focusedRef.current = focused;
+  }, [focused]);
 
   useEffect(() => {
-    (async () => {
-      if (hasPermission === false) {
-        setTimeout(async () => {
-          console.log("Does not have camera permission");
-          if (await !requestPermission()) {
-            navigation.pop();
-          }
-        }, 600);
-      }
-    })();
-  }, [requestPermission, hasPermission]);
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      focusedRef.current = false;
+    };
+  }, []);
 
-  const onCameraSwitchClick = () => {
-    setCameraType((p) => (p === "back" ? "front" : "back"));
-  };
-
-  const gotoNextScreen = (screen: string, options: any) => {
-    (navigation as any).replace(screen, options);
-  };
-
-  const gotoLnurlAfterReturningToRoot = (
+  const gotoLnurl = (
     screen: "AuthRequest" | "ChannelRequest" | "PayRequest" | "WithdrawRequest",
   ) => {
-    const parentNavigation = navigation.getParent();
-    const canReturnToParent = parentNavigation?.canGoBack?.() ?? false;
-
-    if (!parentNavigation?.navigate) {
-      gotoNextScreen("LNURL", { screen });
-      return;
-    }
-
-    if (canReturnToParent) {
-      parentNavigation.goBack();
-      setTimeout(() => {
-        parentNavigation.navigate("LNURL", { screen });
-      }, 220);
-      return;
-    }
-
-    parentNavigation.navigate("LNURL", { screen });
-  };
-
-  const onLightningAddressClick = async () => {
-    setScanning(false);
-
-    if ((await promptLightningAddress())[0]) {
-      gotoLnurlAfterReturningToRoot("PayRequest");
+    const parent = navigation.getParent();
+    if (!parent?.navigate) {
+      (navigation as any).replace("LNURL", { screen });
+    } else if (parent.canGoBack()) {
+      parent.goBack();
+      setTimeout(() => parent.navigate("LNURL", { screen }), 220);
     } else {
-      setScanning(true);
+      parent.navigate("LNURL", { screen });
     }
   };
 
-  const tryInvoice = async (paymentRequest: string, errorPrefix: string) => {
-    if (!cameraActive || !scanning || !rpcReady) {
-      return;
-    }
-
+  // Gate synchronously: consecutive frames can arrive before React commits busy.
+  const tryInvoice = async (read: () => Promise<string> | string, errorPrefix: string) => {
+    if (!focusedRef.current || busyRef.current || !rpcReady) return;
+    busyRef.current = true;
+    setBusy(true);
+    setPaused(true);
     try {
-      setCameraActive(false);
-      setScanning(false);
-
-      switch (await evaluateLightningCode(paymentRequest, errorPrefix)) {
+      const value = await read();
+      if (!focusedRef.current) return;
+      const result = await evaluateLightningCode(value, errorPrefix);
+      if (!focusedRef.current) return;
+      switch (result) {
         case "BOLT11":
-          gotoNextScreen("Send", { screen: "SendConfirmation" });
+          (navigation as any).replace("Send", { screen: "SendConfirmation" });
           break;
         case "LNURLAuthRequest":
-          gotoLnurlAfterReturningToRoot("AuthRequest");
+          gotoLnurl("AuthRequest");
           break;
         case "LNURLChannelRequest":
-          gotoLnurlAfterReturningToRoot("ChannelRequest");
+          gotoLnurl("ChannelRequest");
           break;
         case "LNURLPayRequest":
-          gotoLnurlAfterReturningToRoot("PayRequest");
+          gotoLnurl("PayRequest");
           break;
         case "LNURLWithdrawRequest":
-          gotoLnurlAfterReturningToRoot("WithdrawRequest");
-          break;
-        case null:
-          setCameraActive(true);
-          setScanning(true);
+          gotoLnurl("WithdrawRequest");
           break;
       }
-    } catch (error: any) {
-      toast(error.message, 13000, "danger");
+    } catch (cause: any) {
+      if (focusedRef.current)
+        toast(cause.message ?? "Could not read the invoice.", 13000, "danger");
+    } finally {
+      busyRef.current = false;
+      if (mountedRef.current) setBusy(false);
     }
   };
 
-  const onPasteClick = async () => {
-    await tryInvoice(await Clipboard.getString(), "Clipboard paste error");
+  const onLightningAddress = async () => {
+    if (!focusedRef.current || busyRef.current || !rpcReady) return;
+    busyRef.current = true;
+    setBusy(true);
+    try {
+      const [accepted] = await promptLightningAddress();
+      if (accepted && focusedRef.current) {
+        setPaused(true);
+        gotoLnurl("PayRequest");
+      }
+    } catch (cause: any) {
+      if (focusedRef.current) toast(cause.message, 13000, "danger");
+    } finally {
+      busyRef.current = false;
+      if (mountedRef.current) setBusy(false);
+    }
+  };
+
+  const chooseCamera = async () => {
+    if (!focusedRef.current || busyRef.current) return;
+    busyRef.current = true;
+    setBusy(true);
+    try {
+      await cameraRef.current?.switchCamera();
+      if (focusedRef.current) setPaused(false);
+    } catch (cause: any) {
+      if (focusedRef.current) toast(cause.message ?? "Could not switch cameras.");
+    } finally {
+      busyRef.current = false;
+      if (mountedRef.current) setBusy(false);
+    }
   };
 
   const onDebugPaste = async () => {
@@ -155,110 +135,85 @@ export default function SendCamera({ navigation }: ISendCameraProps) {
       Chain === "mainnet"
         ? "lnbc1500n1pw5gmyxpp5tnx03hfr3tx2lx3aal045c5dycjsah6j6a80c27qmxla3nrk8xmsdp42fjkzep6ypxxjemgw3hxjmn8yptkset9dssx7e3qgehhyar4dejs6cqzpgxqr23s49gpc74nkm8em70rehny2fgkp94vwm6lh8ympp668x2asn8yf5vk76camftzte4nh3h8sf365vwx69mxp4x5p3s7jx8l57vaeqyr68gqx9eaf0"
         : "lntb12u1pww4ckdpp5xck8m9yerr9hqufyd6p0pp0pwjv5nqn6guwr9qf4l66wrqv3h2ssdp2xys9xct5da3kx6twv9kk7m3qg3hkccm9ypxxzar5v5cqp5ynhgvxfnkwxx75pcxcq2gye7m5dj26hjglqmhkz8rljhg3eg4hfyg38gnsynty3pdatjg9wpa7pe7g794y0hxk2gqd0hzg2hn5hlulqqen6cr5";
-    await tryInvoice(bolt11, "Debug clipboard paste error");
+    await tryInvoice(() => bolt11, "Debug clipboard paste error");
   };
 
-  const onBarCodeRead = async (data: string) => {
-    await tryInvoice(data, "QR scan error");
-  };
-
-  if (!hasPermission) {
-    return (
-      <Container style={{ backgroundColor: "black" }} centered={true}>
-        {/* <Text>Camera permission was denied</Text> */}
-      </Container>
-    );
-  }
-
-  if (!device) {
-    return <Container style={{ backgroundColor: "black" }}></Container>;
-  }
-
+  const active = focused && rpcReady && !busy && !paused;
   return (
-    <Container>
-      <Camera
-        style={StyleSheet.absoluteFill}
-        device={device}
-        isActive={cameraActive}
-        outputs={[barcodeScannerOutput]}
-      />
-      <View style={StyleSheet.absoluteFill}>
+    <Camera
+      ref={cameraRef}
+      active={active}
+      onRead={(value) => {
+        if (active) void tryInvoice(() => value, "QR scan error");
+      }}
+    >
+      <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
         <BarcodeMask
           showAnimatedLine={false}
           edgeColor={blixtTheme.primary}
           width={265}
           height={265}
         />
-        <Icon
-          type="Ionicons"
-          name="at"
-          style={sendStyle.lightningAddress}
-          onPress={onLightningAddressClick}
-        />
-        <Icon
-          type="Ionicons"
-          name="camera-reverse"
-          style={sendStyle.swapCamera}
-          onPress={onCameraSwitchClick}
-        />
-        {(__DEV__ || PLATFORM === "web") && (
-          <Icon
-            type="MaterialCommunityIcons"
-            name="debug-step-over"
-            style={sendStyle.pasteDebug}
-            onPress={onDebugPaste}
-          />
-        )}
-        <Icon
+        {PLATFORM !== "android" && <GoBackIcon style={styles.goBack} />}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Enter Lightning address"
+          style={styles.lightningAddress}
+          onPress={onLightningAddress}
+        >
+          <Icon type="Ionicons" name="at" style={styles.icon} />
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Choose camera"
+          style={styles.swapCamera}
+          onPress={chooseCamera}
+        >
+          <Icon type="Ionicons" name="camera-reverse" style={styles.icon} />
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Paste invoice"
           testID="paste-clipboard"
-          type="FontAwesome"
-          name="paste"
-          style={sendStyle.paste}
-          onPress={onPasteClick}
-        />
-        {PLATFORM !== "android" && <GoBackIcon style={sendStyle.goBack} />}
+          style={styles.paste}
+          onPress={() => void tryInvoice(() => Clipboard.getString(), "Clipboard paste error")}
+        >
+          <Icon type="FontAwesome" name="paste" style={styles.icon} />
+        </Pressable>
+        {(__DEV__ || PLATFORM === "web") && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Paste debug invoice"
+            style={styles.pasteDebug}
+            onPress={onDebugPaste}
+          >
+            <Icon type="MaterialCommunityIcons" name="debug-step-over" style={styles.icon} />
+          </Pressable>
+        )}
+        <View pointerEvents="box-none" style={styles.status}>
+          {!rpcReady && <Text style={styles.text}>Waiting for the wallet to be ready…</Text>}
+          {rpcReady && busy && <Text style={styles.text}>Please wait…</Text>}
+          {rpcReady && paused && !busy && (
+            <Button title="Scan again" onPress={() => setPaused(false)} />
+          )}
+        </View>
       </View>
-    </Container>
+    </Camera>
   );
 }
 
-const sendStyle = StyleSheet.create({
-  goBack: {
-    top: getStatusBarHeight(false) + 8,
-    left: 8,
-    position: "absolute",
-    padding: 9,
-  },
+const styles = StyleSheet.create({
+  goBack: { position: "absolute", top: getStatusBarHeight(false) + 8, left: 8, padding: 9 },
   lightningAddress: {
     position: "absolute",
-    fontSize: 28,
-    color: blixtTheme.light,
     padding: 9,
     top: getStatusBarHeight(false) + 8,
-    right: 8 + 6,
+    right: 14,
   },
-  swapCamera: {
-    position: "absolute",
-    fontSize: 26,
-    color: blixtTheme.light,
-    padding: 9,
-    bottom: 10,
-    left: 13,
-  },
-  paste: {
-    position: "absolute",
-    fontSize: 26,
-    color: blixtTheme.light,
-    padding: 9,
-    bottom: 12,
-    right: 8 + 8,
-  },
-  pasteDebug: {
-    position: "absolute",
-    fontSize: 26,
-    color: blixtTheme.light,
-    padding: 9,
-    bottom: 12,
-    right: 64 + 9,
-  },
+  swapCamera: { position: "absolute", padding: 9, bottom: 10, left: 13 },
+  paste: { position: "absolute", padding: 9, bottom: 12, right: 16 },
+  pasteDebug: { position: "absolute", padding: 9, bottom: 12, right: 73 },
+  icon: { fontSize: 28, color: blixtTheme.light },
+  status: { position: "absolute", bottom: 64, left: 64, right: 64, alignItems: "center" },
+  text: { color: "white", textAlign: "center", marginBottom: 12 },
 });

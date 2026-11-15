@@ -1,5 +1,5 @@
 import * as base64 from "base64-js";
-import { RnTor } from "react-native-nitro-tor";
+import { startTorForLnd } from "../utils/tor";
 
 import { Action, Thunk, action, thunk } from "easy-peasy";
 import { AlertButton } from "react-native";
@@ -52,6 +52,7 @@ import {
   getItem as getItemAsyncStorage,
   getItemObject as getItemObjectAsyncStorage,
   getLndCompactDb,
+  getPersistentServicesEnabled,
   getRescanWallet,
   getWalletCreated,
   setAppBuild,
@@ -257,7 +258,13 @@ export const model: IStoreModel = {
         //   dispatch.settings.changeBitcoindPubRawBlock,
         //   dispatch.settings.changeBitcoindPubRawTx,
         // );
-        await setupRegtest2(dispatch.settings.changeNeutrinoPeers);
+        if (PLATFORM === "macos") {
+          // Keep first launch non-interactive; configure the local Regtest node
+          // in Settings once the initial desktop UI is available.
+          await dispatch.settings.changeNeutrinoPeers(["127.0.0.1:18444"]);
+        } else {
+          await setupRegtest2(dispatch.settings.changeNeutrinoPeers);
+        }
       }
       log.i("Initializing db for the first time");
       try {
@@ -296,24 +303,11 @@ export const model: IStoreModel = {
         try {
           actions.setTorLoading(true);
 
-          const torResult = await RnTor.startTorIfNotRunning({
-            data_dir: TOR_SETTINGS.dataDir,
-            socks_port: TOR_SETTINGS.socksPort,
-            target_port: TOR_SETTINGS.targetPort,
-            timeout_ms: TOR_SETTINGS.timeoutMs,
+          args = await startTorForLnd({
+            dataDirectory: TOR_SETTINGS.dataDir,
+            socksPort: TOR_SETTINGS.socksPort,
+            bootstrapTimeoutMs: TOR_SETTINGS.timeoutMs,
           });
-
-          log.i("tor result", [torResult]);
-
-          if (!torResult.is_success) {
-            throw new Error(torResult.error_message);
-          }
-
-          args = `--tor.active `;
-          args += `--tor.socks=127.0.0.1:${TOR_SETTINGS.socksPort} `;
-          args += `--tor.v3 `;
-          args += `--tor.control=${torResult.control} `;
-          args += `--listen=localhost `;
 
           debugShowStartupInfo &&
             toast("Tor initialized " + (new Date().getTime() - start.getTime()) / 1000 + "s", 1000);
@@ -353,12 +347,11 @@ export const model: IStoreModel = {
         args = `--nolisten `;
       }
 
-      let persistentServicesEnabled =
-        (await getItemObjectAsyncStorage<boolean>(StorageItem.persistentServicesEnabled)) ?? false;
+      const persistentServicesEnabled = await getPersistentServicesEnabled();
       let persistentServicesWarningShown =
         (await getItemObjectAsyncStorage<boolean>(StorageItem.persistentServicesWarningShown)) ??
         false;
-      if (persistentServicesEnabled && !persistentServicesWarningShown) {
+      if (PLATFORM === "android" && persistentServicesEnabled && !persistentServicesWarningShown) {
         await setItemObject(StorageItem.persistentServicesWarningShown, true);
       }
       const gossipSyncEnabled =
@@ -696,7 +689,7 @@ bitcoin.node=${nodeBackend}
 bitcoin.defaultchanconfs=1
 
 [fee]
-fee.url=${neutrinoFeeUrl}
+${neutrinoFeeUrl ? `fee.url=${neutrinoFeeUrl}` : ""}
 
 ${
   lndChainBackend === "neutrino"

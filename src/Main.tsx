@@ -1,5 +1,7 @@
+import { NativeModules } from "react-native";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
+import NativeBlixtTools from "./turbomodules/NativeBlixtTools";
 import { Spinner, H1, H2, Text } from "native-base";
 import { Button } from "./components/Button";
 import {
@@ -88,6 +90,16 @@ export type RootStackParamList = {
 };
 
 export default function Main() {
+  const persistentServicesEnabled = useStoreState((store) => store.settings.persistentServicesEnabled);
+  useEffect(() => {
+    if (PLATFORM === "macos") {
+      NativeBlixtTools.setPersistentModeEnabled(persistentServicesEnabled);
+    }
+  }, [persistentServicesEnabled]);
+  const rpcReady = useStoreState((store) => store.lightning.rpcReady);
+  useEffect(() => {
+    if (PLATFORM === "macos") NativeModules.BlixtLndShutdown.setRpcReady(rpcReady);
+  }, [rpcReady]);
   const holdOnboarding = useStoreState((store) => store.holdOnboarding);
   const appReady = useStoreState((store) => store.appReady);
   const lightningReady = useStoreState((store) => store.lightning.ready);
@@ -196,7 +208,7 @@ export default function Main() {
   };
 
   const horizontalTransition: StackNavigationOptions = {
-    gestureEnabled: true,
+    gestureEnabled: PLATFORM !== "macos",
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   };
 
@@ -350,6 +362,7 @@ export default function Main() {
           gestureEnabled: true,
           gestureResponseDistance: 1000,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          ...(PLATFORM === "macos" ? { gestureEnabled: false } : {}),
         }}
       />
       <RootStack.Screen name="OnChain" component={OnChain} options={horizontalTransition} />

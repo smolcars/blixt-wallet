@@ -191,7 +191,7 @@ function Overview({ navigation }: IOverviewProps) {
       : `●●● ${getUnitNice(new BigNumber(2), bitcoinUnit)}`;
 
   return (
-    <Container style={{ marginTop: PLATFORM === "macos" ? 0.5 : 0 }}>
+    <Container>
       <StatusBar
         barStyle="light-content"
         hidden={false}
@@ -238,7 +238,7 @@ function Overview({ navigation }: IOverviewProps) {
           style={[style.animatedTop, { height: headerHeight }]}
           pointerEvents="box-none"
         >
-          <BlixtHeader height={PLATFORM === "macos" ? headerHeight : undefined} />
+          <BlixtHeader />
           <View style={StyleSheet.absoluteFill}>
             {/* <AnimatedIcon
               style={[style.onchainIcon, { opacity: iconOpacity }]} type="FontAwesome" name="btc" onPress={() => navigation.navigate("OnChain")}
@@ -709,6 +709,8 @@ export function DrawerComponent() {
           borderRightColor: "transparent",
           width: 315,
           borderEndColor: blixtTheme.dark,
+          // Permanent drawers add a hairline separator; omit it on macOS.
+          ...(PLATFORM === "macos" ? { borderLeftWidth: 0, borderRightWidth: 0 } : {}),
         },
         drawerType: layoutMode === "mobile" ? "front" : "permanent",
         swipeEdgeWidth: 400,

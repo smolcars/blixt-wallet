@@ -1,22 +1,21 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
-import { InteractionManager, StyleProp, View, ViewStyle } from "react-native";
+import React, {
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import { Button, InteractionManager, Text, View } from "react-native";
 import { BrowserQRCodeReader, type IScannerControls } from "@zxing/browser";
-import Container from "./Container";
+import type { CameraHandle, ICamera } from "./Camera.types";
+export type { ICamera } from "./Camera.types";
 import { blixtTheme } from "../native-base-theme/variables/commonColor";
 
 const SCANNER_OPTIONS = {
   delayBetweenScanAttempts: 300,
   delayBetweenScanSuccess: 650,
 };
-
-export interface ICamera {
-  active?: boolean;
-  children?: ReactNode;
-  cameraType?: "front" | "back";
-  onRead?: (text: string) => void;
-  onNotAuthorized?: () => void;
-  style?: StyleProp<ViewStyle>;
-}
 
 const getConstraints = (
   cameraType: ICamera["cameraType"],
@@ -51,14 +50,22 @@ const isConstraintError = (error: unknown) => {
   return name === "OverconstrainedError" || name === "NotFoundError";
 };
 
-export default function CameraComponent({
-  cameraType,
-  children,
-  onNotAuthorized,
-  onRead,
-  style,
-  active,
-}: ICamera) {
+export default forwardRef<CameraHandle, ICamera>(function CameraComponent(
+  { cameraType, children, onNotAuthorized, onRead, style, active },
+  ref,
+) {
+  const [direction, setDirection] = useState(cameraType ?? "back");
+  const [retry, setRetry] = useState(0);
+  const callbacks = useRef({ onRead, onNotAuthorized });
+  useLayoutEffect(() => {
+    callbacks.current = { onRead, onNotAuthorized };
+  }, [onRead, onNotAuthorized]);
+  useEffect(() => setDirection(cameraType ?? "back"), [cameraType]);
+  useImperativeHandle(ref, () => ({
+    switchCamera: async () => {
+      setDirection((previous) => (previous === "back" ? "front" : "back"));
+    },
+  }));
   const [start, setStart] = useState(false);
   const [cameraUnavailable, setCameraUnavailable] = useState(false);
   const controlsRef = useRef<IScannerControls | null>(null);
@@ -80,7 +87,7 @@ export default function CameraComponent({
   useEffect(() => {
     setCameraUnavailable(false);
     onNotAuthorizedCalledRef.current = false;
-  }, [cameraType, isActive]);
+  }, [direction, isActive, retry]);
 
   useEffect(() => {
     if (!start || !isActive) {
@@ -93,7 +100,7 @@ export default function CameraComponent({
       setCameraUnavailable(true);
       if (!onNotAuthorizedCalledRef.current) {
         onNotAuthorizedCalledRef.current = true;
-        onNotAuthorized?.();
+        callbacks.current.onNotAuthorized?.();
       }
     };
 
@@ -112,26 +119,36 @@ export default function CameraComponent({
     }
 
     let cancelled = false;
+    let ownedControls: IScannerControls | null = null;
     const reader = new BrowserQRCodeReader(undefined, SCANNER_OPTIONS);
 
     const startScanner = async (useFallbackConstraints: boolean) => {
       try {
-        controlsRef.current = await reader.decodeFromConstraints(
-          getConstraints(cameraType, useFallbackConstraints),
+        const controls = await reader.decodeFromConstraints(
+          getConstraints(direction, useFallbackConstraints),
           videoRef.current ?? undefined,
           (result, _error, controls) => {
-            controlsRef.current = controls;
-            if (cancelled || !result) {
+            if (cancelled) {
+              controls.stop();
               return;
             }
+            ownedControls = controls;
+            controlsRef.current = controls;
+            if (!result) return;
 
             const text = result.getText();
             if (text && text !== lastScannedTextRef.current) {
               lastScannedTextRef.current = text;
-              onRead?.(text);
+              callbacks.current.onRead?.(text);
             }
           },
         );
+        if (cancelled) {
+          controls.stop();
+          return;
+        }
+        ownedControls = controls;
+        controlsRef.current = controls;
       } catch (error) {
         if (cancelled) {
           return;
@@ -152,19 +169,16 @@ export default function CameraComponent({
 
     return () => {
       cancelled = true;
-      controlsRef.current?.stop();
-      controlsRef.current = null;
+      ownedControls?.stop();
+      if (controlsRef.current === ownedControls) controlsRef.current = null;
       lastScannedTextRef.current = "";
     };
-  }, [start, isActive, cameraType, onNotAuthorized, onRead]);
-
-  if (!start || !isActive || cameraUnavailable) {
-    return <Container style={{ backgroundColor: "black" }}>{children}</Container>;
-  }
+  }, [start, isActive, direction, retry]);
 
   return (
     <View style={[{ width: "100%", height: "100%", backgroundColor: blixtTheme.dark }, style]}>
       <video
+        key={`${direction}:${isActive}:${retry}`}
         ref={videoRef}
         muted={true}
         autoPlay={true}
@@ -176,10 +190,28 @@ export default function CameraComponent({
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transform: cameraType === "front" ? "scaleX(-1)" : undefined,
+          display: start && isActive && !cameraUnavailable ? "block" : "none",
+          transform: direction === "front" ? "scaleX(-1)" : undefined,
         }}
       />
       {children}
+      {cameraUnavailable && (
+        <View
+          style={{
+            position: "absolute",
+            top: "35%",
+            left: 48,
+            right: 48,
+            backgroundColor: "black",
+            padding: 16,
+          }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>
+            Camera unavailable. Allow camera access in your browser and use HTTPS or localhost.
+          </Text>
+          <Button title="Retry camera" onPress={() => setRetry((value) => value + 1)} />
+        </View>
+      )}
     </View>
   );
-}
+});

@@ -34,14 +34,6 @@
     "ios:mainnet-fakelnd": "react-native run-ios --scheme BlixtWalletFakelnd --configuration ReleaseFakelnd",
     "ios:mainnet-fakelnd-debug": "react-native run-ios --scheme BlixtWalletFakelnd --configuration DebugFakelnd",
     "ios:bundle-js-release": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle",
-    "macos:regtest-debug": "react-native-macos run-macos --scheme BlixtWalletRegtest --configuration DebugRegtest",
-    "macos:regtest": "react-native-macos run-macos --scheme BlixtWalletRegtest --configuration ReleaseRegtest",
-    "macos:testnet-debug": "react-native-macos run-macos --scheme BlixtWalletTestnet --configuration DebugTestnet",
-    "macos:testnet": "react-native-macos run-macos --scheme BlixtWalletTestnet --configuration ReleaseTestnet",
-    "macos:mainnet-debug": "react-native run-macos --scheme \"BlixtWallet Mainnet\" --configuration Debug",
-    "macos:mainnet": "react-native-macos run-macos --scheme BlixtWallet --configuration Release",
-    "macos:mainnet-fakelnd-debug": "react-native-macos run-macos --scheme BlixtWalletFakelnd --configuration DebugFakelnd",
-    "macos:mainnet-fakelnd": "react-native-macos run-macos --scheme BlixtWalletFakelnd --configuration ReleaseFakelnd",
     "web": "cross-env BLIXT_DEV=false CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=false vite --config ./vite.config.ts",
     "web:demo": "cross-env BLIXT_DEV=false CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=true vite --config ./vite.config.ts",
     "web:debug": "cross-env BLIXT_DEV=true CHAIN=mainnet FLAVOR=fakelnd APPLICATION_ID=com.blixtwallet.web BLIXT_WEB_DEMO=false vite --config ./vite.config.ts",
@@ -59,7 +51,18 @@
     "electrobun:package:normal": "bun run electrobun:bundle:package:normal && cd electrobun && cross-env FLAVOR=normal bun run package:stable",
     "electrobun:package:fakelnd": "bun run electrobun:bundle:package:fakelnd && cd electrobun && cross-env FLAVOR=fakelnd bun run package:stable",
     "electrobun:dev": "cd electrobun && bun run dev",
-    "electrobun:build": "cd electrobun && bun run build"
+    "electrobun:build": "cd electrobun && bun run build",
+    "macos:install": "bun run macos:sync && cd macos && bun install",
+    "macos:lnd": "cd macos && node node_modules/react-native-turbo-lnd/fetch-lnd.js --targets=macos",
+    "macos:pods": "bun run macos:check && cd macos && pod install",
+    "macos:start": "cd macos && bun run start",
+    "macos:bundle": "cd macos && bun run bundle",
+    "macos:mainnet-debug": "cd macos && bun run mainnet-debug",
+    "macos:mainnet": "cd macos && bun run mainnet",
+    "macos:regtest-debug": "cd macos && bun run regtest-debug",
+    "macos:regtest": "cd macos && bun run regtest",
+    "macos:sync": "node scripts/sync-macos-package.cjs",
+    "macos:check": "node scripts/sync-macos-package.cjs --check"
   },
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
@@ -118,7 +121,7 @@
     "react-native-maps": "1.29.0",
     "react-native-nitro-image": "0.15.2",
     "react-native-nitro-modules": "0.37.0",
-    "react-native-nitro-tor": "0.6.0",
+    "react-native-nitro-tor": "1.0.0",
     "react-native-paper": "5.15.3",
     "react-native-permissions": "5.6.1",
     "react-native-popup-menu": "0.19.0",
@@ -128,9 +131,8 @@
     "react-native-screens": "^4.27.0",
     "react-native-status-bar-height": "github:wzs/react-native-status-bar-height#5b1d68a6c708c14af24b2546c659702fbfb82b99",
     "react-native-svg": "15.15.5",
-    "react-native-svg-path-gradient": "^0.4.0",
     "react-native-svg-web": "^1.0.9",
-    "react-native-turbo-lnd": "0.0.22",
+    "react-native-turbo-lnd": "0.0.23",
     "react-native-turbo-sqlite": "0.7.0",
     "react-native-vector-icons": "9.2.0",
     "react-native-vision-camera": "5.2.3",
@@ -170,18 +172,18 @@
     "@types/secp256k1": "^4.0.6",
     "@types/sha.js": "^2.4.4",
     "@types/sql.js": "^1.4.9",
+    "@vitejs/plugin-react": "^6.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "babel-plugin-react-native-web": "0.21.2",
     "bolt11": "^1.4.1",
+    "cross-env": "^10.1.0",
     "eslint": "^10.9.0",
     "eslint-plugin-ft-flow": "3.0.11",
     "eslint-plugin-prettier": "5.5.6",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "cross-env": "^10.1.0",
     "prettier": "3.9.6",
     "typescript": "7.0.2",
     "vite": "^8.2.2",
-    "@vitejs/plugin-react": "^6.1.0",
     "vite-plugin-node-polyfills": "^0.28.0",
     "vite-plugin-static-copy": "^4.1.1"
   },
@@ -206,5 +208,8 @@
         "NativeSpeedloader": "NativeSpeedloaderModuleProvider"
       }
     }
+  },
+  "patchedDependencies": {
+    "react-native-svg@15.15.5": "patches/react-native-svg@15.15.5.patch"
   }
 }
