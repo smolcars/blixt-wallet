@@ -18,7 +18,7 @@ macOS now uses the shared background-gradient header instead of the SVG componen
 
 Mobile uses the root `package.json`, `bun.lock`, and `node_modules` with RN 0.85.2. macOS has its own `macos/package.json`, `macos/bun.lock`, and `macos/node_modules`. Shared application source remains in `src/`; there is no copy of the app.
 
-Do not edit `macos/package.json` by hand. `scripts/sync-macos-package.cjs` generates it from the root dependencies/devDependencies and `macos/dependency-overrides.json`. Shared dependency additions, changes, and removals propagate automatically. The override file contains only desktop differences: RN 0.83.10, react-native-macos 0.83.0, Screens 4.25.0, matching RN tooling, the two-import Screens patch, and the bridgeless Animated module selection patch. React currently stays at the shared 19.2.3 version. The macOS fork's exact RN peer is now satisfied.
+Do not edit `macos/package.json` by hand. `scripts/sync-macos-package.cjs` generates it from the root dependencies/devDependencies and `macos/dependency-overrides.json`. Shared dependency additions, changes, and removals propagate automatically. The override file contains only desktop differences: RN 0.83.10, react-native-macos 0.83.0, Screens 4.25.0, matching RN tooling, the two-import Screens patch, and the bridgeless Animated module selection and runtime shutdown patch. React currently stays at the shared 19.2.3 version. The macOS fork's exact RN peer is now satisfied.
 
 The generator also derives the application version, engine requirement, codegen configuration (adjusting the shared-source path), and inherited patches. Desktop scripts are explicit rather than inheriting mobile build/postinstall commands. Generated dependency declarations remain synchronized; the two lockfiles resolve and freeze their own dependency graphs. A shared version range can resolve differently between lockfiles, and each platform still needs compatibility testing.
 
@@ -556,3 +556,22 @@ Release, replacement scans, and React instance invalidation cancel the pending c
 Native controller tests inject LocalAuthentication contexts to cover the policy selection, password fallback despite biometric unavailability/lockout, cancellation, replacement, and stale/duplicate replies without prompting or unlocking a wallet. Adapter tests cover explicit success, named errors, and cancellation of pending JavaScript results. A native rebuild is required. The user confirmed live Touch ID authentication works. The initially visible “Use Password…” button returned an unhandled fallback event under the biometric-only policy. Owner authentication now lets macOS complete that flow. The user subsequently confirmed the Mac password fallback and scanner both work.
 
 Validation: six biometric tests and six existing manifest/shim/toolchain tests pass. CocoaPods/codegen, the production macOS JavaScript bundle, and the development-signed arm64 Mainnet Debug build pass. The wallet was not launched and no biometric preference was changed during these checks. Restart Metro to load the new module mapping and relaunch the rebuilt app for interactive verification.
+
+## Graceful macOS quit
+
+AppDelegate delays normal app termination while the native `BlixtLndShutdown` coordinator requests StopDaemon and polls the embedded library's real `getStatus()` every 100 ms. Status zero permits termination; a 15-second deadline permits exit if shutdown stalls. RPC acknowledgement alone never completes the wait. The native coordinator frees LND callback buffers and continues independently of the React view. Main forwards LND RPC readiness so locked/not-started wallets exit without attempting the unavailable Lightning RPC. This is LND readiness, not the Blixt UI authentication state.
+
+Closing the window with Persistent Mode enabled still only hides it. Explicit Quit/Cmd-Q and closing the last window with Persistent Mode disabled use the termination handler. Force Quit cannot run this cleanup. The existing Apple `NativeLndmobileTools.getStatus()` wrapper currently returns a placeholder zero; this coordinator bypasses it and calls the linked C function directly.
+
+A native test with fake LND checks readiness gating, immediate RPC acknowledgement without exit, the transition to status zero, and the real 15-second timeout. No existing wallet was stopped by automated validation. A native rebuild is required. The user confirmed graceful shutdown works in the running wallet.
+
+Validation: the native shutdown regression test, production macOS JavaScript bundle, and signed arm64 Mainnet Debug build pass.
+
+
+### Await React teardown before process exit
+
+A user crash report showed `__cxa_pure_virtual` in Fabric `ShadowNode::clone` / `NativeDOM::setNativeProps` on the JavaScript thread while the main thread was in `exit()` / C++ finalization. This indicates runtime work racing process teardown; it does not establish an LND shutdown failure.
+
+Every normal termination now waits for React invalidation after the LND wait (or immediately if LND is not RPC-ready). The RN macOS patch adds host/instance invalidation completion callbacks, coalesces repeated invalidations, and explicitly stops the JS message queue before signalling completion on the main queue. AppDelegate only permits termination after that signal. Persistent Mode window hiding still does not begin teardown. The local Apple getStatus stub is unrelated to the polling path, which calls the C export directly.
+
+Validation: signed arm64 Debug build passed. Three isolated app runs loaded a JavaScript-driven looping animation, received normal Quit events, logged React teardown completion, and exited with code zero. The probe used a separate bundle identifier and no wallet code or data. Native coordinator tests also cover waiting for the React completion callback. The user subsequently confirmed the rebuilt wallet quits without a crash.

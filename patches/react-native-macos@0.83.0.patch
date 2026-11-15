@@ -12,4 +12,102 @@ diff --git a/Libraries/Animated/shouldUseTurboAnimatedModule.js b/Libraries/Anim
 +    );
    }
  }
- 
+
+diff --git a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.h b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.h
+--- a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.h
++++ b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.h
+@@ -91,6 +91,9 @@
+
+ - (void)start;
+
++// Complete native teardown before the embedding application terminates.
++- (void)invalidateWithCompletion:(dispatch_block_t)completion;
++
+ - (void)callFunctionOnJSModule:(NSString *)moduleName method:(NSString *)method args:(NSArray *)args;
+
+ // Renderer API
+diff --git a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.mm b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.mm
+--- a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.mm
++++ b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTHost.mm
+@@ -432,6 +432,15 @@
+   [self _reloadWithShouldRestartSurfaces:YES];
+ }
+
++- (void)invalidateWithCompletion:(dispatch_block_t)completion
++{
++  if (_instance) {
++    [_instance invalidateWithCompletion:completion];
++  } else {
++    dispatch_async(dispatch_get_main_queue(), completion);
++  }
++}
++
+ - (void)dealloc
+ {
+   [_instance invalidate];
+diff --git a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.h b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.h
+--- a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.h
++++ b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.h
+@@ -89,6 +89,7 @@
+ - (void)registerSegmentWithId:(NSNumber *)segmentId path:(NSString *)path;
+
+ - (void)invalidate;
++- (void)invalidateWithCompletion:(dispatch_block_t _Nullable)completion;
+
+ @property (nonatomic, readonly, strong) RCTSurfacePresenter *surfacePresenter;
+
+diff --git a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.mm b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.mm
+--- a/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.mm
++++ b/ReactCommon/react/runtime/platform/ios/ReactCommon/RCTInstance.mm
+@@ -114,6 +114,9 @@
+   RCTDisplayLink *_displayLink;
+   RCTTurboModuleManager *_turboModuleManager;
+   std::mutex _invalidationMutex;
++  bool _invalidationStarted;
++  bool _invalidationFinished;
++  NSMutableArray<dispatch_block_t> *_invalidationCompletions;
+   std::atomic<bool> _valid;
+   RCTJSThreadManager *_jsThreadManager;
+   NSDictionary *_launchOptions;
+@@ -220,7 +223,22 @@
+
+ - (void)invalidate
+ {
++  [self invalidateWithCompletion:nil];
++}
++
++- (void)invalidateWithCompletion:(dispatch_block_t)completion
++{
+   std::lock_guard<std::mutex> lock(_invalidationMutex);
++  if (_invalidationFinished) {
++    if (completion) dispatch_async(dispatch_get_main_queue(), completion);
++    return;
++  }
++  if (completion) {
++    if (!_invalidationCompletions) _invalidationCompletions = [NSMutableArray new];
++    [_invalidationCompletions addObject:[completion copy]];
++  }
++  if (_invalidationStarted) return;
++  _invalidationStarted = true;
+   _valid = false;
+   if (_reactInstance) {
+     _reactInstance->unregisterFromInspector();
+@@ -246,6 +264,18 @@
+
+     // Terminate the JavaScript thread, so that no other work executes after this block.
++    [self->_jsThreadManager jsMessageThread]->quitSynchronous();
+     self->_jsThreadManager = nil;
++    // Signal only after runtime resources and the JS message queue are stopped.
++    dispatch_async(dispatch_get_main_queue(), ^{
++      NSArray<dispatch_block_t> *completions;
++      {
++        std::lock_guard<std::mutex> lock(self->_invalidationMutex);
++        self->_invalidationFinished = true;
++        completions = self->_invalidationCompletions;
++        self->_invalidationCompletions = nil;
++      }
++      for (dispatch_block_t callback in completions) callback();
++    });
+   }];
+ }
+

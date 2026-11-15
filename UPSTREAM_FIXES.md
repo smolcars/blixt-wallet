@@ -6,6 +6,7 @@ Dependency fixes found during Blixt's platform work. Status reflects the last re
 
 | Dependency | Fix | Status | Blixt workaround / next step |
 | --- | --- | --- | --- |
+| React Native macOS | Await runtime teardown before app exit | Local fix | Host/instance invalidation completion callback in the existing RN macOS patch. |
 | React Native macOS | Select Turbo Animated on bridgeless macOS | Prepared; publishing blocked | Local patch. Resolve fork access and submit. |
 | react-native-svg | Missing RCTAssert import | [PR #3069](https://github.com/software-mansion/react-native-svg/pull/3069) submitted | Keep patch until included in an adopted release. |
 | react-native-svg | Read the resolved RN package path | [PR #3070](https://github.com/software-mansion/react-native-svg/pull/3070) submitted | Keep patch until included in an adopted release. |

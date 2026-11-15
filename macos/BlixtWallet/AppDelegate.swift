@@ -23,6 +23,7 @@ struct BlixtWalletApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   let menuBar = BlixtMenuBarController()
+  private var terminationPending = false
   private let reactNativeDelegate: ReactNativeDelegate
   let reactNativeFactory: RCTReactNativeFactory
 
@@ -62,6 +63,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
     !menuBar.enabled
+  }
+
+  func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+    if terminationPending { return .terminateLater }
+    terminationPending = true
+    let stopReact = {
+      BlixtLndShutdown.stopReact(self.reactNativeFactory.rootViewFactory) {
+        sender.reply(toApplicationShouldTerminate: true)
+      }
+    }
+    if BlixtLndShutdown.shouldWait() {
+      BlixtLndShutdown.shutdown(completion: stopReact)
+    } else {
+      stopReact()
+    }
+    return .terminateLater
   }
 
   @objc private func getURL(_ event: NSAppleEventDescriptor, withReplyEvent reply: NSAppleEventDescriptor) {

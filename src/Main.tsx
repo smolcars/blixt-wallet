@@ -1,3 +1,4 @@
+import { NativeModules } from "react-native";
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import NativeBlixtTools from "./turbomodules/NativeBlixtTools";
@@ -95,6 +96,10 @@ export default function Main() {
       NativeBlixtTools.setPersistentModeEnabled(persistentServicesEnabled);
     }
   }, [persistentServicesEnabled]);
+  const rpcReady = useStoreState((store) => store.lightning.rpcReady);
+  useEffect(() => {
+    if (PLATFORM === "macos") NativeModules.BlixtLndShutdown.setRpcReady(rpcReady);
+  }, [rpcReady]);
   const holdOnboarding = useStoreState((store) => store.holdOnboarding);
   const appReady = useStoreState((store) => store.appReady);
   const lightningReady = useStoreState((store) => store.lightning.ready);
